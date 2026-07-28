@@ -24,10 +24,31 @@ type CatalogDoc = {
 
 type MediaItem = {
   id: string; category: string; title: string; caption: string; src: string;
-  sourceType: string; bytes: number;
+  sourceType: string; bytes: number; mediaType?: "image" | "video";
 };
 
 const mediaCatalog = mediaCatalogData as Record<string,MediaItem[]>;
+mediaCatalog.one = [
+  {id:"one-promo-video",category:"宣传视频",title:"《击败音乐狂》实机宣传视频",caption:"展示节奏弹幕、AI 英雄成长与造物主控制玩法的项目宣传录像。",src:"/downloads/one/media/gameplay-promo.mp4",sourceType:"项目宣传视频",bytes:74131251,mediaType:"video"},
+  {id:"one-promo-1",category:"宣传图",title:"节奏弹幕战斗宣传图",caption:"项目最新宣传画面，呈现音乐主题敌人与高密度弹幕战场。",src:"/downloads/one/media/promo-01.png",sourceType:"项目宣传图",bytes:691901,mediaType:"image"},
+  {id:"one-promo-2",category:"宣传图",title:"造物主玩法宣传图",caption:"突出玩家作为造物主干预战局、召唤单位与构建挑战的玩法视角。",src:"/downloads/one/media/promo-02.png",sourceType:"项目宣传图",bytes:795815,mediaType:"image"},
+  {id:"one-promo-3",category:"宣传图",title:"AI 英雄成长宣传图",caption:"展示 AI 英雄构筑、战斗节拍与成长反馈的核心体验。",src:"/downloads/one/media/promo-03.png",sourceType:"项目宣传图",bytes:1048657,mediaType:"image"},
+  ...(mediaCatalog.one??[])
+];
+
+type DownloadItem = {platform:"Windows"|"Android";title:string;filename:string;size:string;href:string};
+const downloadsByProject:Record<string,DownloadItem[]> = {
+  one:[
+    {platform:"Windows",title:"《击败音乐狂》PC 试玩版",filename:"defeat-music-maniac-windows.zip",size:"80.2 MB",href:"/downloads/one/builds/defeat-music-maniac-windows.zip"},
+    {platform:"Android",title:"《击败音乐狂》安卓试玩版",filename:"DefeatMusicManiac.apk",size:"82.6 MB",href:"/downloads/one/builds/DefeatMusicManiac.apk"}
+  ],
+  star:[{platform:"Windows",title:"《星空掠夺者》PC 试玩版",filename:"star-raiders-windows.zip",size:"41.4 MB",href:"/downloads/star/builds/star-raiders-windows.zip"}],
+  rts:[{platform:"Android",title:"RTS 最新安卓试玩版",filename:"TestRTS2_latest.apk",size:"192.0 MB",href:"/downloads/rts/builds/TestRTS2_latest.apk"}],
+  castle:[
+    {platform:"Windows",title:"《亲密城堡》PC 试玩版",filename:"HSJT-PC.zip",size:"248.4 MB",href:"/downloads/castle/builds/HSJT-PC.zip"},
+    {platform:"Android",title:"《亲密城堡》安卓试玩版",filename:"HSJT.apk",size:"470.2 MB",href:"/downloads/castle/builds/HSJT.apk"}
+  ]
+};
 const catalogTotals = documentCounts as Record<string, number>;
 const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
@@ -206,6 +227,7 @@ export default function Portfolio(){
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
   const projectDocs=selected?fullCatalog[selected.id]??[]:[];
   const projectMedia=selected?mediaCatalog[selected.id]??[]:[];
+  const projectDownloads=selected?downloadsByProject[selected.id]??[]:[];
   const mediaCategories=useMemo(()=>["全部",...Array.from(new Set(projectMedia.map(item=>item.category)))],[projectMedia]);
   const filteredMedia=projectMedia.filter(item=>mediaCategory==="全部"||item.category===mediaCategory);
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
@@ -288,7 +310,7 @@ export default function Portfolio(){
       <div className="projectGrid">
         {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>setSelected(p)}>
           <div className="cover">{p.image?<img src={p.image} alt={`${p.name}项目画面，作为作品封面`}/>:<div className="coverFallback"><span>{p.en}</span><i/></div>}<span className="mediaType">{p.image?"项目素材":"视觉占位"}</span><button aria-label={`查看 ${p.name}`}>↗</button></div>
-          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
+          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small>{downloadsByProject[p.id]?.length?<div className="downloadAvailable">↓ {downloadsByProject[p.id].length} 个试玩包可下载</div>:null}<div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
         </article>)}
       </div>
       {!shown.length&&<div className="empty">没有匹配的项目。<button onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
@@ -329,14 +351,15 @@ export default function Portfolio(){
         <button className="close" onClick={()=>setSelected(null)} aria-label="关闭项目详情">×</button>
         <div className="modalHero" style={{"--accent":selected.accent} as React.CSSProperties}>{selected.image?<img src={selected.image} alt={`${selected.name}项目画面`}/>:<div className="modalFallback">{selected.en}</div>}<div><span>{selected.status} · {selected.type}</span><h2 id="modal-title">{selected.name}</h2><p>{selected.pitch}</p></div></div>
         <div className="modalBody">
-          <aside><a href="#overview">概览</a><a href="#loop">核心玩法</a><a href="#media">美术资产</a><a href="#documents">项目文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
+          <aside><a href="#overview">概览</a>{projectDownloads.length?<a className="asideDownload" href="#downloads">↓ 下载试玩</a>:null}<a href="#loop">核心玩法</a><a href="#media">美术资产</a><a href="#documents">项目文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
           <div>
-            <section id="overview"><p className="kicker">PROJECT OVERVIEW</p><h3>先说它为什么值得做</h3><p>{selected.pitch} 当前档案基于工程目录、已有设计文档与项目素材整理；具体开发时间、版本号与公开范围仍标记为待本人确认。</p><dl><div><dt>个人职责</dt><dd>{selected.role}</dd></div><div><dt>引擎 / 标签</dt><dd>{selected.tags.join(" · ")}</dd></div><div><dt>可验证成果</dt><dd>{selected.playable?"工程中发现可运行包体，公开链接整理中":"工程原型与设计文档，媒体继续整理中"}</dd></div></dl></section>
+            <section id="overview"><p className="kicker">PROJECT OVERVIEW</p><h3>先说它为什么值得做</h3><p>{selected.pitch} 当前档案基于工程目录、已有设计文档与项目素材整理；具体开发时间、版本号与公开范围仍标记为待本人确认。</p><dl><div><dt>个人职责</dt><dd>{selected.role}</dd></div><div><dt>引擎 / 标签</dt><dd>{selected.tags.join(" · ")}</dd></div><div><dt>可验证成果</dt><dd>{projectDownloads.length?`${projectDownloads.length} 个可直接下载的试玩版本`:(selected.playable?"工程中发现可运行包体，公开链接整理中":"工程原型与设计文档，媒体继续整理中")}</dd></div></dl></section>
+            {projectDownloads.length?<section id="downloads" className="projectDownloads"><div className="downloadHeading"><div><p className="kicker">PLAYABLE BUILDS</p><h3>下载试玩</h3><p>选择设备下载当前可运行版本。Windows 包解压后运行同名 EXE；安卓包需要允许安装外部 APK。</p></div><span>可运行版本</span></div><div className="downloadGrid">{projectDownloads.map(item=><a href={item.href} download={item.filename} key={item.href}><i>{item.platform==="Windows"?"PC":"APK"}</i><div><small>{item.platform} · {item.size}</small><strong>{item.title}</strong><span>{item.filename}</span></div><b>立即下载 ↓</b></a>)}</div></section>:null}
             <section id="loop"><p className="kicker">DESIGN LOOP</p><h3>从选择到反馈的闭环</h3><div className="loop"><span>观察局势</span><i>→</i><span>做出构筑</span><i>→</i><span>进入验证</span><i>→</i><span>带回成长</span></div><p>详情页首版保留统一结构，后续会从原项目文档中继续提炼每个模块的玩家目标、操作、主要决策、即时反馈与失败代价。</p></section>
             <section id="media" className="projectMedia"><div className="mediaHeading"><div><p className="kicker">ART & MEDIA ARCHIVE</p><h3>项目美术资产</h3><p>按用途整理工程中的画面、UI、角色、场景、模型预览、特效与图标。所有 AI 概念封面均明确标注，不与实机截图混用。</p></div><strong>{projectMedia.length}<small> ASSETS</small></strong></div>
               <div className="mediaFilters" role="group" aria-label="美术资产分类">{mediaCategories.map(c=><button key={c} aria-pressed={mediaCategory===c} onClick={()=>setMediaCategory(c)}>{c}<b>{c==="全部"?projectMedia.length:projectMedia.filter(item=>item.category===c).length}</b></button>)}</div>
               <div className="mediaGrid">{filteredMedia.map((item,i)=><button className={`mediaCard ${i===0?"mediaLead":""}`} key={item.id} onClick={()=>setLightboxMedia(item)}>
-                <div><img src={item.src} alt={`${item.title}：${item.caption}`} loading="lazy"/><span>{item.sourceType}</span><i>＋</i></div><small>{item.category}</small><h4>{item.title}</h4><p>{item.caption}</p>
+                <div>{item.mediaType==="video"?<video src={`${item.src}#t=0.1`} preload="metadata" muted playsInline/>:<img src={item.src} alt={`${item.title}：${item.caption}`} loading="lazy"/>}<span>{item.sourceType}</span><i>{item.mediaType==="video"?"▶":"＋"}</i></div><small>{item.category}</small><h4>{item.title}</h4><p>{item.caption}</p>
               </button>)}</div>
               {!projectMedia.length&&<div className="mediaEmpty">该项目的可公开视觉资产仍在整理中。</div>}
             </section>
@@ -373,8 +396,8 @@ export default function Portfolio(){
       </article>
       {lightboxMedia&&<div className="mediaLightbox" onMouseDown={()=>setLightboxMedia(null)}>
         <article role="dialog" aria-modal="true" aria-label={lightboxMedia.title} onMouseDown={e=>e.stopPropagation()}>
-          <button className="lightboxClose" onClick={()=>setLightboxMedia(null)} aria-label="关闭图片">×</button>
-          <div className="lightboxImage"><img src={lightboxMedia.src} alt={`${lightboxMedia.title}：${lightboxMedia.caption}`}/></div>
+          <button className="lightboxClose" onClick={()=>setLightboxMedia(null)} aria-label="关闭媒体">×</button>
+          <div className="lightboxImage">{lightboxMedia.mediaType==="video"?<video src={lightboxMedia.src} controls autoPlay playsInline/>:<img src={lightboxMedia.src} alt={`${lightboxMedia.title}：${lightboxMedia.caption}`}/>}</div>
           <div className="lightboxCopy"><span>{lightboxMedia.category} · {lightboxMedia.sourceType}</span><h3>{lightboxMedia.title}</h3><p>{lightboxMedia.caption}</p></div>
         </article>
       </div>}
