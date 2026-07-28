@@ -49,6 +49,19 @@ const downloadsByProject:Record<string,DownloadItem[]> = {
     {platform:"Android",title:"《亲密城堡》安卓试玩版",filename:"HSJT.apk",size:"470.2 MB",href:"/downloads/castle/builds/HSJT.apk"}
   ]
 };
+
+const uploadKeyByName:Record<string,string> = {
+  "defeat-music-maniac-windows.zip":"downloads/one/builds/defeat-music-maniac-windows.zip",
+  "DefeatMusicManiac.apk":"downloads/one/builds/DefeatMusicManiac.apk",
+  "star-raiders-windows.zip":"downloads/star/builds/star-raiders-windows.zip",
+  "TestRTS2_latest.apk":"downloads/rts/builds/TestRTS2_latest.apk",
+  "HSJT-PC.zip":"downloads/castle/builds/HSJT-PC.zip",
+  "HSJT.apk":"downloads/castle/builds/HSJT.apk",
+  "QQ20260728-152040.png":"downloads/one/media/promo-01.png",
+  "QQ20260728-152336.png":"downloads/one/media/promo-02.png",
+  "QQ20260728-153357.png":"downloads/one/media/promo-03.png",
+  "屏幕录制 2026-07-28 152249.mp4":"downloads/one/media/gameplay-promo.mp4"
+};
 const catalogTotals = documentCounts as Record<string, number>;
 const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
@@ -224,6 +237,8 @@ export default function Portfolio(){
   const [readingLoading,setReadingLoading]=useState(false);
   const [mediaCategory,setMediaCategory]=useState("全部");
   const [lightboxMedia,setLightboxMedia]=useState<MediaItem|null>(null);
+  const [showUploader,setShowUploader]=useState(false);
+  const [uploadStatus,setUploadStatus]=useState("选择本次整理的 10 个项目文件");
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
   const projectDocs=selected?fullCatalog[selected.id]??[]:[];
   const projectMedia=selected?mediaCatalog[selected.id]??[]:[];
@@ -233,6 +248,7 @@ export default function Portfolio(){
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
   const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
   useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("");setMediaCategory("全部");setLightboxMedia(null)},[selected?.id]);
+  useEffect(()=>setShowUploader(new URLSearchParams(window.location.search).get("upload")==="1"),[]);
   useEffect(()=>{
     if(!selected||Object.keys(fullCatalog).length)return;
     setCatalogLoading(true);
@@ -263,8 +279,24 @@ export default function Portfolio(){
     });
   };
   const scrollTo=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
+  const uploadAssets=async(files:FileList|null)=>{
+    if(!files?.length)return;
+    let completed=0;
+    for(const file of Array.from(files)){
+      const key=uploadKeyByName[file.name];
+      if(!key)continue;
+      setUploadStatus(`正在上传 ${file.name} · ${completed}/${files.length}`);
+      const response=await fetch(`/api/portfolio-assets?key=${encodeURIComponent(key)}`,{
+        method:"PUT",body:file,headers:{"content-type":file.type||"application/octet-stream","x-content-disposition":key.includes("/builds/")?`attachment; filename="${file.name}"`:"inline"}
+      });
+      if(!response.ok)throw new Error(`上传失败：${file.name}`);
+      completed++;
+    }
+    setUploadStatus(`上传完成 · ${completed} 个文件`);
+  };
 
   return <main>
+    {showUploader?<div className="assetUploader"><strong>项目素材上传</strong><span>{uploadStatus}</span><label>选择文件<input type="file" multiple onChange={event=>uploadAssets(event.target.files).catch(error=>setUploadStatus(error.message))}/></label></div>:null}
     <header className="topbar">
       <a className="brand" href="#top" aria-label="返回首页"><span>GD</span><b>游戏设计档案</b></a>
       <nav aria-label="主导航">
