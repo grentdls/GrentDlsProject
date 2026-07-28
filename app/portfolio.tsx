@@ -116,42 +116,72 @@ const capabilities = [
     scope:["核心循环","系统关系","范围控制","商业化边界","版本规划"],
     method:["明确玩家幻想与首个可验证问题","拆出输入、决策、反馈和长期目标","定义必做、不做及系统依赖","用原型、文档和验收项验证"],
     projects:["tuntun","star","arpg","castle"],
-    documents:["吞吞舰船：最小可玩 Demo 实现文档","星空掠夺者：无限挂机成长体验总规划","3D ACT 刷宝 ARPG 项目总纲","亲密城堡：Build 套路玩法扩展"]
+    documents:[
+      {projectId:"tuntun",title:"《吞吞舰船》最小可玩 Demo 实现文档",category:"技术策划",contentPath:"/data/documents/tuntun/tuntun-17d1cff20041ce13.md"},
+      {projectId:"star",title:"《星空掠夺者》无限挂机成长体验总规划文档",category:"系统与数值",contentPath:"/data/documents/star/star-646bd0f5f1873b25.md"},
+      {projectId:"arpg",title:"Unity 3D ACT 暗黑类刷宝 ARPG 项目总纲",category:"核心策划",contentPath:"/data/documents/arpg/arpg-e6d0783b6498d51a.md"},
+      {projectId:"castle",title:"Unity《亲密城堡》Build 套路玩法扩展设计文档",category:"UI / UX",contentPath:"/data/documents/castle/castle-f561cc45475e4588.md"}
+    ]
   },
   {
     id:"gameplay", index:"02", title:"游戏玩法设计", subtitle:"从一个差异化想法推进到能操作、能失败、能重复的玩法闭环。",
     scope:["玩法原型","Roguelike 构筑","关卡事件","节奏控制","失败代价"],
     method:["先定义玩家每 10 秒在做什么","把选择与资源代价连接起来","让成长改变操作或战场结构","通过短局原型观察重复性"],
     projects:["brick","oneproto","tuntun","rts"],
-    documents:["积木星舰幸存者完整玩法设计","反幸存者：造物主试炼 GDD","肉鸽装配、武器与主动技能设计","占领主城与定向融合阵营需求"]
+    documents:[
+      {projectId:"brick",title:"《积木星舰幸存者》完整玩法设计文档 V0.1",category:"核心策划",contentPath:"/data/documents/brick/brick-80778583a1545162.md"},
+      {projectId:"oneproto",title:"《反幸存者：造物主试炼》玩法策划案",category:"关卡与叙事",contentPath:"/data/documents/one/one-785f2b0772cd652f.md"},
+      {projectId:"tuntun",title:"《吞吞舰船》肉鸽装配、武器、主动技能与加速系统设计文档",category:"UI / UX",contentPath:"/data/documents/tuntun/tuntun-54de5612acd710ca.md"},
+      {projectId:"rts",title:"占领主城与定向融合阵营：功能与表现需求文档",category:"表现与美术",contentPath:"/data/documents/rts/rts-45be76865ead594f.md"}
+    ]
   },
   {
     id:"combat", index:"03", title:"战斗逻辑设计", subtitle:"让敌人、技能、AI 和反馈共同形成可观察、可判断、可反制的战斗。",
     scope:["敌人与 Boss","技能流程","AI 行为","伤害结算","战斗表现"],
     method:["先定义单位职责与危险预算","为攻击建立前摇、命中和后摇","把机制难度与纯数值难度分离","同步动作、VFX、音频、镜头和 UI"],
     projects:["tuntun","one","arpg","wcdel"],
-    documents:["敌人、精英与 Boss 攻击方式","AI 弹幕音轨与战斗节拍预警","主动、辅助、保留、触发与技能变体","轻量 ARPG 战斗系统详细设计"]
+    documents:[
+      {projectId:"tuntun",title:"《吞吞舰船》敌人、精英与 Boss 攻击方式、挑战逻辑及战斗表现完整设计文档",category:"表现与美术",contentPath:"/data/documents/tuntun/tuntun-e56e7d5bbd7f6823.md"},
+      {projectId:"one",title:"AI 弹幕音效播放器系统方案",category:"UI / UX",contentPath:"/data/documents/one/one-a98c881b39ddba1a.md"},
+      {projectId:"arpg",title:"技能系统总设计：主动、辅助、保留、触发、变体",category:"表现与美术",contentPath:"/data/documents/arpg/arpg-c63e4b9b7ad3cd31.md"},
+      {projectId:"wcdel",title:"战斗系统详细设计文档",category:"战斗设计",contentPath:"/data/documents/wcdel/wcdel-4e36c5608b461dca.md"}
+    ]
   },
   {
     id:"technical", index:"04", title:"技术功能设计", subtitle:"把策划语言转换成状态、数据结构、事件流程与可验收功能。",
     scope:["状态机","数据配置","Prefab 架构","运行时流程","跨端验证"],
     method:["把体验需求写成输入与状态变化","分离数据、逻辑、表现和工具层","定义稳定槽位、事件与配置入口","为功能编写异常状态和验收标准"],
     projects:["rts","arpg","wcdel","brick"],
-    documents:["Unity / Web 双端 RTS 架构","大天赋树数据结构与 Prefab","WCDEL 工程架构与核心模块","积木搭建界面与合法性判定"]
+    documents:[
+      {projectId:"rts",title:"HUD 预制体开发规则",category:"UI / UX",contentPath:"/data/documents/rts/rts-d7830b9c97c9b2eb.md"},
+      {projectId:"arpg",title:"天赋系统总设计：大天赋树、职业起点、专精树",category:"UI / UX",contentPath:"/data/documents/arpg/arpg-d00a3709b3435d7a.md"},
+      {projectId:"wcdel",title:"架构说明",category:"技术策划",contentPath:"/data/documents/wcdel/wcdel-be58af48ebffaa81.md"},
+      {projectId:"brick",title:"太空3D积木飞船幸存者：积木搭建交互与完整UI预制体方案",category:"UI / UX",contentPath:"/data/documents/brick/brick-10851bdbb6434117.md"}
+    ]
   },
   {
     id:"tools", index:"05", title:"工具与内容管线", subtitle:"减少重复劳动，让配置、资源、UI 和批量内容能持续生产。",
     scope:["配置编辑器","批量内容","资源规范","文档同步","CI 工具链"],
     method:["识别最常重复且易出错的步骤","把命名、路径和数据格式固定下来","提供预览、校验、回退与验收清单","让工具输出直接进入运行时"],
     projects:["wcdel","rts","arpg","haste"],
-    documents:["角色配置工具完整设计","UI Prefab Workflow Generator","模型配置编辑器与挂点校验","Excel 自动优化与 CI 工具记录"]
+    documents:[
+      {projectId:"wcdel",title:"角色配置工具完整方案",category:"UI / UX",contentPath:"/data/documents/wcdel/wcdel-c4a15efaea29c59d.md"},
+      {projectId:"wcdel",title:"UI Prefab Framework Sync",category:"UI / UX",contentPath:"/data/documents/wcdel/wcdel-fc66a550a6997c5a.md"},
+      {projectId:"arpg",title:"166 模型配置编辑器：预览、挂点调整、换装测试、校验",category:"UI / UX",contentPath:"/data/documents/arpg/arpg-4b5c83c8009b9e66.md"},
+      {projectId:"arpg",title:"74. 配置导入导出：JSON、ScriptableObject、Excel、热更新、版本控制",category:"系统与数值",contentPath:"/data/documents/arpg/arpg-9da6bb1a40dd4415.md"}
+    ]
   },
   {
     id:"ux", index:"06", title:"UI / UX 与信息设计", subtitle:"保护游戏主画面，让复杂系统在正确时机只显示必要信息。",
     scope:["信息层级","操作流程","错误反馈","响应式布局","动效规范"],
     method:["先画出玩家任务和关键路径","按重要性安排固定与按需信息","为拖放、锁定、错误和等待提供反馈","用统一组件和内容规则保持一致"],
     projects:["brick","star","one","castle"],
-    documents:["积木搭建界面与操作流程","飞船模块分页、解锁与蓝图规则","击败音乐狂完整 UI 布局","亲密城堡战斗表现与特效逻辑"]
+    documents:[
+      {projectId:"brick",title:"《太空3D积木飞船幸存者》积木搭建界面优化与操作流程完整文档",category:"UI / UX",contentPath:"/data/documents/brick/brick-491431983e17c657.md"},
+      {projectId:"star",title:"《星空掠夺者》飞船模块分页建造、解锁与蓝图显示规则完整设计文档",category:"核心策划",contentPath:"/data/documents/star/star-b2fafeec111d8907.md"},
+      {projectId:"one",title:"《击败音乐狂》完整UI布局说明文档",category:"UI / UX",contentPath:"/data/documents/one/one-6684c116863e0ab6.md"},
+      {projectId:"castle",title:"Unity《亲密城堡》战斗表现与特效逻辑规范文档",category:"表现与美术",contentPath:"/data/documents/castle/castle-4ac8169cf4aaced8.md"}
+    ]
   }
 ];
 
@@ -189,6 +219,26 @@ export default function Portfolio(){
   const openFullDocument=(doc:CatalogDoc)=>{
     setReadingDoc(doc);setReadingContent("");setReadingLoading(true);
     fetch(doc.contentPath).then(r=>r.text()).then(setReadingContent).finally(()=>setReadingLoading(false));
+  };
+  const openCapabilityDocument=(evidence:{projectId:string;title:string;category:string;contentPath:string})=>{
+    const project=projects.find(item=>item.id===evidence.projectId);
+    if(!project)return;
+    setSelected(project);
+    openFullDocument({
+      id:`capability-${evidence.projectId}-${evidence.contentPath}`,
+      projectId:evidence.projectId,
+      title:evidence.title,
+      category:evidence.category,
+      group:"能力证据",
+      contentPath:evidence.contentPath,
+      sourceFile:evidence.contentPath.split("/").pop()??"",
+      summary:"该文档是此项个人能力的直接项目证据。",
+      keyPoints:[],
+      sections:[],
+      modifiedAt:"",
+      readMinutes:0,
+      charCount:0
+    });
   };
   const scrollTo=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
@@ -254,7 +304,7 @@ export default function Portfolio(){
         <div className="capabilityName"><span>{cap.index}</span><div><p>CAPABILITY</p><h3>{cap.title}</h3><strong>{cap.subtitle}</strong></div></div>
         <div className="capabilityScope"><p>覆盖范围</p><div>{cap.scope.map(item=><span key={item}>{item}</span>)}</div></div>
         <div className="capabilityMethod"><p>我的设计方法</p><ol>{cap.method.map(item=><li key={item}>{item}</li>)}</ol></div>
-        <div className="capabilityEvidence"><p>文档证据</p><ul>{cap.documents.map(doc=><li key={doc}>{doc}</li>)}</ul></div>
+        <div className="capabilityEvidence"><p>文档证据 · 点击直达原文</p><div className="capabilityEvidenceList">{cap.documents.map(doc=>{const project=projects.find(item=>item.id===doc.projectId)!;return <button key={doc.contentPath} onClick={()=>openCapabilityDocument(doc)}><span>{project.name} · {doc.category}</span><strong>{doc.title}</strong><i>阅读原文 <Arrow/></i></button>})}</div></div>
         <div className="capabilityProjects"><p>关联项目</p><div>{cap.projects.map(id=>{const p=projects.find(item=>item.id===id)!;return <button key={id} onClick={()=>setSelected(p)} style={{"--accent":p.accent} as React.CSSProperties}><i/>{p.name}<Arrow/></button>})}</div></div>
       </article>)}</div>
       <div className="proofStrip"><p>能力证据链</p><span>问题定义</span><i>→</i><span>规则与数据</span><i>→</i><span>原型实现</span><i>→</i><span>视听反馈</span><i>→</i><span>复盘迭代</span></div>
