@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import documentCounts from "./document-counts.json";
+import mediaCatalogData from "./media-catalog.json";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -21,6 +22,12 @@ type CatalogDoc = {
   modifiedAt: string; readMinutes: number; charCount: number; contentPath: string;
 };
 
+type MediaItem = {
+  id: string; category: string; title: string; caption: string; src: string;
+  sourceType: string; bytes: number;
+};
+
+const mediaCatalog = mediaCatalogData as Record<string,MediaItem[]>;
 const catalogTotals = documentCounts as Record<string, number>;
 const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
@@ -29,12 +36,12 @@ const projects: Project[] = [
   { id:"tuntun", name:"吞吞舰船", en:"TUNTUN SHIP", pitch:"把海上移动堡垒、Roguelike 战斗与长期港口经营装进同一片海域。", status:"进行中", type:"独立游戏", role:"系统策划 / 技术策划 / 原型", tags:["Unity","Roguelike","海战","系统设计"], image:"/media/tuntun-cover.png", accent:"#e8aa4d", playable:true },
   { id:"star", name:"星空掠夺者", en:"STAR RAIDERS", pitch:"在桌面一角经营会持续运转的飞船基地，组织角色、模块与远征。", status:"可试玩", type:"独立游戏", role:"玩法策划 / UI / 程序", tags:["Unity 2D","挂机","基地经营","100+ 数据"], image:"/media/starraiders-cover.png", accent:"#5fd0ca", playable:true },
   { id:"brick", name:"积木飞船幸存者", en:"BRICK SURVIVOR", pitch:"先像搭积木一样造船，再把每个结构选择送进太空战场验证。", status:"可试玩", type:"玩法原型", role:"技术策划 / 交互 / 原型", tags:["Unity 3D","模块搭建","幸存者","UX"], image:"/media/brick-cover.png", accent:"#f07b48", playable:true },
-  { id:"rts", name:"华夏城战", en:"HUAXIA RTS", pitch:"从城池经营到战场调度的轻量 RTS；Unity 与 Web 双版本并行验证。", status:"验证中", type:"系统研究", role:"系统策划 / Web 原型", tags:["RTS","Unity","Web","数据驱动"], accent:"#d5a35b", playable:true },
+  { id:"rts", name:"华夏城战", en:"HUAXIA RTS", pitch:"从城池经营到战场调度的轻量 RTS；Unity 与 Web 双版本并行验证。", status:"验证中", type:"系统研究", role:"系统策划 / Web 原型", tags:["RTS","Unity","Web","数据驱动"], image:"/media/projects/rts/01.webp", accent:"#d5a35b", playable:true },
   { id:"arpg", name:"荒野旅团 ARPG", en:"WILDLAND ARPG", pitch:"围绕 3C、战斗反馈与模块化地图构建的 3D 动作角色扮演原型。", status:"开发中", type:"技术原型", role:"技术策划 / 3C / 战斗", tags:["Unity 3D","ARPG","3C","战斗反馈"], image:"/media/rpg-cover.png", accent:"#71a36f" },
-  { id:"wcdel", name:"轻量开放世界 ARPG", en:"WCDEL", pitch:"以小体量团队可落地为约束，搭建开放世界 ARPG 的工程与内容骨架。", status:"开发中", type:"独立游戏", role:"架构 / UI / 内容管线", tags:["Unity","架构","开放世界","UI"], accent:"#dbbd79" },
-  { id:"one", name:"击败音乐狂人", en:"DEFEAT MUSIC MANIAC", pitch:"让弹幕、角色成长与音乐节拍彼此驱动的高反馈动作实验。", status:"可试玩", type:"玩法原型", role:"玩法 / 音频 / 表现", tags:["Unity 2D","节奏","弹幕","AI 角色"], accent:"#c36dd8", playable:true },
-  { id:"castle", name:"亲密城堡", en:"INTIMATE CASTLE", pitch:"以关系构筑与流派组合为核心的卡牌爬塔原型。", status:"可试玩", type:"玩法原型", role:"卡牌系统 / 美术规范 / UI", tags:["Unity","卡牌","Build","爬塔"], accent:"#d5687f", playable:true },
-  { id:"oneproto", name:"造物主试炼", en:"CREATOR'S TRIAL", pitch:"反向幸存者与造物构筑结合的系统概念验证。", status:"概念验证", type:"设计研究", role:"核心循环 / GDD", tags:["Roguelike","反向幸存者","GDD"], accent:"#8d84d7" },
+  { id:"wcdel", name:"轻量开放世界 ARPG", en:"WCDEL", pitch:"以小体量团队可落地为约束，搭建开放世界 ARPG 的工程与内容骨架。", status:"开发中", type:"独立游戏", role:"架构 / UI / 内容管线", tags:["Unity","架构","开放世界","UI"], image:"/media/projects/wcdel/01.webp", accent:"#dbbd79" },
+  { id:"one", name:"击败音乐狂人", en:"DEFEAT MUSIC MANIAC", pitch:"让弹幕、角色成长与音乐节拍彼此驱动的高反馈动作实验。", status:"可试玩", type:"玩法原型", role:"玩法 / 音频 / 表现", tags:["Unity 2D","节奏","弹幕","AI 角色"], image:"/media/projects/one/01.webp", accent:"#c36dd8", playable:true },
+  { id:"castle", name:"亲密城堡", en:"INTIMATE CASTLE", pitch:"以关系构筑与流派组合为核心的卡牌爬塔原型。", status:"可试玩", type:"玩法原型", role:"卡牌系统 / 美术规范 / UI", tags:["Unity","卡牌","Build","爬塔"], image:"/media/projects/castle/01.webp", accent:"#d5687f", playable:true },
+  { id:"oneproto", name:"造物主试炼", en:"CREATOR'S TRIAL", pitch:"反向幸存者与造物构筑结合的系统概念验证。", status:"概念验证", type:"设计研究", role:"核心循环 / GDD", tags:["Roguelike","反向幸存者","GDD"], image:"/media/projects/one/01.webp", accent:"#8d84d7" },
   { id:"haste", name:"Haste", en:"TEAM PROJECT", pitch:"团队商业项目中的工程协作、内容生产与工具链经验。", status:"团队项目", type:"团队项目", role:"项目协作 / 工具 / 内容", tags:["Unity","团队协作","工具链","商业项目"], accent:"#75b6d6", team:true }
 ];
 
@@ -103,6 +110,51 @@ const featuredDocs = [
   ["tuntun",0],["star",1],["brick",1],["arpg",2]
 ] as const;
 
+const capabilities = [
+  {
+    id:"system", index:"01", title:"策划与系统设计", subtitle:"把产品定位拆成规则、循环、内容边界与验证计划。",
+    scope:["核心循环","系统关系","范围控制","商业化边界","版本规划"],
+    method:["明确玩家幻想与首个可验证问题","拆出输入、决策、反馈和长期目标","定义必做、不做及系统依赖","用原型、文档和验收项验证"],
+    projects:["tuntun","star","arpg","castle"],
+    documents:["吞吞舰船：最小可玩 Demo 实现文档","星空掠夺者：无限挂机成长体验总规划","3D ACT 刷宝 ARPG 项目总纲","亲密城堡：Build 套路玩法扩展"]
+  },
+  {
+    id:"gameplay", index:"02", title:"游戏玩法设计", subtitle:"从一个差异化想法推进到能操作、能失败、能重复的玩法闭环。",
+    scope:["玩法原型","Roguelike 构筑","关卡事件","节奏控制","失败代价"],
+    method:["先定义玩家每 10 秒在做什么","把选择与资源代价连接起来","让成长改变操作或战场结构","通过短局原型观察重复性"],
+    projects:["brick","oneproto","tuntun","rts"],
+    documents:["积木星舰幸存者完整玩法设计","反幸存者：造物主试炼 GDD","肉鸽装配、武器与主动技能设计","占领主城与定向融合阵营需求"]
+  },
+  {
+    id:"combat", index:"03", title:"战斗逻辑设计", subtitle:"让敌人、技能、AI 和反馈共同形成可观察、可判断、可反制的战斗。",
+    scope:["敌人与 Boss","技能流程","AI 行为","伤害结算","战斗表现"],
+    method:["先定义单位职责与危险预算","为攻击建立前摇、命中和后摇","把机制难度与纯数值难度分离","同步动作、VFX、音频、镜头和 UI"],
+    projects:["tuntun","one","arpg","wcdel"],
+    documents:["敌人、精英与 Boss 攻击方式","AI 弹幕音轨与战斗节拍预警","主动、辅助、保留、触发与技能变体","轻量 ARPG 战斗系统详细设计"]
+  },
+  {
+    id:"technical", index:"04", title:"技术功能设计", subtitle:"把策划语言转换成状态、数据结构、事件流程与可验收功能。",
+    scope:["状态机","数据配置","Prefab 架构","运行时流程","跨端验证"],
+    method:["把体验需求写成输入与状态变化","分离数据、逻辑、表现和工具层","定义稳定槽位、事件与配置入口","为功能编写异常状态和验收标准"],
+    projects:["rts","arpg","wcdel","brick"],
+    documents:["Unity / Web 双端 RTS 架构","大天赋树数据结构与 Prefab","WCDEL 工程架构与核心模块","积木搭建界面与合法性判定"]
+  },
+  {
+    id:"tools", index:"05", title:"工具与内容管线", subtitle:"减少重复劳动，让配置、资源、UI 和批量内容能持续生产。",
+    scope:["配置编辑器","批量内容","资源规范","文档同步","CI 工具链"],
+    method:["识别最常重复且易出错的步骤","把命名、路径和数据格式固定下来","提供预览、校验、回退与验收清单","让工具输出直接进入运行时"],
+    projects:["wcdel","rts","arpg","haste"],
+    documents:["角色配置工具完整设计","UI Prefab Workflow Generator","模型配置编辑器与挂点校验","Excel 自动优化与 CI 工具记录"]
+  },
+  {
+    id:"ux", index:"06", title:"UI / UX 与信息设计", subtitle:"保护游戏主画面，让复杂系统在正确时机只显示必要信息。",
+    scope:["信息层级","操作流程","错误反馈","响应式布局","动效规范"],
+    method:["先画出玩家任务和关键路径","按重要性安排固定与按需信息","为拖放、锁定、错误和等待提供反馈","用统一组件和内容规则保持一致"],
+    projects:["brick","star","one","castle"],
+    documents:["积木搭建界面与操作流程","飞船模块分页、解锁与蓝图规则","击败音乐狂完整 UI 布局","亲密城堡战斗表现与特效逻辑"]
+  }
+];
+
 const filters = ["全部","独立游戏","玩法原型","系统研究","技术原型","团队项目"];
 
 function Arrow(){ return <span aria-hidden="true">↗</span> }
@@ -119,11 +171,16 @@ export default function Portfolio(){
   const [readingDoc,setReadingDoc]=useState<CatalogDoc|null>(null);
   const [readingContent,setReadingContent]=useState("");
   const [readingLoading,setReadingLoading]=useState(false);
+  const [mediaCategory,setMediaCategory]=useState("全部");
+  const [lightboxMedia,setLightboxMedia]=useState<MediaItem|null>(null);
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
   const projectDocs=selected?fullCatalog[selected.id]??[]:[];
+  const projectMedia=selected?mediaCatalog[selected.id]??[]:[];
+  const mediaCategories=useMemo(()=>["全部",...Array.from(new Set(projectMedia.map(item=>item.category)))],[projectMedia]);
+  const filteredMedia=projectMedia.filter(item=>mediaCategory==="全部"||item.category===mediaCategory);
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
   const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
-  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("")},[selected?.id]);
+  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("");setMediaCategory("全部");setLightboxMedia(null)},[selected?.id]);
   useEffect(()=>{
     if(!selected||Object.keys(fullCatalog).length)return;
     setCatalogLoading(true);
@@ -181,25 +238,26 @@ export default function Portfolio(){
       <div className="projectGrid">
         {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>setSelected(p)}>
           <div className="cover">{p.image?<img src={p.image} alt={`${p.name}项目画面，作为作品封面`}/>:<div className="coverFallback"><span>{p.en}</span><i/></div>}<span className="mediaType">{p.image?"项目素材":"视觉占位"}</span><button aria-label={`查看 ${p.name}`}>↗</button></div>
-          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 篇文档 / {docsByProject[p.id]?.length ?? 0} 篇深度解读</small><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
+          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
         </article>)}
       </div>
       {!shown.length&&<div className="empty">没有匹配的项目。<button onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
     </section>
 
     <section className="section skillsSection" id="skills">
-      <div className="sectionHead"><div><p className="kicker">03 / CAPABILITY MAP</p><h2>核心是策划，<br/>边界是把它做出来。</h2></div><p>不使用“熟练度 90%”。每项能力都由项目、文档和可运行结果互相证明。</p></div>
-      <div className="skillMap">
-        <div className="coreSkill"><span>CORE</span><h3>游戏策划<br/>& 技术策划</h3><p>玩法循环 · 系统规则 · 实现边界 · 验证方案</p></div>
-        {[
-          ["01","玩法与系统","战斗、成长、关卡、经济","8 个项目"],
-          ["02","实现与工具","Unity、Web、数据、编辑器","6 个原型"],
-          ["03","UI / UX","信息层级、流程、反馈、引导","30+ 界面"],
-          ["04","视听表现","美术规范、动作、镜头、音频","5 类管线"],
-          ["05","AI 工作流","生成、审校、规范化与落地","深度协作"]
-        ].map(s=><article className="skill" key={s[0]}><span>{s[0]}</span><div><h3>{s[1]}</h3><p>{s[2]}</p></div><b>{s[3]}</b></article>)}
+      <div className="sectionHead"><div><p className="kicker">03 / CAPABILITY MAP</p><h2>核心是策划，<br/>证据来自项目。</h2></div><p>不使用“熟练度 90%”。能力由真实问题、设计方法、项目结果和工程文档共同证明。</p></div>
+      <div className="capabilityIntro">
+        <div><span>PRIMARY ROLE</span><h3>游戏策划<br/>& 技术策划</h3><p>从玩法定位、系统规则和战斗逻辑，一直推进到数据结构、UI 流程、配置工具与可运行原型。</p></div>
+        <dl><div><dt>项目证据</dt><dd>10</dd></div><div><dt>工程文档</dt><dd>{totalUniqueDocs}</dd></div><div><dt>能力方向</dt><dd>{capabilities.length}</dd></div><div><dt>可运行成果</dt><dd>6</dd></div></dl>
       </div>
-      <div className="proofStrip"><p>证据链</p><span>问题定义</span><i>→</i><span>设计规则</span><i>→</i><span>可运行原型</span><i>→</i><span>复盘与迭代</span></div>
+      <div className="capabilityList">{capabilities.map(cap=><article className="capabilityCard" key={cap.id}>
+        <div className="capabilityName"><span>{cap.index}</span><div><p>CAPABILITY</p><h3>{cap.title}</h3><strong>{cap.subtitle}</strong></div></div>
+        <div className="capabilityScope"><p>覆盖范围</p><div>{cap.scope.map(item=><span key={item}>{item}</span>)}</div></div>
+        <div className="capabilityMethod"><p>我的设计方法</p><ol>{cap.method.map(item=><li key={item}>{item}</li>)}</ol></div>
+        <div className="capabilityEvidence"><p>文档证据</p><ul>{cap.documents.map(doc=><li key={doc}>{doc}</li>)}</ul></div>
+        <div className="capabilityProjects"><p>关联项目</p><div>{cap.projects.map(id=>{const p=projects.find(item=>item.id===id)!;return <button key={id} onClick={()=>setSelected(p)} style={{"--accent":p.accent} as React.CSSProperties}><i/>{p.name}<Arrow/></button>})}</div></div>
+      </article>)}</div>
+      <div className="proofStrip"><p>能力证据链</p><span>问题定义</span><i>→</i><span>规则与数据</span><i>→</i><span>原型实现</span><i>→</i><span>视听反馈</span><i>→</i><span>复盘迭代</span></div>
     </section>
 
     <section className="section docsSection">
@@ -221,10 +279,17 @@ export default function Portfolio(){
         <button className="close" onClick={()=>setSelected(null)} aria-label="关闭项目详情">×</button>
         <div className="modalHero" style={{"--accent":selected.accent} as React.CSSProperties}>{selected.image?<img src={selected.image} alt={`${selected.name}项目画面`}/>:<div className="modalFallback">{selected.en}</div>}<div><span>{selected.status} · {selected.type}</span><h2 id="modal-title">{selected.name}</h2><p>{selected.pitch}</p></div></div>
         <div className="modalBody">
-          <aside><a href="#overview">概览</a><a href="#loop">核心玩法</a><a href="#documents">精选文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
+          <aside><a href="#overview">概览</a><a href="#loop">核心玩法</a><a href="#media">美术资产</a><a href="#documents">项目文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
           <div>
             <section id="overview"><p className="kicker">PROJECT OVERVIEW</p><h3>先说它为什么值得做</h3><p>{selected.pitch} 当前档案基于工程目录、已有设计文档与项目素材整理；具体开发时间、版本号与公开范围仍标记为待本人确认。</p><dl><div><dt>个人职责</dt><dd>{selected.role}</dd></div><div><dt>引擎 / 标签</dt><dd>{selected.tags.join(" · ")}</dd></div><div><dt>可验证成果</dt><dd>{selected.playable?"工程中发现可运行包体，公开链接整理中":"工程原型与设计文档，媒体继续整理中"}</dd></div></dl></section>
             <section id="loop"><p className="kicker">DESIGN LOOP</p><h3>从选择到反馈的闭环</h3><div className="loop"><span>观察局势</span><i>→</i><span>做出构筑</span><i>→</i><span>进入验证</span><i>→</i><span>带回成长</span></div><p>详情页首版保留统一结构，后续会从原项目文档中继续提炼每个模块的玩家目标、操作、主要决策、即时反馈与失败代价。</p></section>
+            <section id="media" className="projectMedia"><div className="mediaHeading"><div><p className="kicker">ART & MEDIA ARCHIVE</p><h3>项目美术资产</h3><p>按用途整理工程中的画面、UI、角色、场景、模型预览、特效与图标。所有 AI 概念封面均明确标注，不与实机截图混用。</p></div><strong>{projectMedia.length}<small> ASSETS</small></strong></div>
+              <div className="mediaFilters" role="group" aria-label="美术资产分类">{mediaCategories.map(c=><button key={c} aria-pressed={mediaCategory===c} onClick={()=>setMediaCategory(c)}>{c}<b>{c==="全部"?projectMedia.length:projectMedia.filter(item=>item.category===c).length}</b></button>)}</div>
+              <div className="mediaGrid">{filteredMedia.map((item,i)=><button className={`mediaCard ${i===0?"mediaLead":""}`} key={item.id} onClick={()=>setLightboxMedia(item)}>
+                <div><img src={item.src} alt={`${item.title}：${item.caption}`} loading="lazy"/><span>{item.sourceType}</span><i>＋</i></div><small>{item.category}</small><h4>{item.title}</h4><p>{item.caption}</p>
+              </button>)}</div>
+              {!projectMedia.length&&<div className="mediaEmpty">该项目的可公开视觉资产仍在整理中。</div>}
+            </section>
             <section id="documents" className="projectDocuments"><div className="documentHeading"><div><p className="kicker">SELECTED DOCUMENTS</p><h3>从原始 Docs 提炼的设计证据</h3></div><span>{docsByProject[selected.id]?.length ?? 0} 篇精选</span></div>
               <p className="documentIntro">以下内容来自项目工程中的原始设计文档。摘要保留问题、判断与落地证据，不展示冗长目录；点击每张卡片可展开核心结论。</p>
               <div className="documentStack">{(docsByProject[selected.id]??[]).map((d,i)=><details className="documentCard" key={d.title} open={i===0}>
@@ -256,6 +321,13 @@ export default function Portfolio(){
           </div>
         </div>
       </article>
+      {lightboxMedia&&<div className="mediaLightbox" onMouseDown={()=>setLightboxMedia(null)}>
+        <article role="dialog" aria-modal="true" aria-label={lightboxMedia.title} onMouseDown={e=>e.stopPropagation()}>
+          <button className="lightboxClose" onClick={()=>setLightboxMedia(null)} aria-label="关闭图片">×</button>
+          <div className="lightboxImage"><img src={lightboxMedia.src} alt={`${lightboxMedia.title}：${lightboxMedia.caption}`}/></div>
+          <div className="lightboxCopy"><span>{lightboxMedia.category} · {lightboxMedia.sourceType}</span><h3>{lightboxMedia.title}</h3><p>{lightboxMedia.caption}</p></div>
+        </article>
+      </div>}
       {readingDoc&&<div className="readerBackdrop" onMouseDown={()=>setReadingDoc(null)}>
         <article className="documentReader" role="dialog" aria-modal="true" aria-labelledby="reader-title" onMouseDown={e=>e.stopPropagation()}>
           <header><div><span>{readingDoc.category} · {readingDoc.group}</span><h2 id="reader-title">{readingDoc.title}</h2><p>{readingDoc.sourceFile} · 更新于 {readingDoc.modifiedAt} · 约 {readingDoc.readMinutes} 分钟</p></div><button onClick={()=>setReadingDoc(null)} aria-label="关闭完整文档">×</button></header>

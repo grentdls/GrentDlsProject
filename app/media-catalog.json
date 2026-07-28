@@ -1,0 +1,688 @@
+{
+  "tuntun": [
+    {
+      "id": "tuntun-1",
+      "category": "实机素材",
+      "title": "海战主菜单视觉",
+      "caption": "用于建立移动堡垒与海上战斗的第一视觉印象。",
+      "src": "/media/projects/tuntun/01.webp",
+      "sourceType": "项目资产",
+      "bytes": 2154272
+    },
+    {
+      "id": "tuntun-2",
+      "category": "模式封面",
+      "title": "肉鸽远征模式",
+      "caption": "展示短局航行、战斗和局内成长的模式定位。",
+      "src": "/media/projects/tuntun/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 2155356
+    },
+    {
+      "id": "tuntun-3",
+      "category": "UI",
+      "title": "干船坞装配背景",
+      "caption": "用于舰船、英雄与装备装配界面的空间背景。",
+      "src": "/media/projects/tuntun/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 1761390
+    },
+    {
+      "id": "tuntun-4",
+      "category": "角色美术",
+      "title": "英雄头像图集",
+      "caption": "英雄舰队系统的批量角色头像资产。",
+      "src": "/media/projects/tuntun/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 2713838
+    },
+    {
+      "id": "tuntun-5",
+      "category": "UI",
+      "title": "海盗生涯冒险地图",
+      "caption": "项目运行记录中的地图界面与节点组织。",
+      "src": "/media/projects/tuntun/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 579269
+    },
+    {
+      "id": "tuntun-6",
+      "category": "UI",
+      "title": "舰船升级界面",
+      "caption": "舰船成长、升级选择与反馈层级的运行记录。",
+      "src": "/media/projects/tuntun/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 495706
+    },
+    {
+      "id": "tuntun-7",
+      "category": "图标",
+      "title": "侧舷炮武器图标",
+      "caption": "主舰武器与战斗构筑的功能图标。",
+      "src": "/media/projects/tuntun/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 322892
+    },
+    {
+      "id": "tuntun-8",
+      "category": "图标",
+      "title": "鱼雷武器图标",
+      "caption": "用于区分攻击方式和构筑方向。",
+      "src": "/media/projects/tuntun/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 271095
+    }
+  ],
+  "wcdel": [
+    {
+      "id": "wcdel-1",
+      "category": "生成封面",
+      "title": "轻量开放世界 ARPG 概念封面",
+      "caption": "依据项目 GDD 生成的视觉目标，不标记为实机画面。",
+      "src": "/media/projects/wcdel/01.webp",
+      "sourceType": "AI 概念图",
+      "bytes": 2239386
+    },
+    {
+      "id": "wcdel-2",
+      "category": "角色美术",
+      "title": "旺财角色待机表现",
+      "caption": "主角动作与角色特效拆分资产。",
+      "src": "/media/projects/wcdel/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 2122138
+    },
+    {
+      "id": "wcdel-3",
+      "category": "动作预览",
+      "title": "主角攻击动作",
+      "caption": "战斗动作序列与技能反馈资产。",
+      "src": "/media/projects/wcdel/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 2118821
+    },
+    {
+      "id": "wcdel-4",
+      "category": "特效预览",
+      "title": "终结技能火环",
+      "caption": "角色动作与技能特效合成预览。",
+      "src": "/media/projects/wcdel/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 2358045
+    },
+    {
+      "id": "wcdel-5",
+      "category": "图标",
+      "title": "冰霜新星技能图标",
+      "caption": "首章技能与装备图标生产管线的结果。",
+      "src": "/media/projects/wcdel/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 2227906
+    },
+    {
+      "id": "wcdel-6",
+      "category": "图标",
+      "title": "村落长剑装备图标",
+      "caption": "装备内容与图标规格的落地样例。",
+      "src": "/media/projects/wcdel/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 1365254
+    },
+    {
+      "id": "wcdel-7",
+      "category": "场景美术",
+      "title": "首章乡村建筑组",
+      "caption": "用于开放世界村落与道路目标点的环境资产。",
+      "src": "/media/projects/wcdel/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 2523126
+    },
+    {
+      "id": "wcdel-8",
+      "category": "场景美术",
+      "title": "首章地表资产",
+      "caption": "关卡搭建中的地形与路径基础素材。",
+      "src": "/media/projects/wcdel/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 2592642
+    }
+  ],
+  "star": [
+    {
+      "id": "star-1",
+      "category": "场景美术",
+      "title": "星球背景预览",
+      "caption": "桌面窗口航行和星球远征的背景视觉。",
+      "src": "/media/projects/star/01.webp",
+      "sourceType": "项目资产",
+      "bytes": 289438
+    },
+    {
+      "id": "star-2",
+      "category": "角色美术",
+      "title": "单位美术总览",
+      "caption": "飞船船员、职业和种族单位的批量资产预览。",
+      "src": "/media/projects/star/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 170433
+    },
+    {
+      "id": "star-3",
+      "category": "模型预览",
+      "title": "飞船建筑总览",
+      "caption": "模块化飞船房间与建筑美术预览。",
+      "src": "/media/projects/star/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 98885
+    },
+    {
+      "id": "star-4",
+      "category": "UI",
+      "title": "桌面窗口 UI 面板",
+      "caption": "桌面常驻模式的信息面板与视觉层级。",
+      "src": "/media/projects/star/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 12355
+    },
+    {
+      "id": "star-5",
+      "category": "特效预览",
+      "title": "战斗特效总览",
+      "caption": "自动战斗、武器命中与技能反馈资产。",
+      "src": "/media/projects/star/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 81411
+    },
+    {
+      "id": "star-6",
+      "category": "图标",
+      "title": "内容图标总览",
+      "caption": "资源、建筑、单位与功能入口的图标系统。",
+      "src": "/media/projects/star/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 61184
+    },
+    {
+      "id": "star-7",
+      "category": "实机截图",
+      "title": "桌面窗口运行画面",
+      "caption": "桌面挂机窗口形态的实际运行记录。",
+      "src": "/media/projects/star/07.webp",
+      "sourceType": "实机截图",
+      "bytes": 1735
+    },
+    {
+      "id": "star-8",
+      "category": "场景美术",
+      "title": "动态星空背景",
+      "caption": "桌面底栏和侧栏模式使用的基础背景。",
+      "src": "/media/projects/star/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 4282
+    }
+  ],
+  "rts": [
+    {
+      "id": "rts-1",
+      "category": "生成封面",
+      "title": "华夏城战概念封面",
+      "caption": "依据阵营、主城占领和融合科技树生成的视觉目标。",
+      "src": "/media/projects/rts/01.webp",
+      "sourceType": "AI 概念图",
+      "bytes": 2619296
+    },
+    {
+      "id": "rts-2",
+      "category": "UI",
+      "title": "战争风格主面板",
+      "caption": "建造、科技与选择详情的面板皮肤。",
+      "src": "/media/projects/rts/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 62565
+    },
+    {
+      "id": "rts-3",
+      "category": "UI",
+      "title": "战役地图框架",
+      "caption": "主菜单与阵营地图展示的界面资产。",
+      "src": "/media/projects/rts/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 799
+    },
+    {
+      "id": "rts-4",
+      "category": "图标",
+      "title": "步兵单位图标",
+      "caption": "单位分类和生产列表的识别资产。",
+      "src": "/media/projects/rts/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 65918
+    },
+    {
+      "id": "rts-5",
+      "category": "图标",
+      "title": "攻城单位图标",
+      "caption": "攻城职责与生产入口图标。",
+      "src": "/media/projects/rts/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 63410
+    },
+    {
+      "id": "rts-6",
+      "category": "图标",
+      "title": "科技建筑图标",
+      "caption": "科技树和建筑前置关系的视觉节点。",
+      "src": "/media/projects/rts/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 60040
+    },
+    {
+      "id": "rts-7",
+      "category": "图标",
+      "title": "召唤技能图标",
+      "caption": "单位技能与喊名冒泡系统的内容资产。",
+      "src": "/media/projects/rts/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 3271
+    },
+    {
+      "id": "rts-8",
+      "category": "UI",
+      "title": "单位与科技卡框",
+      "caption": "多阵营内容卡片的统一框架。",
+      "src": "/media/projects/rts/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 1480
+    }
+  ],
+  "arpg": [
+    {
+      "id": "arpg-1",
+      "category": "场景美术",
+      "title": "腐林地图预览",
+      "caption": "副本选择和地图内容的场景预览。",
+      "src": "/media/projects/arpg/01.webp",
+      "sourceType": "项目资产",
+      "bytes": 904892
+    },
+    {
+      "id": "arpg-2",
+      "category": "场景美术",
+      "title": "地下城地图预览",
+      "caption": "地下副本的环境主题与入口素材。",
+      "src": "/media/projects/arpg/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 100287
+    },
+    {
+      "id": "arpg-3",
+      "category": "场景美术",
+      "title": "星陨海岸地图预览",
+      "caption": "首章区域与敌人池关联的地图资产。",
+      "src": "/media/projects/arpg/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 369934
+    },
+    {
+      "id": "arpg-4",
+      "category": "场景美术",
+      "title": "荒地地图预览",
+      "caption": "终局地图与词缀系统的场景包装。",
+      "src": "/media/projects/arpg/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 102075
+    },
+    {
+      "id": "arpg-5",
+      "category": "场景美术",
+      "title": "裂隙地图预览",
+      "caption": "高阶挑战和终局循环的地图视觉。",
+      "src": "/media/projects/arpg/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 343219
+    },
+    {
+      "id": "arpg-6",
+      "category": "场景美术",
+      "title": "灰烬区域预览",
+      "caption": "章节、副本和怪物池的区域视觉。",
+      "src": "/media/projects/arpg/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 96744
+    }
+  ],
+  "one": [
+    {
+      "id": "one-1",
+      "category": "生成封面",
+      "title": "击败音乐狂人概念封面",
+      "caption": "依据反幸存者、AI 英雄和节奏弹幕生成的视觉目标。",
+      "src": "/media/projects/one/01.webp",
+      "sourceType": "AI 概念图",
+      "bytes": 2515249
+    },
+    {
+      "id": "one-2",
+      "category": "UI",
+      "title": "项目主宣传画面",
+      "caption": "反幸存者玩法的项目内主视觉资产。",
+      "src": "/media/projects/one/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 382503
+    },
+    {
+      "id": "one-3",
+      "category": "动作预览",
+      "title": "音乐狂人动作总览",
+      "caption": "AI 英雄待机、攻击、施法和受击动作预览。",
+      "src": "/media/projects/one/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 35660
+    },
+    {
+      "id": "one-4",
+      "category": "特效预览",
+      "title": "弹幕与范围特效总览",
+      "caption": "节奏弹幕、范围警告和元素攻击表现。",
+      "src": "/media/projects/one/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 490213
+    },
+    {
+      "id": "one-5",
+      "category": "UI",
+      "title": "战斗节拍轨道",
+      "caption": "让玩家预判 AI 攻击节奏的信息组件。",
+      "src": "/media/projects/one/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 1063
+    },
+    {
+      "id": "one-6",
+      "category": "UI",
+      "title": "造物主控制面板",
+      "caption": "召怪、技能与关卡导演操作的界面资产。",
+      "src": "/media/projects/one/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 1959
+    },
+    {
+      "id": "one-7",
+      "category": "特效预览",
+      "title": "音波环弹体",
+      "caption": "音乐主题弹幕形态与伤害反馈资产。",
+      "src": "/media/projects/one/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 27129
+    },
+    {
+      "id": "one-8",
+      "category": "特效预览",
+      "title": "毒音符弹体",
+      "caption": "流派辨识和元素弹幕的视觉样例。",
+      "src": "/media/projects/one/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 21104
+    }
+  ],
+  "castle": [
+    {
+      "id": "castle-1",
+      "category": "生成封面",
+      "title": "亲密城堡概念封面",
+      "caption": "使用抽象关系张力与卡牌对决表达的非实机视觉目标。",
+      "src": "/media/projects/castle/01.webp",
+      "sourceType": "AI 概念图",
+      "bytes": 2508933
+    },
+    {
+      "id": "castle-2",
+      "category": "角色美术",
+      "title": "主角待机序列源图",
+      "caption": "角色动作制作与序列帧规范的项目资产。",
+      "src": "/media/projects/castle/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 716594
+    },
+    {
+      "id": "castle-3",
+      "category": "角色美术",
+      "title": "对手角色待机表现",
+      "caption": "对手角色与战斗表现管线的资产样例。",
+      "src": "/media/projects/castle/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 1552313
+    },
+    {
+      "id": "castle-4",
+      "category": "UI",
+      "title": "天鹅绒面板",
+      "caption": "成人向主题被抽象为戏剧化材质的 UI 组件。",
+      "src": "/media/projects/castle/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 9896
+    },
+    {
+      "id": "castle-5",
+      "category": "UI",
+      "title": "羊皮纸面板",
+      "caption": "地图、事件与说明信息使用的界面材质。",
+      "src": "/media/projects/castle/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 9889
+    },
+    {
+      "id": "castle-6",
+      "category": "UI",
+      "title": "Boss 房间卡片",
+      "caption": "爬塔地图节点和威胁层级的卡片资产。",
+      "src": "/media/projects/castle/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 22514
+    },
+    {
+      "id": "castle-7",
+      "category": "UI",
+      "title": "主界面标题框",
+      "caption": "项目主界面的视觉框架资产。",
+      "src": "/media/projects/castle/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 11622
+    },
+    {
+      "id": "castle-8",
+      "category": "图标",
+      "title": "剧院楼层主题图标",
+      "caption": "楼层主题、事件与流派内容的识别图标。",
+      "src": "/media/projects/castle/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 17714
+    }
+  ],
+  "brick": [
+    {
+      "id": "brick-1",
+      "category": "UI",
+      "title": "积木飞船 UI 概念总览",
+      "caption": "搭建、战斗、升级与结算界面的整体视觉方向。",
+      "src": "/media/projects/brick/01.webp",
+      "sourceType": "项目资产",
+      "bytes": 1883516
+    },
+    {
+      "id": "brick-2",
+      "category": "UI",
+      "title": "战斗面板样例",
+      "caption": "局内 HUD 与结构状态的信息面板。",
+      "src": "/media/projects/brick/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 117619
+    },
+    {
+      "id": "brick-3",
+      "category": "UI",
+      "title": "传奇部件卡片",
+      "caption": "积木部件稀有度与构筑信息的卡片样例。",
+      "src": "/media/projects/brick/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 162693
+    },
+    {
+      "id": "brick-4",
+      "category": "UI",
+      "title": "构筑升级展示",
+      "caption": "强化选择与飞船结构变化的宣传面板。",
+      "src": "/media/projects/brick/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 2564372
+    },
+    {
+      "id": "brick-5",
+      "category": "图标",
+      "title": "推进器强化图标",
+      "caption": "飞船机动构筑的属性图标。",
+      "src": "/media/projects/brick/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 67616
+    },
+    {
+      "id": "brick-6",
+      "category": "UI",
+      "title": "Boss 预警组件",
+      "caption": "顶部战斗时间轴与事件预警的界面资产。",
+      "src": "/media/projects/brick/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 51268
+    },
+    {
+      "id": "brick-7",
+      "category": "UI",
+      "title": "雷达敌人标记",
+      "caption": "战场方向提示与威胁识别组件。",
+      "src": "/media/projects/brick/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 3313
+    },
+    {
+      "id": "brick-8",
+      "category": "UI",
+      "title": "非法连接状态",
+      "caption": "积木拖放、吸附和合法性判定的错误反馈。",
+      "src": "/media/projects/brick/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 47966
+    }
+  ],
+  "haste": [
+    {
+      "id": "haste-1",
+      "category": "团队 UI",
+      "title": "通用弹窗背景",
+      "caption": "团队项目运行时 UI 资源的一部分。",
+      "src": "/media/projects/haste/01.webp",
+      "sourceType": "项目资产",
+      "bytes": 136141
+    },
+    {
+      "id": "haste-2",
+      "category": "团队 UI",
+      "title": "主要按钮背景",
+      "caption": "团队项目通用交互组件资产。",
+      "src": "/media/projects/haste/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 17230
+    },
+    {
+      "id": "haste-3",
+      "category": "团队 UI",
+      "title": "进度条背景",
+      "caption": "加载与进度反馈组件。",
+      "src": "/media/projects/haste/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 784
+    },
+    {
+      "id": "haste-4",
+      "category": "团队 UI",
+      "title": "进度条前景",
+      "caption": "与进度条背景配套的运行时素材。",
+      "src": "/media/projects/haste/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 24724
+    }
+  ],
+  "oneproto": [
+    {
+      "id": "one-1",
+      "category": "生成封面",
+      "title": "击败音乐狂人概念封面",
+      "caption": "依据反幸存者、AI 英雄和节奏弹幕生成的视觉目标。",
+      "src": "/media/projects/one/01.webp",
+      "sourceType": "AI 概念图",
+      "bytes": 2515249
+    },
+    {
+      "id": "one-2",
+      "category": "UI",
+      "title": "项目主宣传画面",
+      "caption": "反幸存者玩法的项目内主视觉资产。",
+      "src": "/media/projects/one/02.webp",
+      "sourceType": "项目资产",
+      "bytes": 382503
+    },
+    {
+      "id": "one-3",
+      "category": "动作预览",
+      "title": "音乐狂人动作总览",
+      "caption": "AI 英雄待机、攻击、施法和受击动作预览。",
+      "src": "/media/projects/one/03.webp",
+      "sourceType": "项目资产",
+      "bytes": 35660
+    },
+    {
+      "id": "one-4",
+      "category": "特效预览",
+      "title": "弹幕与范围特效总览",
+      "caption": "节奏弹幕、范围警告和元素攻击表现。",
+      "src": "/media/projects/one/04.webp",
+      "sourceType": "项目资产",
+      "bytes": 490213
+    },
+    {
+      "id": "one-5",
+      "category": "UI",
+      "title": "战斗节拍轨道",
+      "caption": "让玩家预判 AI 攻击节奏的信息组件。",
+      "src": "/media/projects/one/05.webp",
+      "sourceType": "项目资产",
+      "bytes": 1063
+    },
+    {
+      "id": "one-6",
+      "category": "UI",
+      "title": "造物主控制面板",
+      "caption": "召怪、技能与关卡导演操作的界面资产。",
+      "src": "/media/projects/one/06.webp",
+      "sourceType": "项目资产",
+      "bytes": 1959
+    },
+    {
+      "id": "one-7",
+      "category": "特效预览",
+      "title": "音波环弹体",
+      "caption": "音乐主题弹幕形态与伤害反馈资产。",
+      "src": "/media/projects/one/07.webp",
+      "sourceType": "项目资产",
+      "bytes": 27129
+    },
+    {
+      "id": "one-8",
+      "category": "特效预览",
+      "title": "毒音符弹体",
+      "caption": "流派辨识和元素弹幕的视觉样例。",
+      "src": "/media/projects/one/08.webp",
+      "sourceType": "项目资产",
+      "bytes": 21104
+    }
+  ]
+}
