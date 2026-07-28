@@ -1,4 +1,5 @@
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { basename, dirname, join, relative, sep } from "node:path";
 
 const projectSources = [
@@ -78,8 +79,12 @@ function parseDoc(file, root, projectId) {
   const group = groupParts.length > 1 ? groupParts[0].replace(/_/g, " ") : "项目根目录";
   const charCount = raw.replace(/\s/g, "").length;
   const modifiedAt = statSync(file).mtime.toISOString().slice(0, 10);
+  const id = `${projectId}-${createHash("sha1").update(`${projectId}:${relativePath}`).digest("hex").slice(0, 16)}`;
+  const contentDir = new URL(`../public/data/documents/${projectId}/`, import.meta.url);
+  mkdirSync(contentDir, { recursive: true });
+  writeFileSync(new URL(`${id}.md`, contentDir), raw, "utf8");
   return {
-    id: `${projectId}-${Buffer.from(relativePath).toString("base64url").slice(0, 24)}`,
+    id,
     projectId,
     title,
     category: categoryFor(`${title} ${relativePath} ${headings.join(" ")}`),
@@ -91,6 +96,7 @@ function parseDoc(file, root, projectId) {
     modifiedAt,
     readMinutes: Math.max(2, Math.min(40, Math.ceil(charCount / 500))),
     charCount,
+    contentPath: `/data/documents/${projectId}/${id}.md`,
   };
 }
 

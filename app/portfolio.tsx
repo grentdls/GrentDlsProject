@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import documentCounts from "./document-counts.json";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Project = {
   id: string; name: string; en: string; pitch: string; status: string; type: string;
@@ -16,7 +18,7 @@ type DocSummary = {
 type CatalogDoc = {
   id: string; projectId: string; title: string; category: string; group: string;
   summary: string; keyPoints: string[]; sections: string[]; sourceFile: string;
-  modifiedAt: string; readMinutes: number; charCount: number;
+  modifiedAt: string; readMinutes: number; charCount: number; contentPath: string;
 };
 
 const catalogTotals = documentCounts as Record<string, number>;
@@ -114,16 +116,23 @@ export default function Portfolio(){
   const [docQuery,setDocQuery]=useState("");
   const [docCategory,setDocCategory]=useState("全部");
   const [docLimit,setDocLimit]=useState(18);
+  const [readingDoc,setReadingDoc]=useState<CatalogDoc|null>(null);
+  const [readingContent,setReadingContent]=useState("");
+  const [readingLoading,setReadingLoading]=useState(false);
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
   const projectDocs=selected?fullCatalog[selected.id]??[]:[];
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
   const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
-  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18)},[selected?.id]);
+  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("")},[selected?.id]);
   useEffect(()=>{
     if(!selected||Object.keys(fullCatalog).length)return;
     setCatalogLoading(true);
     fetch("/data/document-catalog.json").then(r=>r.json()).then(data=>setFullCatalog(data.catalog??{})).finally(()=>setCatalogLoading(false));
   },[selected,fullCatalog]);
+  const openFullDocument=(doc:CatalogDoc)=>{
+    setReadingDoc(doc);setReadingContent("");setReadingLoading(true);
+    fetch(doc.contentPath).then(r=>r.text()).then(setReadingContent).finally(()=>setReadingLoading(false));
+  };
   const scrollTo=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
   return <main>
@@ -235,7 +244,7 @@ export default function Portfolio(){
                   <div className="catalogPreview">
                     {!!d.keyPoints.length&&<div><span>原文关键条目</span><ul>{d.keyPoints.slice(0,5).map(point=><li key={point}>{point}</li>)}</ul></div>}
                     {!!d.sections.length&&<div><span>章节导航预览</span><ol>{d.sections.slice(0,9).map(section=><li key={section}>{section}</li>)}</ol></div>}
-                    <small>来源文件：{d.sourceFile} · 本站展示结构化预览，原始工程文档保持只读。</small>
+                    <div className="catalogAction"><small>来源文件：{d.sourceFile} · 原始工程文档保持只读。</small><button onClick={()=>openFullDocument(d)}>阅读完整原文 <Arrow/></button></div>
                   </div>
                 </details>)}</div>
                 {!filteredDocs.length&&<div className="catalogEmpty">没有匹配的文档。<button onClick={()=>{setDocQuery("");setDocCategory("全部")}}>清除筛选</button></div>}
@@ -247,6 +256,15 @@ export default function Portfolio(){
           </div>
         </div>
       </article>
+      {readingDoc&&<div className="readerBackdrop" onMouseDown={()=>setReadingDoc(null)}>
+        <article className="documentReader" role="dialog" aria-modal="true" aria-labelledby="reader-title" onMouseDown={e=>e.stopPropagation()}>
+          <header><div><span>{readingDoc.category} · {readingDoc.group}</span><h2 id="reader-title">{readingDoc.title}</h2><p>{readingDoc.sourceFile} · 更新于 {readingDoc.modifiedAt} · 约 {readingDoc.readMinutes} 分钟</p></div><button onClick={()=>setReadingDoc(null)} aria-label="关闭完整文档">×</button></header>
+          <div className="readerLayout">
+            <aside><p>文档章节</p>{readingDoc.sections.slice(0,12).map((section,i)=><span key={`${section}-${i}`}>{String(i+1).padStart(2,"0")} {section}</span>)}</aside>
+            <div className="markdownBody">{readingLoading?<div className="readerLoading"><i/><span>正在读取原始文档…</span></div>:<ReactMarkdown remarkPlugins={[remarkGfm]}>{readingContent}</ReactMarkdown>}</div>
+          </div>
+        </article>
+      </div>}
     </div>}
   </main>
 }
