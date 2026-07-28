@@ -29,38 +29,25 @@ type MediaItem = {
 
 const mediaCatalog = mediaCatalogData as Record<string,MediaItem[]>;
 mediaCatalog.one = [
-  {id:"one-promo-video",category:"宣传视频",title:"《击败音乐狂》实机宣传视频",caption:"展示节奏弹幕、AI 英雄成长与造物主控制玩法的项目宣传录像。",src:"/downloads/one/media/gameplay-promo.mp4",sourceType:"项目宣传视频",bytes:74131251,mediaType:"video"},
-  {id:"one-promo-1",category:"宣传图",title:"节奏弹幕战斗宣传图",caption:"项目最新宣传画面，呈现音乐主题敌人与高密度弹幕战场。",src:"/downloads/one/media/promo-01.png",sourceType:"项目宣传图",bytes:691901,mediaType:"image"},
-  {id:"one-promo-2",category:"宣传图",title:"造物主玩法宣传图",caption:"突出玩家作为造物主干预战局、召唤单位与构建挑战的玩法视角。",src:"/downloads/one/media/promo-02.png",sourceType:"项目宣传图",bytes:795815,mediaType:"image"},
-  {id:"one-promo-3",category:"宣传图",title:"AI 英雄成长宣传图",caption:"展示 AI 英雄构筑、战斗节拍与成长反馈的核心体验。",src:"/downloads/one/media/promo-03.png",sourceType:"项目宣传图",bytes:1048657,mediaType:"image"},
+  {id:"one-promo-video",category:"宣传视频",title:"《击败音乐狂》实机宣传视频",caption:"展示节奏弹幕、AI 英雄成长与造物主控制玩法的项目宣传录像。",src:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/gameplay-promo.mp4",sourceType:"项目宣传视频",bytes:74131251,mediaType:"video"},
+  {id:"one-promo-1",category:"宣传图",title:"节奏弹幕战斗宣传图",caption:"项目最新宣传画面，呈现音乐主题敌人与高密度弹幕战场。",src:"/media/projects/one/promo/promo-01.png",sourceType:"项目宣传图",bytes:694992,mediaType:"image"},
+  {id:"one-promo-2",category:"宣传图",title:"造物主玩法宣传图",caption:"突出玩家作为造物主干预战局、召唤单位与构建挑战的玩法视角。",src:"/media/projects/one/promo/promo-02.png",sourceType:"项目宣传图",bytes:793133,mediaType:"image"},
+  {id:"one-promo-3",category:"宣传图",title:"AI 英雄成长宣传图",caption:"展示 AI 英雄构筑、战斗节拍与成长反馈的核心体验。",src:"/media/projects/one/promo/promo-03.png",sourceType:"项目宣传图",bytes:1051960,mediaType:"image"},
   ...(mediaCatalog.one??[])
 ];
 
 type DownloadItem = {platform:"Windows"|"Android";title:string;filename:string;size:string;href:string};
 const downloadsByProject:Record<string,DownloadItem[]> = {
   one:[
-    {platform:"Windows",title:"《击败音乐狂》PC 试玩版",filename:"defeat-music-maniac-windows.zip",size:"80.2 MB",href:"/downloads/one/builds/defeat-music-maniac-windows.zip"},
-    {platform:"Android",title:"《击败音乐狂》安卓试玩版",filename:"DefeatMusicManiac.apk",size:"82.6 MB",href:"/downloads/one/builds/DefeatMusicManiac.apk"}
+    {platform:"Windows",title:"《击败音乐狂》PC 试玩版",filename:"defeat-music-maniac-windows.zip",size:"80.2 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/defeat-music-maniac-windows.zip"},
+    {platform:"Android",title:"《击败音乐狂》安卓试玩版",filename:"DefeatMusicManiac.apk",size:"82.6 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/DefeatMusicManiac.apk"}
   ],
-  star:[{platform:"Windows",title:"《星空掠夺者》PC 试玩版",filename:"star-raiders-windows.zip",size:"41.4 MB",href:"/downloads/star/builds/star-raiders-windows.zip"}],
-  rts:[{platform:"Android",title:"RTS 最新安卓试玩版",filename:"TestRTS2_latest.apk",size:"192.0 MB",href:"/downloads/rts/builds/TestRTS2_latest.apk"}],
+  star:[{platform:"Windows",title:"《星空掠夺者》PC 试玩版",filename:"star-raiders-windows.zip",size:"41.4 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/star-raiders-windows.zip"}],
+  rts:[{platform:"Android",title:"RTS 最新安卓试玩版",filename:"TestRTS2_latest.apk",size:"192.0 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/TestRTS2_latest.apk"}],
   castle:[
-    {platform:"Windows",title:"《亲密城堡》PC 试玩版",filename:"HSJT-PC.zip",size:"248.4 MB",href:"/downloads/castle/builds/HSJT-PC.zip"},
-    {platform:"Android",title:"《亲密城堡》安卓试玩版",filename:"HSJT.apk",size:"470.2 MB",href:"/downloads/castle/builds/HSJT.apk"}
+    {platform:"Windows",title:"《亲密城堡》PC 试玩版",filename:"HSJT-PC.zip",size:"248.4 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/HSJT-PC.zip"},
+    {platform:"Android",title:"《亲密城堡》安卓试玩版",filename:"HSJT.apk",size:"470.2 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/HSJT.apk"}
   ]
-};
-
-const uploadKeyByName:Record<string,string> = {
-  "defeat-music-maniac-windows.zip":"downloads/one/builds/defeat-music-maniac-windows.zip",
-  "DefeatMusicManiac.apk":"downloads/one/builds/DefeatMusicManiac.apk",
-  "star-raiders-windows.zip":"downloads/star/builds/star-raiders-windows.zip",
-  "TestRTS2_latest.apk":"downloads/rts/builds/TestRTS2_latest.apk",
-  "HSJT-PC.zip":"downloads/castle/builds/HSJT-PC.zip",
-  "HSJT.apk":"downloads/castle/builds/HSJT.apk",
-  "QQ20260728-152040.png":"downloads/one/media/promo-01.png",
-  "QQ20260728-152336.png":"downloads/one/media/promo-02.png",
-  "QQ20260728-153357.png":"downloads/one/media/promo-03.png",
-  "屏幕录制 2026-07-28 152249.mp4":"downloads/one/media/gameplay-promo.mp4"
 };
 const catalogTotals = documentCounts as Record<string, number>;
 const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
@@ -237,8 +224,6 @@ export default function Portfolio(){
   const [readingLoading,setReadingLoading]=useState(false);
   const [mediaCategory,setMediaCategory]=useState("全部");
   const [lightboxMedia,setLightboxMedia]=useState<MediaItem|null>(null);
-  const [showUploader,setShowUploader]=useState(false);
-  const [uploadStatus,setUploadStatus]=useState("选择本次整理的 10 个项目文件");
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
   const projectDocs=selected?fullCatalog[selected.id]??[]:[];
   const projectMedia=selected?mediaCatalog[selected.id]??[]:[];
@@ -248,7 +233,6 @@ export default function Portfolio(){
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
   const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
   useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("");setMediaCategory("全部");setLightboxMedia(null)},[selected?.id]);
-  useEffect(()=>setShowUploader(new URLSearchParams(window.location.search).get("upload")==="1"),[]);
   useEffect(()=>{
     if(!selected||Object.keys(fullCatalog).length)return;
     setCatalogLoading(true);
@@ -279,24 +263,8 @@ export default function Portfolio(){
     });
   };
   const scrollTo=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
-  const uploadAssets=async(files:FileList|null)=>{
-    if(!files?.length)return;
-    let completed=0;
-    for(const file of Array.from(files)){
-      const key=uploadKeyByName[file.name];
-      if(!key)continue;
-      setUploadStatus(`正在上传 ${file.name} · ${completed}/${files.length}`);
-      const response=await fetch(`/api/portfolio-assets?key=${encodeURIComponent(key)}`,{
-        method:"PUT",body:file,headers:{"content-type":file.type||"application/octet-stream","x-content-disposition":key.includes("/builds/")?`attachment; filename="${file.name}"`:"inline"}
-      });
-      if(!response.ok)throw new Error(`上传失败：${file.name}`);
-      completed++;
-    }
-    setUploadStatus(`上传完成 · ${completed} 个文件`);
-  };
 
   return <main>
-    {showUploader?<div className="assetUploader"><strong>项目素材上传</strong><span>{uploadStatus}</span><label>选择文件<input type="file" multiple onChange={event=>uploadAssets(event.target.files).catch(error=>setUploadStatus(error.message))}/></label></div>:null}
     <header className="topbar">
       <a className="brand" href="#top" aria-label="返回首页"><span>GD</span><b>游戏设计档案</b></a>
       <nav aria-label="主导航">
