@@ -35,3 +35,70 @@
   .documentCard summary{grid-template-columns:32px 1fr 24px;padding:17px}
   .documentDetails{grid-template-columns:1fr;margin:0 17px 17px}
 }
+
+.archiveMetrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin:-28px 0 44px}
+.archiveMetrics div{padding:22px 24px;border-right:1px solid var(--line);background:#0a171c}
+.archiveMetrics div:last-child{border:0}
+.archiveMetrics strong{display:block;font:700 27px "Courier New";color:var(--gold)}
+.archiveMetrics span{font-size:10px;letter-spacing:.1em;color:var(--muted)}
+.fullArchive{margin-top:68px;padding-top:55px;border-top:1px dashed #38505a}
+.archiveTitle{display:grid;grid-template-columns:1fr auto;gap:35px;align-items:end}
+.archiveTitle h3{font-size:38px;margin:9px 0 10px}
+.archiveTitle p:last-child{max-width:700px;margin:0}
+.archiveTitle>strong{font:700 52px "Courier New";color:var(--gold);line-height:.8}
+.archiveTitle>strong small{display:block;font-size:9px;letter-spacing:.18em;color:var(--muted);text-align:right;margin-top:10px}
+.archiveToolbar{display:flex;align-items:center;justify-content:space-between;gap:25px;margin:34px 0 17px}
+.archiveToolbar>span{font:10px "Courier New";color:var(--muted);white-space:nowrap}
+.archiveSearch{display:flex;align-items:center;gap:10px;flex:1;max-width:520px;border:1px solid #31464f;background:#081319;padding:0 14px}
+.archiveSearch>span{color:var(--gold);font-size:20px}
+.archiveSearch input{width:100%;height:47px;border:0;outline:0;background:transparent;color:var(--ink);font-size:12px}
+.archiveSearch input::placeholder{color:#62747a}
+.archiveFilters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
+.archiveFilters button{border:1px solid var(--line);background:#0a171c;color:var(--muted);padding:8px 10px;font-size:10px}
+.archiveFilters button b{display:inline-grid;place-items:center;margin-left:7px;min-width:19px;height:18px;border-radius:9px;background:#14272e;color:#9fb0b5;font:9px "Courier New"}
+.archiveFilters button[aria-pressed=true]{border-color:var(--gold);color:var(--ink);background:rgba(230,170,75,.09)}
+.archiveFilters button[aria-pressed=true] b{background:var(--gold);color:#071117}
+.catalogGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.catalogCard{border:1px solid var(--line);background:#09161b;min-width:0}
+.catalogCard[open]{grid-column:1/-1;border-color:#46606a;background:#0c1b21}
+.catalogCard summary{list-style:none;padding:19px;cursor:pointer;min-height:184px;display:flex;flex-direction:column}
+.catalogCard summary::-webkit-details-marker{display:none}
+.catalogMeta{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+.catalogMeta span{padding:4px 6px;background:rgba(230,170,75,.12);color:var(--gold);font:9px "Courier New"}
+.catalogMeta em{font-style:normal;font-size:9px;color:#718389;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.catalogCard h4{font-size:16px;line-height:1.45;margin:0 0 9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.catalogCard summary>p{font-size:11px;line-height:1.65;color:#8fa1a6;margin:0 0 15px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.catalogFoot{display:flex;align-items:center;gap:10px;margin-top:auto;font:9px "Courier New";color:#64767c;flex-wrap:wrap}
+.catalogFoot b{margin-left:auto;color:var(--gold);font-weight:400}
+.catalogCard[open] .catalogFoot b{font-size:0}
+.catalogCard[open] .catalogFoot b:after{content:"收起预览 ×";font-size:9px}
+.catalogPreview{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.catalogPreview>div{padding:21px;background:#08151a}
+.catalogPreview>div>span{display:block;margin-bottom:12px;color:var(--gold);font:9px "Courier New";letter-spacing:.12em}
+.catalogPreview ul,.catalogPreview ol{margin:0;padding-left:19px}
+.catalogPreview li{font-size:11px;line-height:1.65;color:#b6c2c5;padding:3px 0 3px 5px}
+.catalogPreview li::marker{color:var(--gold)}
+.catalogPreview>small{grid-column:1/-1;padding:12px 20px;background:#0d2027;color:#73878d;font-size:9px}
+.loadMore{width:100%;min-height:52px;margin-top:13px;border:1px solid #344a53;background:#0c1b21;color:#b8c5c8;font-size:11px}
+.loadMore:hover{border-color:var(--gold);color:var(--gold)}
+.loadMore b{color:var(--gold)}
+.catalogEmpty{padding:45px;text-align:center;border:1px dashed var(--line);color:var(--muted);font-size:12px}
+.catalogEmpty button{border:0;background:transparent;color:var(--gold)}
+.catalogLoading{display:flex;align-items:center;justify-content:center;gap:12px;min-height:90px;border:1px dashed var(--line);color:var(--muted);font-size:11px}
+.catalogLoading i{width:16px;height:16px;border:2px solid #34505a;border-top-color:var(--gold);border-radius:50%;animation:catalog-spin .8s linear infinite}
+@keyframes catalog-spin{to{transform:rotate(360deg)}}
+
+@media(max-width:900px){
+  .archiveMetrics{grid-template-columns:repeat(2,1fr);margin-top:-10px}
+  .archiveMetrics div:nth-child(2){border-right:0}
+  .archiveMetrics div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .archiveTitle{grid-template-columns:1fr}
+  .archiveTitle>strong{font-size:42px}
+  .archiveTitle>strong small{text-align:left}
+  .archiveToolbar{align-items:stretch;flex-direction:column}
+  .archiveSearch{max-width:none}
+  .catalogGrid{grid-template-columns:1fr}
+  .catalogCard[open]{grid-column:auto}
+  .catalogPreview{grid-template-columns:1fr}
+  .catalogPreview>small{grid-column:auto}
+}

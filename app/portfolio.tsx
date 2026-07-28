@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import documentCounts from "./document-counts.json";
 
 type Project = {
   id: string; name: string; en: string; pitch: string; status: string; type: string;
@@ -11,6 +12,16 @@ type DocSummary = {
   title: string; type: string; status: string; problem: string; conclusions: string[];
   evidence: string; read: string;
 };
+
+type CatalogDoc = {
+  id: string; projectId: string; title: string; category: string; group: string;
+  summary: string; keyPoints: string[]; sections: string[]; sourceFile: string;
+  modifiedAt: string; readMinutes: number; charCount: number;
+};
+
+const catalogTotals = documentCounts as Record<string, number>;
+const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
+  .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
 
 const projects: Project[] = [
   { id:"tuntun", name:"吞吞舰船", en:"TUNTUN SHIP", pitch:"把海上移动堡垒、Roguelike 战斗与长期港口经营装进同一片海域。", status:"进行中", type:"独立游戏", role:"系统策划 / 技术策划 / 原型", tags:["Unity","Roguelike","海战","系统设计"], image:"/media/tuntun-cover.png", accent:"#e8aa4d", playable:true },
@@ -98,7 +109,21 @@ export default function Portfolio(){
   const [filter,setFilter]=useState("全部");
   const [query,setQuery]=useState("");
   const [selected,setSelected]=useState<Project|null>(null);
+  const [fullCatalog,setFullCatalog]=useState<Record<string,CatalogDoc[]>>({});
+  const [catalogLoading,setCatalogLoading]=useState(false);
+  const [docQuery,setDocQuery]=useState("");
+  const [docCategory,setDocCategory]=useState("全部");
+  const [docLimit,setDocLimit]=useState(18);
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
+  const projectDocs=selected?fullCatalog[selected.id]??[]:[];
+  const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
+  const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
+  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18)},[selected?.id]);
+  useEffect(()=>{
+    if(!selected||Object.keys(fullCatalog).length)return;
+    setCatalogLoading(true);
+    fetch("/data/document-catalog.json").then(r=>r.json()).then(data=>setFullCatalog(data.catalog??{})).finally(()=>setCatalogLoading(false));
+  },[selected,fullCatalog]);
   const scrollTo=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
   return <main>
@@ -120,7 +145,7 @@ export default function Portfolio(){
         <div className="heroActions"><button className="primary" onClick={()=>{setSelected(projects[0])}}>查看代表项目 <Arrow/></button><button className="secondary" onClick={()=>scrollTo("projects")}>浏览全部 10 个项目</button></div>
       </div>
       <div className="stats" aria-label="作品集统计">
-        <div><strong>10</strong><span>项目 / 原型</span></div><div><strong>6</strong><span>可运行成果</span></div><div><strong>100+</strong><span>设计文档</span></div>
+        <div><strong>10</strong><span>项目 / 原型</span></div><div><strong>6</strong><span>可运行成果</span></div><div><strong>{totalUniqueDocs}</strong><span>工程文档入库</span></div>
       </div>
       <div className="now"><i/><span>NOW BUILDING</span><b>吞吞舰船</b></div>
     </section>
@@ -147,7 +172,7 @@ export default function Portfolio(){
       <div className="projectGrid">
         {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>setSelected(p)}>
           <div className="cover">{p.image?<img src={p.image} alt={`${p.name}项目画面，作为作品封面`}/>:<div className="coverFallback"><span>{p.en}</span><i/></div>}<span className="mediaType">{p.image?"项目素材":"视觉占位"}</span><button aria-label={`查看 ${p.name}`}>↗</button></div>
-          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {docsByProject[p.id]?.length ?? 0} 篇精选文档</small><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
+          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 篇文档 / {docsByProject[p.id]?.length ?? 0} 篇深度解读</small><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
         </article>)}
       </div>
       {!shown.length&&<div className="empty">没有匹配的项目。<button onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
@@ -169,7 +194,8 @@ export default function Portfolio(){
     </section>
 
     <section className="section docsSection">
-      <div className="sectionHead compact"><div><p className="kicker">04 / SELECTED DOCUMENTS</p><h2>关键设计文档</h2></div><p>文档不是附件仓库，而是经过筛选的设计证据：先看结论，再按需深入。</p></div>
+      <div className="sectionHead compact"><div><p className="kicker">04 / DOCUMENT ARCHIVE</p><h2>{totalUniqueDocs} 篇工程文档</h2></div><p>精选解读负责呈现判断深度，完整目录保留每个项目真实的设计覆盖面。进入任一项目，即可按分类、标题、章节与关键词浏览。</p></div>
+      <div className="archiveMetrics"><div><strong>9</strong><span>文档分类</span></div><div><strong>10</strong><span>项目档案</span></div><div><strong>29</strong><span>深度解读</span></div><div><strong>{totalUniqueDocs}</strong><span>原始文档索引</span></div></div>
       <div className="docList">{featuredDocs.map(([projectId,docIndex],i)=>{const p=projects.find(item=>item.id===projectId)!;const d=docsByProject[projectId][docIndex];return <article key={d.title} onClick={()=>setSelected(p)} tabIndex={0} onKeyDown={e=>{if(e.key==="Enter")setSelected(p)}}>
         <span className="docNo">D{String(i+1).padStart(2,"0")}</span><div><small>{p.name} · {d.type} · {d.status}</small><h3>{d.title}</h3><p>{d.problem}</p></div><span className="read">{d.read}<b>↗</b></span>
       </article>})}</div>
@@ -196,6 +222,25 @@ export default function Portfolio(){
                 <summary><span className="documentIndex">{String(i+1).padStart(2,"0")}</span><div><small>{d.type} · {d.status}</small><h4>{d.title}</h4><p>{d.problem}</p></div><span className="expandMark">＋</span></summary>
                 <div className="documentDetails"><div className="conclusionBlock"><span>核心结论</span><ol>{d.conclusions.map(c=><li key={c}>{c}</li>)}</ol></div><div className="evidenceBlock"><span>落地证据</span><p>{d.evidence}</p><small>预计阅读 {d.read}</small></div></div>
               </details>)}</div>
+              <div className="fullArchive">
+                <div className="archiveTitle"><div><p className="kicker">FULL DOCUMENT LIBRARY</p><h3>完整文档目录</h3><p>不再只保留精选：这里收录该工程中可识别的全部项目 Markdown 文档，并从原文提取章节、关键条目、更新时间和阅读量级。</p></div><strong>{catalogTotals[selected.id]??0}<small> DOCS</small></strong></div>
+                <div className="archiveToolbar">
+                  <label className="archiveSearch"><span>⌕</span><input value={docQuery} onChange={e=>{setDocQuery(e.target.value);setDocLimit(18)}} placeholder="搜索标题、摘要、章节或关键条目…" aria-label="搜索当前项目文档"/></label>
+                  <span>{catalogLoading?"正在读取文档索引…":`显示 ${Math.min(docLimit,filteredDocs.length)} / ${filteredDocs.length}`}</span>
+                </div>
+                <div className="archiveFilters" role="group" aria-label="文档分类筛选">{docCategories.map(c=><button key={c} aria-pressed={docCategory===c} onClick={()=>{setDocCategory(c);setDocLimit(18)}}>{c}<b>{c==="全部"?projectDocs.length:projectDocs.filter(d=>d.category===c).length}</b></button>)}</div>
+                {catalogLoading&&<div className="catalogLoading"><i/><span>正在装载完整文档目录</span></div>}
+                <div className="catalogGrid">{filteredDocs.slice(0,docLimit).map((d)=><details className="catalogCard" key={d.id}>
+                  <summary><div className="catalogMeta"><span>{d.category}</span><em>{d.group}</em></div><h4>{d.title}</h4><p>{d.summary}</p><div className="catalogFoot"><span>{d.modifiedAt}</span><span>约 {d.readMinutes} 分钟</span><span>{Math.max(1,Math.round(d.charCount/1000))}k 字符</span><b>展开预览 ＋</b></div></summary>
+                  <div className="catalogPreview">
+                    {!!d.keyPoints.length&&<div><span>原文关键条目</span><ul>{d.keyPoints.slice(0,5).map(point=><li key={point}>{point}</li>)}</ul></div>}
+                    {!!d.sections.length&&<div><span>章节导航预览</span><ol>{d.sections.slice(0,9).map(section=><li key={section}>{section}</li>)}</ol></div>}
+                    <small>来源文件：{d.sourceFile} · 本站展示结构化预览，原始工程文档保持只读。</small>
+                  </div>
+                </details>)}</div>
+                {!filteredDocs.length&&<div className="catalogEmpty">没有匹配的文档。<button onClick={()=>{setDocQuery("");setDocCategory("全部")}}>清除筛选</button></div>}
+                {filteredDocs.length>docLimit&&<button className="loadMore" onClick={()=>setDocLimit(v=>v+24)}>继续加载 <b>{Math.min(24,filteredDocs.length-docLimit)}</b> 篇文档 ↓</button>}
+              </div>
             </section>
             <section id="progress"><p className="kicker">PROGRESS</p><h3>公开进度，不伪造百分比</h3><div className="progressRows"><span>核心循环 <b>可运行 / 验证中</b></span><span>内容与数值 <b>持续扩充</b></span><span>媒体与包体 <b>公开范围待确认</b></span></div></section>
             <section id="ai"><p className="kicker">AI DISCLOSURE</p><h3>AI 是协作层，不是判断者</h3><p>现有工程中包含 AI 辅助产出的文档与视觉素材。网站会明确区分概念图、生成图、实机与编辑器画面；需求取舍、规则审校、工程接入与最终判断由本人完成。各项目具体参与比例待确认。</p></section>
