@@ -41,3 +41,5 @@ next-env.d.ts
 /outputs/
 /work/
 /site-package*.tar.gz
+/tmp/
+*.tsbuildinfo

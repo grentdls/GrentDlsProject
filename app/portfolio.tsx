@@ -5,6 +5,8 @@ import documentCounts from "./document-counts.json";
 import mediaCatalogData from "./media-catalog.json";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import BattleLab from "./BattleLab";
+import ArchiveConsole from "./ArchiveConsole";
 
 type Project = {
   id: string; name: string; en: string; pitch: string; status: string; type: string;
@@ -131,6 +133,77 @@ const featuredDocs = [
   ["tuntun",0],["star",1],["brick",1],["arpg",2]
 ] as const;
 
+const resumeExperiences = [
+  {
+    period:"2020/10 - 至今",
+    company:"杭州紧张树网络",
+    role:"高级战斗策划 / 玩法策划",
+    projects:"《驱入虚空》从 0 到上线",
+    highlights:[
+      "负责 TPS 肉鸽吸血鬼玩法、TPS 肉鸽与 TPS 割草三轮玩法，从原型到完整版本推进角色、武器、道具、怪物、Boss、地图与战斗功能。",
+      "设计箱庭关卡与开放世界地图，覆盖弹幕 Boss、强交互 Boss、Boss 演出、战斗氛围与节奏。",
+      "负责 AI 基础行为、集群行为、玩家行为预测，以及 3C、战斗表现和体验调优。",
+      "参与 AI 编辑器、战斗编辑器与表格结构设计，并额外负责类地狱遣兵项目、类 Haste 项目。"
+    ],
+    links:[{label:"驱入虚空 · TapTap",href:"https://www.taptap.cn/app/273409"}]
+  },
+  {
+    period:"2019/10 - 2020/10",
+    company:"电魂网络 · 梦三国手游项目组",
+    role:"游戏关卡 / 玩法策划",
+    projects:"《梦三国手游》持续运营",
+    highlights:[
+      "负责 RPG 地图、PVE 军团全服大地图、PVE MOBA 吃鸡与 PVP 核心玩法迭代。",
+      "参与 MOBA 角色设计与 PVP 角色数值持续调整。",
+      "参与类魔兽编辑器优化与腾讯树迭代，并负责《梦三国传说》项目。"
+    ],
+    links:[{label:"梦三国手游",href:"https://m.m3guo.com/v1/#/"}]
+  },
+  {
+    period:"2018/08 - 2019/11",
+    company:"小丸子网络科技游戏公司",
+    role:"小游戏制作人 / 游戏玩法策划",
+    projects:"益智小游戏、肉鸽小游戏、五胡三国",
+    highlights:[
+      "负责每个游戏的基础玩法循环与系统玩法，并推进从设计到制作的完整落地。",
+      "负责推广策略、投放调优与用户分析。"
+    ],
+    links:[]
+  },
+  {
+    period:"2017/09 - 2018/08",
+    company:"杭州嘉跳网络公司",
+    role:"游戏关卡策划",
+    projects:"FPS 手游关卡策划",
+    highlights:[
+      "负责 FPS 游戏换皮系统迭代、关卡设计与 AI 逻辑迭代。"
+    ],
+    links:[]
+  }
+];
+
+const resumeFocus = [
+  {label:"战斗设计",title:"从 3C 到 Boss 终局",body:"武器、技能、AI、伤害、节奏、演出与反馈共同定义可玩的战斗。"},
+  {label:"玩法推进",title:"从原型到上线",body:"先压缩验证范围，再把角色、关卡、系统和内容拆成可执行的制作批次。"},
+  {label:"编辑器与工具",title:"让规则进入生产",body:"参与 AI 编辑器、战斗编辑器、表格结构和可视化开发辅助工具设计。"},
+  {label:"AI 协作",title:"把 AI 放进工作流",body:"使用 AI 制作原型与工具，并建立玩法、关卡设计的辅助监督和评级流程。"}
+];
+
+const resumeWorks = [
+  {title:"《你在哪》",meta:"TapTap 测试上线",href:"https://www.taptap.com/app/79779"},
+  {title:"《前行的路》",meta:"TapTap 测试上线",href:"https://www.taptap.com/app/82920"},
+  {title:"《巨人与金雀》",meta:"2020 CGJ 个人作品",href:"https://www.youxibd.com/gamejam/cgjcyber2020/detail/485"},
+  {title:"战枭 - 2D RTS",meta:"AI 制作的网页端游戏",href:"#projects"}
+];
+
+const designDoctrines = [
+  {label:"01 / 可玩优先", title:"先让它能被玩，再让它听起来完整。", body:"每个新系统都要先落到一个可操作的动作、一个可观察的反馈和一个可复盘的失败。文档负责收敛范围，原型负责揭露真相。", proof:"对应：吞吞舰船最小可玩 Demo · 积木飞船模块搭建"},
+  {label:"02 / 反馈先于解释", title:"玩家不该读完说明书，才知道自己刚刚做对了。", body:"前摇、音轨、镜头、颜色、停顿和 UI 共同承担信息。复杂机制可以深，但第一秒必须让人知道发生了什么。", proof:"对应：One 音轨预警 · WCDEL 命中反馈 · ARPG 3C"},
+  {label:"03 / 复杂度要能生产", title:"一个好系统，应该也能被团队持续做出来。", body:"我会把规则拆成数据、逻辑、表现和工具入口，让一次设计不只解决当前问题，还能成为下一轮内容生产的模板。", proof:"对应：RTS 双端架构 · 角色配置工具 · UI Prefab Framework"}
+];
+
+const resumePdfHref = "/resume/shi-zechang-battle-designer.pdf";
+
 const capabilities = [
   {
     id:"system", index:"01", title:"策划与系统设计", subtitle:"把产品定位拆成规则、循环、内容边界与验证计划。",
@@ -224,18 +297,45 @@ export default function Portfolio(){
   const [readingLoading,setReadingLoading]=useState(false);
   const [mediaCategory,setMediaCategory]=useState("全部");
   const [lightboxMedia,setLightboxMedia]=useState<MediaItem|null>(null);
+  const [activeDoctrine,setActiveDoctrine]=useState(0);
   const shown=useMemo(()=>projects.filter(p=>(filter==="全部"||p.type===filter)&&(p.name+p.en+p.pitch+p.tags.join("")).toLowerCase().includes(query.toLowerCase())),[filter,query]);
-  const projectDocs=selected?fullCatalog[selected.id]??[]:[];
-  const projectMedia=selected?mediaCatalog[selected.id]??[]:[];
-  const projectDownloads=selected?downloadsByProject[selected.id]??[]:[];
+  const projectDocs=useMemo(()=>selected?fullCatalog[selected.id]??[]:[],[selected,fullCatalog]);
+  const projectMedia=useMemo(()=>selected?mediaCatalog[selected.id]??[]:[],[selected]);
+  const projectDownloads=useMemo(()=>selected?downloadsByProject[selected.id]??[]:[],[selected]);
   const mediaCategories=useMemo(()=>["全部",...Array.from(new Set(projectMedia.map(item=>item.category)))],[projectMedia]);
   const filteredMedia=projectMedia.filter(item=>mediaCategory==="全部"||item.category===mediaCategory);
   const docCategories=useMemo(()=>["全部",...Array.from(new Set(projectDocs.map(d=>d.category)))],[projectDocs]);
   const filteredDocs=useMemo(()=>projectDocs.filter(d=>(docCategory==="全部"||d.category===docCategory)&&(`${d.title}${d.summary}${d.keyPoints.join("")}${d.sections.join("")}`).toLowerCase().includes(docQuery.toLowerCase())),[projectDocs,docCategory,docQuery]);
-  useEffect(()=>{setDocQuery("");setDocCategory("全部");setDocLimit(18);setReadingDoc(null);setReadingContent("");setMediaCategory("全部");setLightboxMedia(null)},[selected?.id]);
+  const selectProject=(project:Project)=>{
+    setSelected(project);
+    setDocQuery("");
+    setDocCategory("全部");
+    setDocLimit(18);
+    setReadingDoc(null);
+    setReadingContent("");
+    setMediaCategory("全部");
+    setLightboxMedia(null);
+    if(!Object.keys(fullCatalog).length)setCatalogLoading(true);
+  };
+  useEffect(()=>{
+    const overlayOpen=Boolean(selected||lightboxMedia||readingDoc);
+    if(!overlayOpen)return;
+    const previousOverflow=document.body.style.overflow;
+    const closeOnEscape=(event:KeyboardEvent)=>{
+      if(event.key!=="Escape")return;
+      setReadingDoc(null);
+      setLightboxMedia(null);
+      setSelected(null);
+    };
+    document.body.style.overflow="hidden";
+    window.addEventListener("keydown",closeOnEscape);
+    return()=>{
+      document.body.style.overflow=previousOverflow;
+      window.removeEventListener("keydown",closeOnEscape);
+    };
+  },[selected,lightboxMedia,readingDoc]);
   useEffect(()=>{
     if(!selected||Object.keys(fullCatalog).length)return;
-    setCatalogLoading(true);
     fetch("/data/document-catalog.json").then(r=>r.json()).then(data=>setFullCatalog(data.catalog??{})).finally(()=>setCatalogLoading(false));
   },[selected,fullCatalog]);
   const openFullDocument=(doc:CatalogDoc)=>{
@@ -245,7 +345,7 @@ export default function Portfolio(){
   const openCapabilityDocument=(evidence:{projectId:string;title:string;category:string;contentPath:string})=>{
     const project=projects.find(item=>item.id===evidence.projectId);
     if(!project)return;
-    setSelected(project);
+    selectProject(project);
     openFullDocument({
       id:`capability-${evidence.projectId}-${evidence.contentPath}`,
       projectId:evidence.projectId,
@@ -268,7 +368,7 @@ export default function Portfolio(){
     <header className="topbar">
       <a className="brand" href="#top" aria-label="返回首页"><span>GD</span><b>游戏设计档案</b></a>
       <nav aria-label="主导航">
-        <a href="#timeline">时间轴</a><a href="#projects">项目经历</a><a href="#skills">个人能力</a><a href="#other">其他</a>
+        <a href="#timeline">时间轴</a><a href="#projects">项目经历</a><a href="#doctrines">设计立场</a><a href="#skills">个人能力</a><a href="#resume">简历</a><a href="#other">联系</a>
       </nav>
       <button className="contact" onClick={()=>scrollTo("other")}>联系我 <Arrow/></button>
     </header>
@@ -280,7 +380,8 @@ export default function Portfolio(){
         <p className="eyebrow">GAME DESIGNER · TECHNICAL DESIGNER</p>
         <h1>把玩法想法<br/>推进到<span>可运行</span></h1>
         <p className="lead">持续进行独立游戏与玩法原型开发。以游戏策划和技术策划为核心，跨越程序、视听表现与 AI 工具链，让每个判断都能被玩到、被验证。</p>
-        <div className="heroActions"><button className="primary" onClick={()=>{setSelected(projects[0])}}>查看代表项目 <Arrow/></button><button className="secondary" onClick={()=>scrollTo("projects")}>浏览全部 10 个项目</button></div>
+        <div className="heroActions"><button className="primary" onClick={()=>{selectProject(projects[0])}}>查看代表项目 <Arrow/></button><button className="secondary" onClick={()=>scrollTo("projects")}>浏览全部 10 个项目</button></div>
+        <a className="heroLabLink" href="#lab"><span>PLAYABLE</span> 进入战斗实验室 <Arrow/></a>
       </div>
       <div className="stats" aria-label="作品集统计">
         <div><strong>10</strong><span>项目 / 原型</span></div><div><strong>6</strong><span>可运行成果</span></div><div><strong>{totalUniqueDocs}</strong><span>工程文档入库</span></div>
@@ -288,12 +389,30 @@ export default function Portfolio(){
       <div className="now"><i/><span>NOW BUILDING</span><b>吞吞舰船</b></div>
     </section>
 
+    <section className="section labSection" id="lab">
+      <div className="labHeading">
+        <div><h2>先读招，<br/><span>再下结论。</span></h2></div>
+        <div><p>一个把战斗策划方法变成即时反馈的微型实验。移动准星，观察攻击前摇，在窗口内完成反制。</p><p className="labHeadingMeta">30 秒一轮 · 三种威胁读法 · 支持鼠标、触摸与键盘</p></div>
+      </div>
+      <BattleLab />
+    </section>
+
+    <section className="section doctrineSection" id="doctrines">
+      <div className="doctrineIntro"><div><p className="kicker">FIELD NOTES / DESIGN DOCTRINES</p><h2>我如何做<br/><span>判断。</span></h2></div><p>作品集里最值得被看到的，不只是做过哪些项目，还有我在不确定里会优先保护什么。点选一条，查看它在真实工程中的落点。</p></div>
+      <div className="doctrineGrid">
+        <div className="doctrineRail" role="tablist" aria-label="设计立场">
+          {designDoctrines.map((item,index)=><button type="button" role="tab" aria-selected={activeDoctrine===index} className={activeDoctrine===index?"is-active":""} onClick={()=>setActiveDoctrine(index)} key={item.label}><span>{item.label}</span><b>{String(index+1).padStart(2,"0")}</b></button>)}
+        </div>
+        <article className="doctrineCard"><span className="doctrineStamp">{designDoctrines[activeDoctrine].label}</span><h3>{designDoctrines[activeDoctrine].title}</h3><p>{designDoctrines[activeDoctrine].body}</p><small>{designDoctrines[activeDoctrine].proof}</small><div className="doctrineMark" aria-hidden="true">✦</div></article>
+      </div>
+    </section>
+
     <section className="section timelineSection" id="timeline">
       <div className="sectionHead"><div><p className="kicker">01 / DEVELOPMENT LOG</p><h2>不是项目列表，<br/>是一次次判断的轨迹。</h2></div><p>每个节点只记录一次真正改变项目的时刻：玩法成型、结构重做、可运行版本，或一次值得保留的失败。</p></div>
       <div className="timeline">
-        {timeline.map((t,i)=>{const p=projects.find(x=>x.id===t[3])!;return <article className="timeNode" key={t[0]+t[2]}>
-          <div className="timeMeta"><span>{t[0]}</span><em>{t[1]}</em></div><button className="dot" aria-label={`查看 ${p.name}`} onClick={()=>setSelected(p)}/>
-          <div className="timeCard" style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>setSelected(p)}>
+        {timeline.map(t=>{const p=projects.find(x=>x.id===t[3])!;return <article className="timeNode" key={t[0]+t[2]}>
+          <div className="timeMeta"><span>{t[0]}</span><em>{t[1]}</em></div><button className="dot" aria-label={`查看 ${p.name}`} onClick={()=>selectProject(p)}/>
+          <div className="timeCard" role="button" tabIndex={0} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>selectProject(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectProject(p)}}}>
             <div className="miniVisual">{p.image?<img src={p.image} alt=""/>:<span>{p.en}</span>}</div>
             <div><p>{p.type} · {p.status}</p><h3>{t[2]}</h3><span className="role">{p.role}</span><button>打开档案 <Arrow/></button></div>
           </div>
@@ -308,12 +427,12 @@ export default function Portfolio(){
         <label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="搜索项目、引擎或能力…" aria-label="搜索项目"/></label>
       </div>
       <div className="projectGrid">
-        {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>setSelected(p)}>
+        {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} role="button" tabIndex={0} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>selectProject(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectProject(p)}}}>
           <div className="cover">{p.image?<img src={p.image} alt={`${p.name}项目画面，作为作品封面`}/>:<div className="coverFallback"><span>{p.en}</span><i/></div>}<span className="mediaType">{p.image?"项目素材":"视觉占位"}</span><button aria-label={`查看 ${p.name}`}>↗</button></div>
           <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small>{downloadsByProject[p.id]?.length?<div className="downloadAvailable">↓ {downloadsByProject[p.id].length} 个试玩包可下载</div>:null}<div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
         </article>)}
       </div>
-      {!shown.length&&<div className="empty">没有匹配的项目。<button onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
+      {!shown.length&&<div className="empty">没有匹配的项目。<button type="button" onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
     </section>
 
     <section className="section skillsSection" id="skills">
@@ -327,7 +446,7 @@ export default function Portfolio(){
         <div className="capabilityScope"><p>覆盖范围</p><div>{cap.scope.map(item=><span key={item}>{item}</span>)}</div></div>
         <div className="capabilityMethod"><p>我的设计方法</p><ol>{cap.method.map(item=><li key={item}>{item}</li>)}</ol></div>
         <div className="capabilityEvidence"><p>文档证据 · 点击直达原文</p><div className="capabilityEvidenceList">{cap.documents.map(doc=>{const project=projects.find(item=>item.id===doc.projectId)!;return <button key={doc.contentPath} onClick={()=>openCapabilityDocument(doc)}><span>{project.name} · {doc.category}</span><strong>{doc.title}</strong><i>阅读原文 <Arrow/></i></button>})}</div></div>
-        <div className="capabilityProjects"><p>关联项目</p><div>{cap.projects.map(id=>{const p=projects.find(item=>item.id===id)!;return <button key={id} onClick={()=>setSelected(p)} style={{"--accent":p.accent} as React.CSSProperties}><i/>{p.name}<Arrow/></button>})}</div></div>
+        <div className="capabilityProjects"><p>关联项目</p><div>{cap.projects.map(id=>{const p=projects.find(item=>item.id===id)!;return <button key={id} onClick={()=>selectProject(p)} style={{"--accent":p.accent} as React.CSSProperties}><i/>{p.name}<Arrow/></button>})}</div></div>
       </article>)}</div>
       <div className="proofStrip"><p>能力证据链</p><span>问题定义</span><i>→</i><span>规则与数据</span><i>→</i><span>原型实现</span><i>→</i><span>视听反馈</span><i>→</i><span>复盘迭代</span></div>
     </section>
@@ -335,16 +454,30 @@ export default function Portfolio(){
     <section className="section docsSection">
       <div className="sectionHead compact"><div><p className="kicker">04 / DOCUMENT ARCHIVE</p><h2>{totalUniqueDocs} 篇工程文档</h2></div><p>精选解读负责呈现判断深度，完整目录保留每个项目真实的设计覆盖面。进入任一项目，即可按分类、标题、章节与关键词浏览。</p></div>
       <div className="archiveMetrics"><div><strong>9</strong><span>文档分类</span></div><div><strong>10</strong><span>项目档案</span></div><div><strong>29</strong><span>深度解读</span></div><div><strong>{totalUniqueDocs}</strong><span>原始文档索引</span></div></div>
-      <div className="docList">{featuredDocs.map(([projectId,docIndex],i)=>{const p=projects.find(item=>item.id===projectId)!;const d=docsByProject[projectId][docIndex];return <article key={d.title} onClick={()=>setSelected(p)} tabIndex={0} onKeyDown={e=>{if(e.key==="Enter")setSelected(p)}}>
+      <div className="docList">{featuredDocs.map(([projectId,docIndex],i)=>{const p=projects.find(item=>item.id===projectId)!;const d=docsByProject[projectId][docIndex];return <article key={d.title} role="button" onClick={()=>selectProject(p)} tabIndex={0} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectProject(p)}}}>
         <span className="docNo">D{String(i+1).padStart(2,"0")}</span><div><small>{p.name} · {d.type} · {d.status}</small><h3>{d.title}</h3><p>{d.problem}</p></div><span className="read">{d.read}<b>↗</b></span>
       </article>})}</div>
     </section>
 
+    <section className="section resumeSection" id="resume">
+      <div className="sectionHead compact"><div><p className="kicker">05 / CAREER RECORD</p><h2>战斗策划，<br/>把系统做成体验。</h2></div><p>从 FPS 关卡、MOBA 玩法到 TPS 肉鸽战斗，持续参与从原型、制作到上线运营的完整过程。</p></div>
+      <div className="resumeIntro">
+        <div className="resumeSummary"><p className="resumeLabel">TARGET ROLE</p><h3>战斗策划<br/><span>玩法与技术策划</span></h3><p>史泽昌（格朗） · 2017 至今持续从事游戏策划工作。擅长把战斗目标拆成规则、行为、表现和工具，再通过可运行原型验证。</p><div className="resumeActions"><a className="resumeDownload" href={resumePdfHref} download>下载完整简历 <Arrow/></a><a className="resumeContactAction" href="mailto:2454807537@qq.com">2454807537@qq.com <Arrow/></a></div></div>
+        <dl className="resumeFacts"><div><dt>工作经历</dt><dd>2017 至今</dd></div><div><dt>核心方向</dt><dd>战斗 / 玩法</dd></div><div><dt>毕业院校</dt><dd>河南工程学院</dd></div><div><dt>技术基础</dt><dd>C# / C++ / Python</dd></div></dl>
+      </div>
+      <div className="resumeGrid">
+        <div className="resumeHistory"><div className="resumeSubhead"><span>WORK HISTORY</span><strong>工作经历</strong></div>{resumeExperiences.map(item=><article className="resumeEntry" key={`${item.period}-${item.company}`}><div className="resumeEntryMeta"><span>{item.period}</span><b>{item.company}</b></div><div className="resumeEntryBody"><h3>{item.role}</h3><p className="resumeProject">项目：{item.projects}</p><ul>{item.highlights.map(highlight=><li key={highlight}>{highlight}</li>)}</ul>{item.links.length?<div className="resumeEntryLinks">{item.links.map(link=><a href={link.href} target="_blank" rel="noreferrer" key={link.href}>{link.label} <Arrow/></a>)}</div>:null}</div></article>)}</div>
+        <aside className="resumeAside"><div className="resumeSubhead"><span>WORKING FOCUS</span><strong>能力重点</strong></div><div className="resumeFocusList">{resumeFocus.map(item=><article key={item.label}><span>{item.label}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}</div><div className="resumeSubhead worksSubhead"><span>SELECTED WORKS</span><strong>独立制作</strong></div><div className="resumeWorks">{resumeWorks.map(work=><a href={work.href} target={work.href.startsWith("#")?undefined:"_blank"} rel={work.href.startsWith("#")?undefined:"noreferrer"} key={work.title}><span><b>{work.title}</b><small>{work.meta}</small></span><Arrow/></a>)}</div></aside>
+      </div>
+    </section>
+
     <footer id="other">
       <div><p className="kicker">OPEN TO COLLABORATION</p><h2>一起把下一个<br/><span>好玩的判断</span>做出来。</h2></div>
-      <div className="footerRight"><p>游戏策划 / 技术策划 / 独立游戏开发<br/>现居中国 · 可远程协作</p><a href="mailto:portfolio@example.com">portfolio@example.com <Arrow/></a><small>联系方式与简历内容待本人确认</small></div>
+      <div className="footerRight"><p>游戏策划 / 战斗策划 / 技术策划<br/>现居中国 · 可远程协作</p><div className="contactLinks"><a href="mailto:2454807537@qq.com">2454807537@qq.com <Arrow/></a><a href="tel:+8615565861024">15565861024 <span>电话 / 微信</span> <Arrow/></a><a href={resumePdfHref} download>下载简历 PDF <Arrow/></a></div><small>欢迎讨论战斗策划、玩法原型、工具与 AI 协作流程。</small></div>
       <div className="footerBottom"><span>游戏设计档案 · 2026</span><span>DESIGNED AS A LIVING ARCHIVE</span><a href="#top">回到顶部 ↑</a></div>
     </footer>
+
+    <ArchiveConsole />
 
     {selected&&<div className="modalBackdrop" role="presentation" onMouseDown={()=>setSelected(null)}>
       <article className="projectModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={e=>e.stopPropagation()}>
