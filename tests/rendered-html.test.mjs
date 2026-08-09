@@ -54,3 +54,16 @@ test("keeps the finished site free of the starter skeleton", async () => {
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview|codex-preview/);
   assert.doesNotMatch(layout, /SkeletonPreview|_sites-preview|codex-preview/);
 });
+
+test("wires the fleet formation side quest", async () => {
+  const [archiveConsole, fleetFormation] = await Promise.all([
+    readFile(new URL("../app/ArchiveConsole.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/FleetFormation.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(archiveConsole, /FleetFormation/);
+  assert.match(archiveConsole, /game === "fleet"/);
+  assert.match(fleetFormation, /舰队调度台/);
+  assert.match(fleetFormation, /aria-live="polite"/);
+  assert.match(fleetFormation, /检查路线/);
+});

@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import SignalRouting from "./SignalRouting";
+import FleetFormation from "./FleetFormation";
 
-type ConsoleGame = "signal" | "battle";
+type ConsoleGame = "signal" | "battle" | "fleet";
 
 const sections = [
   { id: "top", label: "首页", short: "TOP" },
@@ -52,15 +53,16 @@ export default function ArchiveConsole() {
         <nav className="consoleNav" aria-label="快速章节导航">
           {sections.map(section => <a className={active === section.id ? "is-active" : ""} href={`#${section.id}`} key={section.id} onClick={() => { goTo(section.id); }}>{section.short}<span>{section.label}</span></a>)}
         </nav>
-        <button className="consolePlay" type="button" onClick={() => { setGame("signal"); setOpen(true); }} aria-expanded={open} aria-controls="console-drawer"><span aria-hidden="true">+</span><b>PLAY</b><small>02</small></button>
+        <button className="consolePlay" type="button" onClick={() => { setGame("signal"); setOpen(true); }} aria-expanded={open} aria-controls="console-drawer"><span aria-hidden="true">+</span><b>PLAY</b><small>03</small></button>
       </div>
       {open && <div className="consoleDrawer" id="console-drawer" role="dialog" aria-modal="false" aria-labelledby="console-title">
         <div className="consoleDrawerHeader"><div><span className="consoleDrawerKicker">LIVE ARCHIVE / SIDE QUESTS</span><h2 id="console-title">实验抽屉</h2></div><button className="consoleClose" type="button" onClick={() => setOpen(false)} aria-label="关闭实验抽屉">×</button></div>
         <div className="consoleTabs" role="tablist" aria-label="选择实验">
           <button type="button" role="tab" aria-selected={game === "signal"} onClick={() => setGame("signal")}><span>02</span> 信号路由</button>
           <button type="button" role="tab" aria-selected={game === "battle"} onClick={() => setGame("battle")}><span>01</span> 反制读取</button>
+          <button type="button" role="tab" aria-selected={game === "fleet"} onClick={() => setGame("fleet")}><span>03</span> 舰队调度</button>
         </div>
-        {game === "signal" ? <SignalRouting /> : <div className="consoleBattleLink"><span className="consoleGameIcon">◌</span><p className="consoleDrawerKicker">BATTLELAB / 01</p><h3>先读招，再反制。</h3><p>原有的战斗实验室保留在页面中段。移动准星，观察威胁预兆，在窗口内完成反制。</p><a href="#lab" onClick={() => setOpen(false)}>跳转到战斗实验室 <span aria-hidden="true">↗</span></a></div>}
+        {game === "signal" ? <SignalRouting /> : game === "battle" ? <div className="consoleBattleLink"><span className="consoleGameIcon">◌</span><p className="consoleDrawerKicker">BATTLELAB / 01</p><h3>先读招，再反制。</h3><p>原有的战斗实验室保留在页面中段。移动准星，观察威胁预兆，在窗口内完成反制。</p><a href="#lab" onClick={() => setOpen(false)}>跳转到战斗实验室 <span aria-hidden="true">↗</span></a></div> : <FleetFormation />}
         <div className="consoleDrawerFooter"><span>ESC 关闭抽屉</span><span>当前章节 / {sections.find(section => section.id === active)?.short}</span></div>
       </div>}
     </aside>
