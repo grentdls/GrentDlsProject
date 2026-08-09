@@ -202,6 +202,33 @@ const designDoctrines = [
   {label:"03 / 复杂度要能生产", title:"一个好系统，应该也能被团队持续做出来。", body:"我会把规则拆成数据、逻辑、表现和工具入口，让一次设计不只解决当前问题，还能成为下一轮内容生产的模板。", proof:"对应：RTS 双端架构 · 角色配置工具 · UI Prefab Framework"}
 ];
 
+const decisionScenarios = [
+  {
+    tag:"COMBAT FEEL / 01",
+    title:"测试者说“打起来没感觉”，但你只有半天时间。先救什么？",
+    context:"把时间花在最接近玩家感知的那一层：命中瞬间、危险预警，还是更多内容？",
+    options:["先加更多敌人，让场面更热闹","重做命中反馈链：停顿、音效、受击与镜头","增加一组伤害属性，让数字更有层次"],
+    answer:1,
+    result:"先重做命中反馈链。密度和数字可以放大结果，但不能替代“我刚刚打中了”的确定感。"
+  },
+  {
+    tag:"SCOPE CONTROL / 02",
+    title:"新系统很酷，但首个可玩版本已经开始膨胀。下一步怎么做？",
+    context:"当验证问题还没有答案时，新增内容只会把反馈变得更嘈杂。",
+    options:["再补一套成长系统，保证长期目标","锁定一个最小闭环，只保留能改变决策的部分","先把完整 UI 做完，再看玩法是否成立"],
+    answer:1,
+    result:"先锁定最小闭环。范围不是把想法变小，而是让每个新增部分都能回答一个明确的问题。"
+  },
+  {
+    tag:"READABILITY / 03",
+    title:"队友说规则理解不了，但系统本身并不想删掉。怎么办？",
+    context:"复杂度可以留在系统里，但不能把理解成本全部交给玩家或制作同学。",
+    options:["写一份更长的说明，把所有例外列出来","把状态、反馈与失败条件映射到表现和工具里","先删掉一半规则，直到没人提问"],
+    answer:1,
+    result:"先把规则映射到表现和工具。能被观察、配置和复盘的复杂度，才有机会成为可生产的复杂度。"
+  }
+];
+
 const resumePdfHref = "/resume/shi-zechang-battle-designer.pdf";
 
 const capabilities = [
@@ -282,6 +309,32 @@ const capabilities = [
 const filters = ["全部","独立游戏","玩法原型","系统研究","技术原型","团队项目"];
 
 function Arrow(){ return <span aria-hidden="true">↗</span> }
+
+function DecisionDesk(){
+  const [scenarioIndex,setScenarioIndex]=useState(0);
+  const [choice,setChoice]=useState<number|null>(null);
+  const scenario=decisionScenarios[scenarioIndex];
+  const advance=()=>{
+    setScenarioIndex(index=>(index+1)%decisionScenarios.length);
+    setChoice(null);
+  };
+  return <div className="decisionDesk" aria-labelledby="decision-desk-title">
+    <div className="decisionDeskHead">
+      <div><p className="kicker">FIELD TEST / 30-SECOND DECISION</p><h3 id="decision-desk-title">给一个问题，看看我先救什么。</h3></div>
+      <span>{String(scenarioIndex+1).padStart(2,"0")} / {String(decisionScenarios.length).padStart(2,"0")}</span>
+    </div>
+    <div className="decisionDeskBody">
+      <div className="decisionPrompt"><span>{scenario.tag}</span><strong>{scenario.title}</strong><p>{scenario.context}</p></div>
+      <div className="decisionOptions" role="group" aria-label="现场判断选项">
+        {scenario.options.map((option,index)=><button type="button" className={choice===index?"is-selected":""} aria-pressed={choice===index} onClick={()=>setChoice(index)} key={option}><i>{String.fromCharCode(65+index)}</i><span>{option}</span><b>{choice===index?"已选":"选择"}</b></button>)}
+      </div>
+    </div>
+    <div className={`decisionResult ${choice===null?"":"is-revealed"}`} aria-live="polite">
+      {choice===null?<span>先凭直觉选一个。选择后会显示这道题背后的判断依据。</span>:<><b>{choice===scenario.answer?"判断命中":"我会先做另一件事"}</b><p>{scenario.result}</p></>}
+    </div>
+    <div className="decisionDeskFooter"><small>现场模拟，不是标准答案；它只展示我如何把时间花在最接近体验的问题上。</small><button type="button" onClick={advance}>下一个问题 <Arrow/></button></div>
+  </div>;
+}
 
 export default function Portfolio(){
   const [filter,setFilter]=useState("全部");
@@ -401,10 +454,11 @@ export default function Portfolio(){
       <div className="doctrineIntro"><div><p className="kicker">FIELD NOTES / DESIGN DOCTRINES</p><h2>我如何做<br/><span>判断。</span></h2></div><p>作品集里最值得被看到的，不只是做过哪些项目，还有我在不确定里会优先保护什么。点选一条，查看它在真实工程中的落点。</p></div>
       <div className="doctrineGrid">
         <div className="doctrineRail" role="tablist" aria-label="设计立场">
-          {designDoctrines.map((item,index)=><button type="button" role="tab" aria-selected={activeDoctrine===index} className={activeDoctrine===index?"is-active":""} onClick={()=>setActiveDoctrine(index)} key={item.label}><span>{item.label}</span><b>{String(index+1).padStart(2,"0")}</b></button>)}
+          {designDoctrines.map((item,index)=><button type="button" role="tab" id={`doctrine-tab-${index}`} aria-controls="doctrine-panel" aria-selected={activeDoctrine===index} className={activeDoctrine===index?"is-active":""} onClick={()=>setActiveDoctrine(index)} key={item.label}><span>{item.label}</span><b>{String(index+1).padStart(2,"0")}</b></button>)}
         </div>
-        <article className="doctrineCard"><span className="doctrineStamp">{designDoctrines[activeDoctrine].label}</span><h3>{designDoctrines[activeDoctrine].title}</h3><p>{designDoctrines[activeDoctrine].body}</p><small>{designDoctrines[activeDoctrine].proof}</small><div className="doctrineMark" aria-hidden="true">✦</div></article>
+        <article className="doctrineCard" id="doctrine-panel" role="tabpanel" aria-labelledby={`doctrine-tab-${activeDoctrine}`}><span className="doctrineStamp">{designDoctrines[activeDoctrine].label}</span><h3>{designDoctrines[activeDoctrine].title}</h3><p>{designDoctrines[activeDoctrine].body}</p><small>{designDoctrines[activeDoctrine].proof}</small><div className="doctrineMark" aria-hidden="true">✦</div></article>
       </div>
+      <DecisionDesk />
     </section>
 
     <section className="section timelineSection" id="timeline">

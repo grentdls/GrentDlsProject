@@ -33,6 +33,8 @@ test("server-renders the portfolio archive", async () => {
   assert.match(html, /游戏设计档案|个人作品集|DESIGN ARCHIVE/i);
   assert.match(html, /doctrineSection/);
   assert.match(html, /FIELD NOTES \/ DESIGN DOCTRINES/);
+  assert.match(html, /decisionDesk/);
+  assert.match(html, /30-SECOND DECISION/);
   assert.match(html, /PLAYABLE COMBAT STUDY|战斗实验室/);
   assert.match(html, /文档档案|ARCHIVE CONSOLE|600/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site|react-loading-skeleton/i);
