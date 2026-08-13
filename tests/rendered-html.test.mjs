@@ -82,6 +82,11 @@ test("wires the ARG, QGDXX2, and original music archive", async () => {
   assert.match(musicDock, /xiaobuwuqu\.mp4/);
   assert.match(musicDock, /qishui\.douyin\.com/);
   assert.match(musicDock, /audio\.play\(\)/);
+  assert.match(musicDock, /MY AI MUSIC \/ \{tracks\.length\} TRACKS/);
+  assert.match(musicDock, /格朗 · 个人 AI 制作/);
+  assert.match(musicDock, /preload="none"/);
+  assert.match(musicDock, /7666287042533181481\.mp4/);
+  assert.match(musicDock, /7666285735685720083\.mp4/);
   assert.match(catalog, /"qgdxx2"/);
   assert.match(catalog, /"arg"/);
 });
