@@ -75,7 +75,7 @@ const totalUniqueDocs = ["tuntun","wcdel","star","rts","rtsweb","arpg","one","ca
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
 
 const projects: Project[] = [
-  { id:"tuntun", name:"吞吞舰船", en:"TUNTUN SHIP", pitch:"把海上移动堡垒、Roguelike 战斗与长期港口经营装进同一片海域。", status:"进行中", type:"独立游戏", role:"系统策划 / 技术策划 / 原型", tags:["Unity","Roguelike","海战","系统设计"], image:"/media/tuntun-cover.png", accent:"#e8aa4d", playable:true },
+  { id:"tuntun", name:"吞吞舰船", en:"TUNTUN SHIP", pitch:"把海上移动堡垒、Roguelike 战斗与长期港口经营装进同一片海域。", status:"进行中", type:"独立游戏", role:"系统策划 / 技术策划 / 原型", tags:["Unity","Roguelike","海战","系统设计"], image:"/media/tuntun-cover.png", accent:"#e8aa4d", playable:true, playableLabel:"下载 Windows 最新包" },
   { id:"star", name:"星空掠夺者", en:"STAR RAIDERS", pitch:"在桌面一角经营会持续运转的飞船基地，组织角色、模块与远征。", status:"可试玩", type:"独立游戏", role:"玩法策划 / UI / 程序", tags:["Unity 2D","挂机","基地经营","100+ 数据"], image:"/media/starraiders-cover.png", accent:"#5fd0ca", playable:true },
   { id:"brick", name:"积木飞船幸存者", en:"BRICK SURVIVOR", pitch:"先像搭积木一样造船，再把每个结构选择送进太空战场验证。", status:"可试玩", type:"玩法原型", role:"技术策划 / 交互 / 原型", tags:["Unity 3D","模块搭建","幸存者","UX"], image:"/media/brick-cover.png", accent:"#f07b48", playable:true },
   { id:"rts", name:"华夏城战｜单机版", en:"HUAXIA RTS · STANDALONE", pitch:"Unity 单机 RTS：从城池经营、建筑生产到战场调度，提供 PC 与 Android 可下载包。", status:"可下载", type:"系统研究", role:"系统策划 / 战斗 / 移动端适配", tags:["RTS","Unity","PC","Android"], image:"/media/projects/rts/01.webp", accent:"#d5a35b", playable:true, playableLabel:"下载 PC / Android" },
