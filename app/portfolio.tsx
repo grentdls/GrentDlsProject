@@ -11,7 +11,7 @@ import MusicDock from "./MusicDock";
 
 type Project = {
   id: string; name: string; en: string; pitch: string; status: string; type: string;
-  role: string; tags: string[]; image?: string; accent: string; playable?: boolean; team?: boolean;
+  role: string; tags: string[]; image?: string; accent: string; playable?: boolean; playableHref?: string; playableLabel?: string; team?: boolean;
 };
 
 type DocSummary = {
@@ -40,6 +40,9 @@ mediaCatalog.qgdxx2 = [
   {id:"qgdxx2-2",category:"战斗 HUD",title:"妖族英雄战斗 HUD",caption:"自动攻击、手动走位、技能预警和永久卡牌成长的战斗表现样例。",src:"/media/projects/qgdxx2/02.png",sourceType:"Unity 实机截图",bytes:161633,mediaType:"image"},
   {id:"qgdxx2-3",category:"视觉规范",title:"英雄招募页视觉方案",caption:"福瑞妖族英雄、招募资源与卡池入口的视觉重制效果稿，明确标记为设计稿。",src:"/media/projects/qgdxx2/03.png",sourceType:"设计效果稿",bytes:2222653,mediaType:"image"}
 ];
+mediaCatalog.rtsweb = [
+  {id:"rtsweb-1",category:"网页实机截图",title:"战枭网页主界面",caption:"GitHub Pages 网页版的实际运行画面：阵营选择、关卡配置与进入关卡入口。",src:"/media/projects/rtsweb/01.png",sourceType:"网页实机截图",bytes:91325,mediaType:"image"}
+];
 mediaCatalog.one = [
   {id:"one-promo-video",category:"宣传视频",title:"《击败音乐狂》实机宣传视频",caption:"展示节奏弹幕、AI 英雄成长与造物主控制玩法的项目宣传录像。",src:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/gameplay-promo.mp4",sourceType:"项目宣传视频",bytes:74131251,mediaType:"video"},
   {id:"one-promo-1",category:"宣传图",title:"节奏弹幕战斗宣传图",caption:"项目最新宣传画面，呈现音乐主题敌人与高密度弹幕战场。",src:"/media/projects/one/promo/promo-01.png",sourceType:"项目宣传图",bytes:694992,mediaType:"image"},
@@ -55,21 +58,25 @@ const downloadsByProject:Record<string,DownloadItem[]> = {
     {platform:"Android",title:"《击败音乐狂》安卓试玩版",filename:"DefeatMusicManiac.apk",size:"82.6 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/DefeatMusicManiac.apk"}
   ],
   star:[{platform:"Windows",title:"《星空掠夺者》PC 试玩版",filename:"star-raiders-windows.zip",size:"41.4 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/star-raiders-windows.zip"}],
-  rts:[{platform:"Android",title:"RTS 最新安卓试玩版",filename:"TestRTS2_latest.apk",size:"192.0 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/TestRTS2_latest.apk"}],
+  rts:[
+    {platform:"Windows",title:"TestRTS2 单机 PC 版",filename:"TestRTS2_pc_20260813.zip",size:"168.0 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/TestRTS2_pc_20260813.zip"},
+    {platform:"Android",title:"TestRTS2 单机 Android 版",filename:"TestRTS2.apk",size:"191.8 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/TestRTS2.apk"}
+  ],
   castle:[
     {platform:"Windows",title:"《亲密城堡》PC 试玩版",filename:"HSJT-PC.zip",size:"248.4 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/HSJT-PC.zip"},
     {platform:"Android",title:"《亲密城堡》安卓试玩版",filename:"HSJT.apk",size:"470.2 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/HSJT.apk"}
   ]
 };
 const catalogTotals = documentCounts as Record<string, number>;
-const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste","qgdxx2","arg"]
+const totalUniqueDocs = ["tuntun","wcdel","star","rts","rtsweb","arpg","one","castle","brick","haste","qgdxx2","arg"]
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
 
 const projects: Project[] = [
   { id:"tuntun", name:"吞吞舰船", en:"TUNTUN SHIP", pitch:"把海上移动堡垒、Roguelike 战斗与长期港口经营装进同一片海域。", status:"进行中", type:"独立游戏", role:"系统策划 / 技术策划 / 原型", tags:["Unity","Roguelike","海战","系统设计"], image:"/media/tuntun-cover.png", accent:"#e8aa4d", playable:true },
   { id:"star", name:"星空掠夺者", en:"STAR RAIDERS", pitch:"在桌面一角经营会持续运转的飞船基地，组织角色、模块与远征。", status:"可试玩", type:"独立游戏", role:"玩法策划 / UI / 程序", tags:["Unity 2D","挂机","基地经营","100+ 数据"], image:"/media/starraiders-cover.png", accent:"#5fd0ca", playable:true },
   { id:"brick", name:"积木飞船幸存者", en:"BRICK SURVIVOR", pitch:"先像搭积木一样造船，再把每个结构选择送进太空战场验证。", status:"可试玩", type:"玩法原型", role:"技术策划 / 交互 / 原型", tags:["Unity 3D","模块搭建","幸存者","UX"], image:"/media/brick-cover.png", accent:"#f07b48", playable:true },
-  { id:"rts", name:"华夏城战", en:"HUAXIA RTS", pitch:"从城池经营到战场调度的轻量 RTS；Unity 与 Web 双版本并行验证。", status:"验证中", type:"系统研究", role:"系统策划 / Web 原型", tags:["RTS","Unity","Web","数据驱动"], image:"/media/projects/rts/01.webp", accent:"#d5a35b", playable:true },
+  { id:"rts", name:"华夏城战｜单机版", en:"HUAXIA RTS · STANDALONE", pitch:"Unity 单机 RTS：从城池经营、建筑生产到战场调度，提供 PC 与 Android 可下载包。", status:"可下载", type:"系统研究", role:"系统策划 / 战斗 / 移动端适配", tags:["RTS","Unity","PC","Android"], image:"/media/projects/rts/01.webp", accent:"#d5a35b", playable:true, playableLabel:"下载 PC / Android" },
+  { id:"rtsweb", name:"战枭｜网页版", en:"WARCLAW · WEB EDITION", pitch:"同一套 RTS 规则的轻量浏览器版本：打开网页即可选择阵营、进入关卡并体验即时调度。", status:"立即试玩", type:"技术原型", role:"Web 原型 / 交互 / 系统验证", tags:["RTS","GitHub Pages","浏览器","即时调度"], image:"/media/projects/rtsweb/01.png", accent:"#e3ad55", playable:true, playableHref:"https://grentdls.github.io/rts-game/", playableLabel:"立即在线试玩" },
   { id:"arpg", name:"荒野旅团 ARPG", en:"WILDLAND ARPG", pitch:"围绕 3C、战斗反馈与模块化地图构建的 3D 动作角色扮演原型。", status:"开发中", type:"技术原型", role:"技术策划 / 3C / 战斗", tags:["Unity 3D","ARPG","3C","战斗反馈"], image:"/media/rpg-cover.png", accent:"#71a36f" },
   { id:"wcdel", name:"轻量开放世界 ARPG", en:"WCDEL", pitch:"以小体量团队可落地为约束，搭建开放世界 ARPG 的工程与内容骨架。", status:"开发中", type:"独立游戏", role:"架构 / UI / 内容管线", tags:["Unity","架构","开放世界","UI"], image:"/media/projects/wcdel/01.webp", accent:"#dbbd79" },
   { id:"one", name:"击败音乐狂人", en:"DEFEAT MUSIC MANIAC", pitch:"让弹幕、角色成长与音乐节拍彼此驱动的高反馈动作实验。", status:"可试玩", type:"玩法原型", role:"玩法 / 音频 / 表现", tags:["Unity 2D","节奏","弹幕","AI 角色"], image:"/media/projects/one/01.webp", accent:"#c36dd8", playable:true },
@@ -86,7 +93,8 @@ const timeline = [
   ["2026.07","玩法成型","吞吞舰船：英雄、主舰与海域形成可配置的战斗框架","tuntun"],
   ["2026.07","交互验证","积木飞船：拖放、吸附、合法性判定与完整产品流程","brick"],
   ["2026.06","系统扩展","星空掠夺者：从前 5 分钟到长期挂机的成长规划","star"],
-  ["2026.05","双端实验","华夏城战：Unity 原型同步拓展为 Web 可运行版本","rts"],
+  ["2026.05","单机包体","华夏城战单机版：Unity 工程完成 PC / Android 包体整理，进入可下载验证","rts"],
+  ["2026.05","网页试玩","战枭网页版：用 GitHub Pages 把 RTS 规则压缩成打开即玩的浏览器入口","rtsweb"],
   ["2026.04","表现研究","ARPG：3C、受击反馈与地图模块完成架构审计","arpg"],
   ["更早","团队经验","Haste：在真实协作环境中参与内容与工具链交付","haste"]
 ];
@@ -108,9 +116,14 @@ const docsByProject: Record<string, DocSummary[]> = {
     { title:"飞船模块分页、解锁与蓝图规则", type:"UI / UX", status:"已落地", problem:"模块数量增长后，建造界面全部展示会导致信息过载，玩家也无法判断下一步该造什么。", conclusions:["按功能分页，并在顶部提供阶段性推荐建造","解锁区分等级、前置、蓝图、战役、事件、阵营和研究等来源","从未接触或未获蓝图的内容完全隐藏，已见过但缺条件的内容才显示锁定"], evidence:"把“模块全集”转化为“玩家此刻应该知道的模块集合”。", read:"12 min" }
   ],
   rts: [
-    { title:"Unity / Web 双端项目架构", type:"技术策划", status:"双端验证", problem:"如何让同一套 RTS 玩法在 Unity 项目与轻量 Web 版本中保持一致的模块边界？", conclusions:["单位、建筑、战斗与 UI 分为独立模块","Unity 侧用 Prefab Resolver 与稳定槽位承载可见 UI","Web 侧以 index、styles 和 game 三层保持可直接运行与发布"], evidence:"工程中同时存在 Windows 包体与 GitHub Pages 部署说明。", read:"9 min" },
+    { title:"TestRTS2 单机版项目架构", type:"技术策划", status:"PC / Android", problem:"如何把 Unity RTS 的单位、建筑、生产、科技和战斗 HUD 组织成可在 PC 与移动端运行的单机版本？", conclusions:["单位、建筑、战斗与 UI 分为独立模块","Prefab Resolver 与稳定槽位承载可见 UI，便于持续替换资源","Windows 与 Android 包分别验证输入、HUD 和性能边界"], evidence:"G:/TestProject/TestRTS2/Builds 中存在 Windows 与 Android 可运行包；Docs 保留单机工程架构与移动端 UI 规则。", read:"9 min" },
     { title:"华夏阵营建筑、单位与科技树", type:"系统设计", status:"配置化", problem:"如何把资源、人口、主城等级、生产建筑和科技前置组织成可读的阵营成长路线？", conclusions:["资源建筑、人口来源与生产建筑各自承担清晰经济职责","主城等级控制建筑开放，建筑升级控制生产与科技效率","建筑前置关系形成可视化科技路线，避免自由堆叠破坏节奏"], evidence:"对应阵营方案已拆成建筑、单位、数值与新增功能多份配置文档。", read:"13 min" },
-    { title:"占领主城与定向融合", type:"特色系统", status:"规则设计", problem:"主城被击破后，怎样让最后一击、占领与阵营融合产生清晰且可追踪的战略结果？", conclusions:["区分主城击破、最后一击、占领核心和定向融合四个概念","用状态机记录从攻击到占领再到融合路线选择的完整流程","最后一击需要独立记录，以保证归属、表现与后续科技解锁一致"], evidence:"Unity 与 Web 文档均保留相同阵营玩法结构，便于交叉验证。", read:"11 min" }
+    { title:"占领主城与定向融合", type:"特色系统", status:"规则设计", problem:"主城被击破后，怎样让最后一击、占领与阵营融合产生清晰且可追踪的战略结果？", conclusions:["区分主城击破、最后一击、占领核心和定向融合四个概念","用状态机记录从攻击到占领再到融合路线选择的完整流程","最后一击需要独立记录，以保证归属、表现与后续科技解锁一致"], evidence:"单机工程中的阵营、占领与融合文档提供了规则、表现和实现边界。", read:"11 min" }
+  ],
+  rtsweb: [
+    { title:"战枭网页版项目概览", type:"技术原型", status:"在线试玩", problem:"如何把 RTS 的阵营、资源、生产和战斗反馈压缩成打开网页即可体验的静态浏览器版本？", conclusions:["index.html、styles.css 与 game.js 组成无需安装的运行入口","阵营选择、关卡配置和进入战斗都在浏览器内完成","GitHub Pages 提供公开地址，适合快速验证规则与 UI 反馈"], evidence:"G:/TestProject/HttpRTSCS 的 README 与部署说明确认其为静态网页游戏；线上地址为 grentdls.github.io/rts-game。", read:"6 min" },
+    { title:"战枭网页版架构与发布规则", type:"技术策划", status:"GitHub Pages", problem:"怎样让浏览器 RTS 保持低依赖、可直接发布，并让后续玩法更新不依赖 Unity 构建？", conclusions:["保持原生 HTML、CSS、JavaScript 的低依赖结构","Docs 中分别维护 UI、资源、运行时替换与功能规则","使用 GitHub Pages 作为可公开访问的试玩入口"], evidence:"HttpRTSCS 工程包含 .nojekyll、部署脚本、index.html、styles.css 和 game.js。", read:"7 min" },
+    { title:"战枭网页版 UI 与交互规范", type:"UI / UX", status:"网页实机", problem:"如何让资源、阵营、关卡、建造和战斗反馈在桌面浏览器中保持清晰且可操作？", conclusions:["用当前配置、快捷入口和说明区建立首次进入的阅读路径","阵营卡片与进入关卡按钮形成明确的下一步","战斗 HUD、选择状态和反馈提示优先保证可读性"], evidence:"网页版实际运行画面已归档为网页实机截图，站外入口可直接打开试玩。", read:"8 min" }
   ],
   arpg: [
     { title:"3D ACT 刷宝 ARPG 项目总纲", type:"核心策划", status:"MVP 规划", problem:"如何在 Unity 3D 动作操作下承载重装备、重词条和重终局地图，同时避免范围失控？", conclusions:["MVP 0 先只验证单角色战斗手感","装备、辅助模块、大天赋树、地图词缀与赛季结构可参考，内容必须原创","把战斗、职业、装备、副本、敌人、UI 与工具拆成独立制作批次"], evidence:"总纲明确列出可参考结构、必须原创内容和分阶段制作边界。", read:"12 min" },
@@ -155,7 +168,7 @@ const docsByProject: Record<string, DocSummary[]> = {
 };
 
 const featuredDocs = [
-  ["tuntun",0],["star",1],["brick",1],["arpg",2],["arg",0],["qgdxx2",0]
+  ["tuntun",0],["star",1],["brick",1],["arpg",2],["rts",0],["rtsweb",0],["arg",0],["qgdxx2",0]
 ] as const;
 
 const resumeExperiences = [
@@ -274,12 +287,13 @@ const capabilities = [
     id:"gameplay", index:"02", title:"游戏玩法设计", subtitle:"从一个差异化想法推进到能操作、能失败、能重复的玩法闭环。",
     scope:["玩法原型","Roguelike 构筑","关卡事件","节奏控制","失败代价"],
     method:["先定义玩家每 10 秒在做什么","把选择与资源代价连接起来","让成长改变操作或战场结构","通过短局原型观察重复性"],
-    projects:["brick","oneproto","tuntun","rts","arg"],
+    projects:["brick","oneproto","tuntun","rts","rtsweb","arg"],
     documents:[
       {projectId:"brick",title:"《积木星舰幸存者》完整玩法设计文档 V0.1",category:"核心策划",contentPath:"/data/documents/brick/brick-80778583a1545162.md"},
       {projectId:"oneproto",title:"《反幸存者：造物主试炼》玩法策划案",category:"关卡与叙事",contentPath:"/data/documents/one/one-785f2b0772cd652f.md"},
       {projectId:"tuntun",title:"《吞吞舰船》肉鸽装配、武器、主动技能与加速系统设计文档",category:"UI / UX",contentPath:"/data/documents/tuntun/tuntun-54de5612acd710ca.md"},
       {projectId:"rts",title:"占领主城与定向融合阵营：功能与表现需求文档",category:"表现与美术",contentPath:"/data/documents/rts/rts-45be76865ead594f.md"},
+      {projectId:"rtsweb",title:"战枭网页版项目概览",category:"技术原型",contentPath:"/data/documents/rtsweb/rtsweb-e44376f2f6f8e607.md"},
       {projectId:"arg",title:"ARG 调查员协查与证据链设计",category:"核心策划",contentPath:"/data/documents/arg/arg-a16d7a31a4098a30.md"}
     ]
   },
@@ -300,9 +314,10 @@ const capabilities = [
     id:"technical", index:"04", title:"技术功能设计", subtitle:"把策划语言转换成状态、数据结构、事件流程与可验收功能。",
     scope:["状态机","数据配置","Prefab 架构","运行时流程","跨端验证"],
     method:["把体验需求写成输入与状态变化","分离数据、逻辑、表现和工具层","定义稳定槽位、事件与配置入口","为功能编写异常状态和验收标准"],
-    projects:["rts","arpg","wcdel","brick","qgdxx2"],
+    projects:["rts","rtsweb","arpg","wcdel","brick","qgdxx2"],
     documents:[
       {projectId:"rts",title:"HUD 预制体开发规则",category:"UI / UX",contentPath:"/data/documents/rts/rts-d7830b9c97c9b2eb.md"},
+      {projectId:"rtsweb",title:"战枭网页版架构与发布规则",category:"技术策划",contentPath:"/data/documents/rtsweb/rtsweb-9cc8f4dc6783a200.md"},
       {projectId:"arpg",title:"天赋系统总设计：大天赋树、职业起点、专精树",category:"UI / UX",contentPath:"/data/documents/arpg/arpg-d00a3709b3435d7a.md"},
       {projectId:"wcdel",title:"架构说明",category:"技术策划",contentPath:"/data/documents/wcdel/wcdel-be58af48ebffaa81.md"},
       {projectId:"brick",title:"太空3D积木飞船幸存者：积木搭建交互与完整UI预制体方案",category:"UI / UX",contentPath:"/data/documents/brick/brick-10851bdbb6434117.md"},
@@ -515,7 +530,7 @@ export default function Portfolio(){
       <div className="projectGrid">
         {shown.map((p,i)=><article className={`projectCard ${i<3?"featured":""}`} key={p.id} role="button" tabIndex={0} style={{"--accent":p.accent} as React.CSSProperties} onClick={()=>selectProject(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectProject(p)}}}>
           <div className="cover">{p.image?<img src={p.image} alt={`${p.name}项目画面，作为作品封面`}/>:<div className="coverFallback"><span>{p.en}</span><i/></div>}<span className="mediaType">{p.image?"项目素材":"视觉占位"}</span><button aria-label={`查看 ${p.name}`}>↗</button></div>
-          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small>{downloadsByProject[p.id]?.length?<div className="downloadAvailable">↓ {downloadsByProject[p.id].length} 个试玩包可下载</div>:null}<div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
+          <div className="cardBody"><div className="cardTop"><span>{String(i+1).padStart(2,"0")}</span><em>{p.status}</em></div><h3>{p.name}</h3><p>{p.pitch}</p><small>{p.role} · {catalogTotals[p.id]??0} 文档 · {mediaCatalog[p.id]?.length??0} 视觉资产</small>{downloadsByProject[p.id]?.length?<div className="downloadAvailable">↓ {downloadsByProject[p.id].length} 个试玩包可下载</div>:null}{p.playableHref?<a className="playableCta" href={p.playableHref} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()}><span>WEB PLAYABLE</span><strong>{p.playableLabel??"立即在线试玩"} <Arrow/></strong></a>:p.playable?<button type="button" className="playableCta" onClick={e=>{e.stopPropagation();selectProject(p)}}><span>PLAYABLE BUILDS</span><strong>{p.playableLabel??"打开试玩入口"} <Arrow/></strong></button>:null}<div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
         </article>)}
       </div>
       {!shown.length&&<div className="empty">没有匹配的项目。<button type="button" onClick={()=>{setFilter("全部");setQuery("")}}>清除筛选</button></div>}
@@ -570,8 +585,9 @@ export default function Portfolio(){
       <article className="projectModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={e=>e.stopPropagation()}>
         <button className="close" onClick={()=>setSelected(null)} aria-label="关闭项目详情">×</button>
         <div className="modalHero" style={{"--accent":selected.accent} as React.CSSProperties}>{selected.image?<img src={selected.image} alt={`${selected.name}项目画面`}/>:<div className="modalFallback">{selected.en}</div>}<div><span>{selected.status} · {selected.type}</span><h2 id="modal-title">{selected.name}</h2><p>{selected.pitch}</p></div></div>
+        {(projectDownloads.length||selected.playableHref)?<div className="modalPlayBar"><div><span>PLAYABLE NOW</span><strong>{selected.playableHref?"浏览器打开即可试玩":"当前档案含 PC / Android 可下载包"}</strong></div>{selected.playableHref?<a href={selected.playableHref} target="_blank" rel="noreferrer">立即在线试玩 <Arrow/></a>:<a href="#downloads">选择平台下载 <Arrow/></a>}</div>:null}
         <div className="modalBody">
-          <aside><a href="#overview">概览</a>{projectDownloads.length?<a className="asideDownload" href="#downloads">↓ 下载试玩</a>:null}<a href="#loop">核心玩法</a><a href="#media">美术资产</a><a href="#documents">项目文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
+          <aside><a href="#overview">概览</a>{selected.playableHref?<a className="asidePlay" href={selected.playableHref} target="_blank" rel="noreferrer">▶ 立即在线试玩</a>:null}{projectDownloads.length?<a className="asideDownload" href="#downloads">↓ 下载试玩</a>:null}<a href="#loop">核心玩法</a><a href="#media">美术资产</a><a href="#documents">项目文档</a><a href="#progress">当前进度</a><a href="#ai">AI 参与</a></aside>
           <div>
             <section id="overview"><p className="kicker">PROJECT OVERVIEW</p><h3>先说它为什么值得做</h3><p>{selected.pitch} 当前档案基于工程目录、已有设计文档与项目素材整理；具体开发时间、版本号与公开范围仍标记为待本人确认。</p><dl><div><dt>个人职责</dt><dd>{selected.role}</dd></div><div><dt>引擎 / 标签</dt><dd>{selected.tags.join(" · ")}</dd></div><div><dt>可验证成果</dt><dd>{projectDownloads.length?`${projectDownloads.length} 个可直接下载的试玩版本`:(selected.playable?"工程中发现可运行包体，公开链接整理中":"工程原型与设计文档，媒体继续整理中")}</dd></div></dl></section>
             {projectDownloads.length?<section id="downloads" className="projectDownloads"><div className="downloadHeading"><div><p className="kicker">PLAYABLE BUILDS</p><h3>下载试玩</h3><p>选择设备下载当前可运行版本。Windows 包解压后运行同名 EXE；安卓包需要允许安装外部 APK。</p></div><span>可运行版本</span></div><div className="downloadGrid">{projectDownloads.map(item=><a href={item.href} download={item.filename} key={item.href}><i>{item.platform==="Windows"?"PC":"APK"}</i><div><small>{item.platform} · {item.size}</small><strong>{item.title}</strong><span>{item.filename}</span></div><b>立即下载 ↓</b></a>)}</div></section>:null}

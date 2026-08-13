@@ -1,10 +1,11 @@
 {
-  "generatedAt": "2026-08-13T03:15:25.215Z",
+  "generatedAt": "2026-08-13T03:41:24.171Z",
   "totals": {
     "tuntun": 29,
     "wcdel": 141,
     "star": 17,
     "rts": 66,
+    "rtsweb": 64,
     "arpg": 315,
     "one": 10,
     "castle": 10,
@@ -42,9 +43,9 @@
           "港口人口与口粮"
         ],
         "sourceFile": "UnityProjectContext.md",
-        "modifiedAt": "2026-08-12",
-        "readMinutes": 21,
-        "charCount": 10138,
+        "modifiedAt": "2026-08-13",
+        "readMinutes": 22,
+        "charCount": 10704,
         "contentPath": "/data/documents/tuntun/tuntun-885e4413fb2a099e.md"
       },
       {
@@ -7538,6 +7539,1891 @@
         "readMinutes": 11,
         "charCount": 5370,
         "contentPath": "/data/documents/rts/rts-721f07e31098a89f.md"
+      }
+    ],
+    "rtsweb": [
+      {
+        "id": "rtsweb-50bb1d5118fa25f7",
+        "projectId": "rtsweb",
+        "title": "Task Log",
+        "category": "开发记录",
+        "group": "项目根目录",
+        "summary": "鏈枃浠惰褰曟瘡娆′换鍔＄殑瀹為檯淇敼鍐呭銆佸奖鍝嶈寖鍥村拰楠岃瘉鏂瑰紡銆?",
+        "keyPoints": [
+          "补齐 SelectionPanel 动态建筑操作按钮缺失的 BuildingActionButtonForwarder，让升级、集结点、拆除等按钮即使 prefab 子层级或详情提示组件影响 Unity Button 点击，也能直接转发到统一建筑动作入口。",
+          "建筑动作按钮现在同时保留 Button.onClick 兜底绑定，并在 TriggerBuildingActionFromButton 中做短时间去重，避免同一次点击触发两次升级或集结点。",
+          "强化 BuildingActionButton 的射线归属：按钮根 Graphic 负责接收点击，子级图标、文本、装饰图层统一关闭 raycastTarget，减少 prefab 视觉层遮挡导致的“显示但点不动”。",
+          "Assets/Scripts/UI/SelectionPanel.cs",
+          "docs/05TASKLOG.md"
+        ],
+        "sections": [
+          "2026-05-26 - 建筑操作按钮点击链路再次修复",
+          "修改内容",
+          "修改文件",
+          "新增文件",
+          "影响范围",
+          "验证方式",
+          "后续注意事项",
+          "2026-05-26 - 建筑升级与集结点按钮点击恢复",
+          "修改内容"
+        ],
+        "sourceFile": "05_TASK_LOG.md",
+        "modifiedAt": "2026-06-27",
+        "readMinutes": 40,
+        "charCount": 197425,
+        "contentPath": "/data/documents/rtsweb/rtsweb-50bb1d5118fa25f7.md"
+      },
+      {
+        "id": "rtsweb-436139fb19c90625",
+        "projectId": "rtsweb",
+        "title": "00 - Unity UI 总规范：术语、命名、预制体架构",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "Unity UI 不应该只是“能显示”，而应该做到：",
+        "keyPoints": [
+          "战斗 HUD",
+          "移动端触控按钮",
+          "动效较多的游戏内 UI",
+          "开发者调试面板",
+          "PC 端工具型界面"
+        ],
+        "sections": [
+          "1. 核心原则",
+          "1.1 UI 制作的总目标",
+          "2. UI 系统选择规则",
+          "2.1 UGUI 使用场景",
+          "2.2 UI Toolkit 使用场景",
+          "2.3 禁止规则",
+          "3. 项目目录规范",
+          "4. 命名规范",
+          "4.1 预制体命名"
+        ],
+        "sourceFile": "00_Unity_UI_总规范_术语_预制体架构.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 15,
+        "charCount": 7108,
+        "contentPath": "/data/documents/rtsweb/rtsweb-436139fb19c90625.md"
+      },
+      {
+        "id": "rtsweb-9eead30b8d06931a",
+        "projectId": "rtsweb",
+        "title": "01 - UI 基础控件与高级控件制作规则",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "每个 UI 控件都应拆成 5 个部分：",
+        "keyPoints": [
+          "装备 / 卸下",
+          "角色头像按钮",
+          "不规则边框按钮",
+          "按钮框体决定整体形状。",
+          "图标被限制在框体内部。"
+        ],
+        "sections": [
+          "1. 控件制作总原则",
+          "2.1 用法",
+          "2.2 标准按钮层级",
+          "2.3 Button 组件设置",
+          "2.4 按钮状态表现",
+          "2.5 高级做法：按钮框体 + 图标遮罩",
+          "2.5.1 使用场景",
+          "2.5.2 推荐层级",
+          "2.5.3 遮罩实现方式"
+        ],
+        "sourceFile": "01_UI基础控件与高级控件制作规则.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 20,
+        "charCount": 9910,
+        "contentPath": "/data/documents/rtsweb/rtsweb-9eead30b8d06931a.md"
+      },
+      {
+        "id": "rtsweb-b1f990b60be26302",
+        "projectId": "rtsweb",
+        "title": "02 - UI 层级布局、适配、修改规则",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "不要直接在 Canvas 下面堆按钮、图片、文字。正确方式是：",
+        "keyPoints": [
+          "Tooltip 根据文本自动伸缩。",
+          "弹窗描述区根据内容增长。",
+          "单个标签根据文字长度变化。",
+          "聊天气泡根据文字变化。",
+          "Layout Group 的直接子物体上同时挂 Content Size Fitter。"
+        ],
+        "sections": [
+          "1. 层级布局总原则",
+          "2.1 UIRoot 标准结构",
+          "2.2 Canvas Scaler 设置",
+          "手游推荐",
+          "横屏游戏推荐",
+          "竖屏游戏推荐",
+          "PC 桌面游戏推荐",
+          "3.1 标准 Screen 层级",
+          "3.2 每层职责"
+        ],
+        "sourceFile": "02_UI层级布局_适配_修改规则.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 13,
+        "charCount": 6413,
+        "contentPath": "/data/documents/rtsweb/rtsweb-b1f990b60be26302.md"
+      },
+      {
+        "id": "rtsweb-54431974fe2baee0",
+        "projectId": "rtsweb",
+        "title": "03 - UI 动效规则：动画命名、实现规范、参数标准",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "UI 动效的目的不是“炫”，而是让玩家更清楚：",
+        "keyPoints": [
+          "固定流程动画",
+          "美术制作好的 Timeline 式动画",
+          "按钮按压缩放",
+          "列表条目逐个出现",
+          "简单 Punch / Shake"
+        ],
+        "sections": [
+          "1. UI 动效总原则",
+          "2. 动效命名总表",
+          "3.1 Animator",
+          "3.2 Tween 脚本",
+          "3.3 AnimationCurve",
+          "3.4 Shader / Material",
+          "4.1 PressScale 按压缩放",
+          "用途",
+          "参数"
+        ],
+        "sourceFile": "03_UI动效规则_动画命名_实现规范.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 12,
+        "charCount": 5753,
+        "contentPath": "/data/documents/rtsweb/rtsweb-54431974fe2baee0.md"
+      },
+      {
+        "id": "rtsweb-7d75ec3c54166e50",
+        "projectId": "rtsweb",
+        "title": "04 - UI 维护规范、检查清单、常见问题",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "这是配置问题？皮肤问题？控件问题？界面布局问题？还是业务逻辑问题？",
+        "keyPoints": [
+          "品质边框配置",
+          "某类按钮换皮",
+          "某类卡牌框不同",
+          "某类物品格稀有度表现",
+          "某个弹窗视觉风格不同"
+        ],
+        "sections": [
+          "1. UI 修改总规则",
+          "2.1 什么时候改 Config",
+          "2.2 什么时候改 Variant",
+          "2.3 什么时候改 Base Prefab",
+          "2.4 什么时候改 Screen Prefab",
+          "2.5 什么时候可以改 Scene Instance",
+          "3.1 Prefab 必须有说明",
+          "3.2 Prefab 禁止事项",
+          "4.1 UI 图片命名"
+        ],
+        "sourceFile": "04_UI维护规范_检查清单_常见问题.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 11,
+        "charCount": 5206,
+        "contentPath": "/data/documents/rtsweb/rtsweb-7d75ec3c54166e50.md"
+      },
+      {
+        "id": "rtsweb-755a90b081f1a380",
+        "projectId": "rtsweb",
+        "title": "05 Unity UI 美观性布局总规则：视觉层级、间距、对齐",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "本文档定义 Unity 游戏 UI 的基础美观规则。它不关注单个 Button、Slider 怎么实现，而是规定：",
+        "keyPoints": [
+          "一个界面中哪些信息应该最显眼。",
+          "图标、标题、描述、按钮之间怎么排列。",
+          "间距、边距、对齐、字号、背景板应该如何统一。",
+          "内容多时如何不挤，内容少时如何不空。",
+          "后续做新界面时如何保持同一套视觉语言。"
+        ],
+        "sections": [
+          "1. 文档目标",
+          "2. UI 美观的四个基本判断标准",
+          "2.1 清晰",
+          "2.2 有层级",
+          "2.3 有呼吸感",
+          "2.4 可维护",
+          "3. 统一术语",
+          "4. 视觉层级规则",
+          "4.1 一屏只允许一个最强焦点"
+        ],
+        "sourceFile": "05_UI美观性布局总规则_视觉层级_间距_对齐.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 10,
+        "charCount": 4845,
+        "contentPath": "/data/documents/rtsweb/rtsweb-755a90b081f1a380.md"
+      },
+      {
+        "id": "rtsweb-2864c48fcefc1cf1",
+        "projectId": "rtsweb",
+        "title": "06 详情面板布局规范：物品、技能、角色、词条",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "详情面板是游戏 UI 中最容易混乱的界面。因为它通常包含：",
+        "keyPoints": [
+          "等级/数量/锁定状态",
+          "Icon 固定尺寸，不跟随名字长度变化。",
+          "名字最多 1-2 行，超过显示省略号。",
+          "标签行可以自动换行，但最多 2 行。",
+          "关闭按钮固定右上角，不参与自动布局。"
+        ],
+        "sections": [
+          "1. 文档目标",
+          "2. 详情面板的核心阅读顺序",
+          "3. 通用详情面板预制体结构",
+          "4. 详情面板视觉分区",
+          "4.1 Header：识别区",
+          "5. Icon 与品质框规则",
+          "5.1 图标不直接裸放",
+          "5.2 图标根据框体做遮罩",
+          "5.3 图标留白规则"
+        ],
+        "sourceFile": "06_详情面板布局规范_物品_技能_角色_词条.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 16,
+        "charCount": 7546,
+        "contentPath": "/data/documents/rtsweb/rtsweb-2864c48fcefc1cf1.md"
+      },
+      {
+        "id": "rtsweb-6a2f8c8b3dd46ae5",
+        "projectId": "rtsweb",
+        "title": "07 内容自适应、动态高度、滚动区域、防溢出规则",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "本文档专门规定 Unity UGUI 中动态内容的布局规则。",
+        "keyPoints": [
+          "有的物品描述很短，有的物品描述很长。",
+          "有的技能只有 1 个效果，有的技能有 8 个词条。",
+          "有的语言文字短，换成中文/英文/日文后长度不同。",
+          "面板背景没有跟着内容变长。",
+          "内容超过背景框，文字跑到外面。"
+        ],
+        "sections": [
+          "1. 文档目标",
+          "2. 自适应的核心原则",
+          "2.1 固定区和滚动区分离",
+          "2.2 内容少时面板变短，内容多时内部滚动",
+          "3. 推荐高度规则",
+          "3.1 详情面板高度",
+          "3.2 BodyScroll 高度",
+          "4. Unity 组件配置方案",
+          "4.1 Content 使用 VerticalLayoutGroup"
+        ],
+        "sourceFile": "07_内容自适应_动态高度_滚动区域_防溢出规则.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 13,
+        "charCount": 6081,
+        "contentPath": "/data/documents/rtsweb/rtsweb-6a2f8c8b3dd46ae5.md"
+      },
+      {
+        "id": "rtsweb-fbcaa603629a45ec",
+        "projectId": "rtsweb",
+        "title": "08 常见界面布局模板规范：背包、商店、奖励、图鉴、设置",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "本文档给出常见游戏 UI 界面的标准布局模板。后续制作新界面时，不要从空白开始设计，而是从这里选择一个模板再改。",
+        "keyPoints": [
+          "物品详情弹窗",
+          "部件改造界面",
+          "技能选择界面",
+          "战斗 HUD 信息层",
+          "左侧网格是操作区，右侧详情是阅读区。"
+        ],
+        "sections": [
+          "1. 文档目标",
+          "2. 通用页面结构",
+          "3. 背包界面布局规范",
+          "3.1 适用场景",
+          "3.2 推荐布局：左网格，右详情",
+          "3.3 层级结构",
+          "3.4 美观规则",
+          "4. 商店界面布局规范",
+          "4.1 推荐布局"
+        ],
+        "sourceFile": "08_常见界面布局模板规范_背包_商店_奖励_图鉴_设置.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 12,
+        "charCount": 5675,
+        "contentPath": "/data/documents/rtsweb/rtsweb-fbcaa603629a45ec.md"
+      },
+      {
+        "id": "rtsweb-a6673b8db2aa8243",
+        "projectId": "rtsweb",
+        "title": "09 UI 信息字段、颜色、标签、图标、品质表现规范",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "本文档用于统一 UI 中的字段命名、颜色含义、标签样式、图标规则、品质表现。后续策划、程序、美术、UI 制作统一按本文档沟通。",
+        "keyPoints": [
+          "提升：目标值高亮。",
+          "降低：目标值警告。",
+          "不变：弱化。",
+          "不要让传说品质全屏乱闪，影响文字阅读。",
+          "不要只用颜色区分品质，色弱玩家可能看不清。"
+        ],
+        "sections": [
+          "1. 文档目标",
+          "2. 字段命名规则",
+          "2.1 字段必须短、准、统一",
+          "2.2 字段显示优先级",
+          "3. 数值显示规则",
+          "3.1 正负号规则",
+          "3.2 对比显示规则",
+          "3.3 单位规则",
+          "4. 颜色含义规范"
+        ],
+        "sourceFile": "09_UI信息字段_颜色_标签_图标_品质表现规范.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 8,
+        "charCount": 3939,
+        "contentPath": "/data/documents/rtsweb/rtsweb-a6673b8db2aa8243.md"
+      },
+      {
+        "id": "rtsweb-114aadfaeed25d03",
+        "projectId": "rtsweb",
+        "title": "Unity UI 控件制作规则文档 - 总目录",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "适用范围：Unity UGUI / Canvas / RectTransform / Prefab 架构。",
+        "keyPoints": [
+          "Canvas",
+          "RectTransform",
+          "Image / RawImage",
+          "TextMeshProUGUI",
+          "Button / Toggle / Slider / ScrollRect"
+        ],
+        "sections": [
+          "0. 文档目标",
+          "1. 文件结构",
+          "2. 推荐阅读顺序",
+          "3. 本文档默认使用的 UI 系统",
+          "4. 项目内统一规则一句话版",
+          "5. 统一术语速查",
+          "6. 输出物怎么用"
+        ],
+        "sourceFile": "README_文档总目录.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 5,
+        "charCount": 2489,
+        "contentPath": "/data/documents/rtsweb/rtsweb-114aadfaeed25d03.md"
+      },
+      {
+        "id": "rtsweb-93f383a264e618db",
+        "projectId": "rtsweb",
+        "title": "Unity UI 美观性布局规范扩展包",
+        "category": "UI / UX",
+        "group": "unity ui beauty layout docs",
+        "summary": "本文档包是《Unity UI 控件制作规则文档》的扩展，专门解决“控件做出来了，但界面不好看、不清晰、不好维护”的问题。",
+        "keyPoints": [
+          "玩家一眼知道重点在哪里。",
+          "玩家知道哪个区域能点，哪个区域只是信息。",
+          "内容多时不乱，内容少时不空。",
+          "不同界面的布局语言统一，玩家不需要重新学习。",
+          "后续改数值、改文字、加词条、换图标时，不需要重做整个界面。"
+        ],
+        "sections": [
+          "文档列表",
+          "推荐使用方式",
+          "核心原则"
+        ],
+        "sourceFile": "README_美观性布局规范_目录.md",
+        "modifiedAt": "2026-06-25",
+        "readMinutes": 2,
+        "charCount": 711,
+        "contentPath": "/data/documents/rtsweb/rtsweb-93f383a264e618db.md"
+      },
+      {
+        "id": "rtsweb-4fd1fbcd953af7c1",
+        "projectId": "rtsweb",
+        "title": "游戏内 UI 预制体化规范",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "所有可见 UI 只遵循一套 Prefab 规则。位置、大小、锚点、图片、颜色、字体和静态初始文字全部放在 Unity Prefab/Inspector 内调整；代码只负责实例化、查找固定子节点、刷新动态数据、绑定点击逻辑、控制显隐和播放必要动效。",
+        "keyPoints": [
+          "运行时动态实例通过 UiVisualPolishUtility 读取 Resources/UI/Skins/WarfareClassic，给面板、按钮、卡片、资源条和移动圆形按钮补统一皮肤。",
+          "已经在 Prefab/Inspector 中手动设置过 Image.sprite 的节点不会被运行时替换；如果节点保留样式但没有 sprite，运行时只补缺失皮肤，不覆盖颜色、位置和缩放。",
+          "后续重建 prefab 时，UiPrefabWorkflowGenerator 会给面板、按钮、卡片类节点默认挂 WarfareClassic 皮肤；图标、进度条、遮罩、Glow、Viewport、Content 等功能节点不会自动套面板皮肤。",
+          "调整位置、缩放、锚点只改 Prefab；调整通用质感、按钮框和资源牌优先改 WarfareClassic 贴图或具体 Prefab 图片。",
+          "反馈动画只改局部 localScale、根 Graphic.color、根 Outline/Shadow，不改布局尺寸、锚点或图片资源。"
+        ],
+        "sections": [
+          "目标",
+          "目录规范",
+          "统一皮肤资源",
+          "统一交互反馈",
+          "当前硬规则",
+          "固定绑定节点",
+          "已模块化范围",
+          "本次补充规则",
+          "HUD 规则文档"
+        ],
+        "sourceFile": "游戏内UI预制体化规范.md",
+        "modifiedAt": "2026-06-16",
+        "readMinutes": 23,
+        "charCount": 11333,
+        "contentPath": "/data/documents/rtsweb/rtsweb-4fd1fbcd953af7c1.md"
+      },
+      {
+        "id": "rtsweb-fb5d53faebff2808",
+        "projectId": "rtsweb",
+        "title": "HUD 选择详情模块",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "选择详情只走 MainHudRootPrefab/LeftLayerSelectionAndCommands/SelectionPanel。SelectionPanel 本身是透明总容器，不再包含旧版 HeaderSelectedEntity、StatsGrid、ActionGridButtons、ActionButton18。",
+        "keyPoints": [
+          "SelectionPanelPrefab 尺寸为 1180 x 430，默认停靠在战斗 HUD 左下/中下区域，用于容纳信息面板、动作页、多选和编队入口。",
+          "UnitBuildingInfoPanelLeft 尺寸为 540 x 342，默认位置 18, 18。",
+          "UnitBuildingActionPagesRightContainer 尺寸为 590 x 374，默认位置 570, 18，内部建造、造兵、科技、控制页按当前显隐状态横向分栏并自动夹到安全区内。",
+          "LeftLayerSelectionAndCommands 尺寸为 1188 x 430，确保底部 HUD 不裁切两个子模块，且不覆盖屏幕中央战场。",
+          "位置、大小、图片、颜色、静态标题优先在 prefab 中调整。代码只写动态数据、按钮列表、队列项、技能/命令状态和显隐。"
+        ],
+        "sections": [
+          "模块目标",
+          "Prefab 结构",
+          "运行时绑定",
+          "布局规则",
+          "血条与属性卡宿主",
+          "禁止旧接口",
+          "验证命令"
+        ],
+        "sourceFile": "HUD选择详情模块.md",
+        "modifiedAt": "2026-06-16",
+        "readMinutes": 6,
+        "charCount": 2574,
+        "contentPath": "/data/documents/rtsweb/rtsweb-fb5d53faebff2808.md"
+      },
+      {
+        "id": "rtsweb-63a6176daa4c5d51",
+        "projectId": "rtsweb",
+        "title": "UI 交互反馈规范",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "所有可交互 UI 使用同一套反馈规则：UiPressFeedback 负责状态机，UiMotionConfig 负责可调数值，具体位置、大小、图片和静态层级仍由 Prefab 决定。",
+        "keyPoints": [
+          "Button、Toggle、Slider、Dropdown、InputField 等 Selectable 子类都会通过 UiPrefabResolver.EnsureSelectableFeedback() 自动补齐反馈。",
+          "动态生成的建造卡、造兵卡、科技卡、编队条目、主菜单按钮、设置按钮和结算按钮继续走 UiPrefabResolver.EnsurePressFeedback() 或 Prefab 实例化入口。",
+          "只允许保留这一套交互反馈组件，不新增平行的按钮动画系统。",
+          "Normal：保持 Prefab/运行时设置的基础图片、颜色、缩放和描边。",
+          "Hover：轻微放大、提亮、描边/阴影发光，并播放带冷却的 UiAudioCue.Hover。"
+        ],
+        "sections": [
+          "目标",
+          "覆盖范围",
+          "状态表现",
+          "调整数值",
+          "Prefab 调整规则"
+        ],
+        "sourceFile": "UI交互反馈规范.md",
+        "modifiedAt": "2026-06-16",
+        "readMinutes": 3,
+        "charCount": 1331,
+        "contentPath": "/data/documents/rtsweb/rtsweb-63a6176daa4c5d51.md"
+      },
+      {
+        "id": "rtsweb-309812e18975e2f5",
+        "projectId": "rtsweb",
+        "title": "建造页面UI预制体分类栏补充说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "围绕“建造页面UI预制体分类栏补充说明”整理的项目制作文档。",
+        "keyPoints": [
+          "继续收口“单位选中后的建造页”分类栏。",
+          "让分类页签的选中态和空分类态优先落到 prefab 固定节点，而不是继续只靠运行时代码硬写背景色和字体样式。",
+          "SelectionPanel 中的 PcBuildCategory",
+          "ProductionCategoryTabPrefab",
+          "HUD 内嵌建造页 SelectionBuildingProductionPagePrefab/BuildCategoryTabsContent"
+        ],
+        "sections": [
+          "2026-05-19",
+          "本轮目标",
+          "适用范围",
+          "固定节点",
+          "运行时职责边界",
+          "空分类规则",
+          "建造卡状态层补充",
+          "验证建议"
+        ],
+        "sourceFile": "建造页面UI预制体分类栏补充说明.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 3,
+        "charCount": 1188,
+        "contentPath": "/data/documents/rtsweb/rtsweb-309812e18975e2f5.md"
+      },
+      {
+        "id": "rtsweb-be71709fd7498905",
+        "projectId": "rtsweb",
+        "title": "建筑选中后的造兵页面 UI 详细规则文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "anchorMin = (0, 1)",
+        "keyPoints": [
+          "HUD 内嵌造兵页继续使用 SelectionBuildingProductionPagePrefab，不再允许脚本重新摆放其固定子节点位置。",
+          "SelectionPanel 对造兵页的职责只保留：",
+          "读取固定节点",
+          "生成训练卡条目",
+          "绑定“当前生产 / 等待队列 / 集结点”数据"
+        ],
+        "sections": [
+          "运行时绑定补充规则（2026-05-18）",
+          "单位列表滚动内容规则（2026-05-19）",
+          "队列区固定节点",
+          "兼容规则",
+          "当前生产条目规则",
+          "等待队列条目规则",
+          "集结点按钮规则",
+          "独立造兵窗口补充规则（2026-05-18）",
+          "一、设计目标"
+        ],
+        "sourceFile": "建筑选中后的造兵页面UI详细规则文档.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 30,
+        "charCount": 14970,
+        "contentPath": "/data/documents/rtsweb/rtsweb-be71709fd7498905.md"
+      },
+      {
+        "id": "rtsweb-cc34958ba1caff41",
+        "projectId": "rtsweb",
+        "title": "科技页面 UI 预制体布局结构说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "屏幕中下方显示一个横向科技列表区域。",
+        "keyPoints": [
+          "负责整页宿主、Dim、PC/移动双面板根节点",
+          "负责 Header / Category / TechList / Queue / Tips 的基础层级",
+          "负责科技分类按钮的静态尺寸、文字区、按钮样式",
+          "代码只负责：分类名、可研究数量后缀、点击切换",
+          "负责科技卡的固定排版：名称、图标、CostRow、状态遮罩、角标、进度条"
+        ],
+        "sections": [
+          "一、整体目标",
+          "2.1 科技面板位置",
+          "2.2 PC端尺寸",
+          "2.3 手机端尺寸",
+          "5.1 用途",
+          "5.2 推荐组件",
+          "5.3 动画规则",
+          "6.1 用途",
+          "6.2 样式"
+        ],
+        "sourceFile": "科技页面UI预制体布局结构说明.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 35,
+        "charCount": 17500,
+        "contentPath": "/data/documents/rtsweb/rtsweb-cc34958ba1caff41.md"
+      },
+      {
+        "id": "rtsweb-f8f52ea280f0e8d4",
+        "projectId": "rtsweb",
+        "title": "造兵页面 UI 预制体布局结构说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "屏幕中下方显示一个横向造兵列表区域。",
+        "keyPoints": [
+          "本文历史示意里的 RallyPointArea / ButtonRallyPoint 已不再作为造兵内容页结构。",
+          "内嵌造兵页 SelectionBuildingProductionPagePrefab 不允许包含 RallyPointFloatingButton。",
+          "独立造兵页 UnitProductionPanelPrefab 的队列页固定为 ProductionQueuePage，不允许包含 RallyPointButton 或 RallyPointStatus。",
+          "造兵页面只负责单位列表、分类、队列、详情和状态提示；集结点、升级、拆除、科技入口等建筑操作按钮统一放入建筑操作区。",
+          "移动端集结点入口走 SelectionPanel 的建筑操作区或 MobileUnitActionOverlay，不放回造兵内容页，也不恢复已删除的旧移动动作条。"
+        ],
+        "sections": [
+          "一、整体目标",
+          "2.1 造兵面板位置",
+          "2.2 PC端尺寸",
+          "2.3 手机端尺寸",
+          "5.1 用途",
+          "5.2 推荐组件",
+          "5.3 动画规则",
+          "6.1 用途",
+          "6.2 样式"
+        ],
+        "sourceFile": "造兵页面UI预制体布局结构说明.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 27,
+        "charCount": 13445,
+        "contentPath": "/data/documents/rtsweb/rtsweb-f8f52ea280f0e8d4.md"
+      },
+      {
+        "id": "rtsweb-9cc8f4dc6783a200",
+        "projectId": "rtsweb",
+        "title": "Architecture",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "围绕“Architecture”整理的项目制作文档。",
+        "keyPoints": [
+          "Assets/Scripts/UI/：主界面、HUD、选择面板、世界 HUD、技能冒泡、Prefab 解析等 UI 逻辑。",
+          "Assets/Scripts/Combat/：攻击、伤害、战斗表现、伤害跳字入口。",
+          "Assets/Scripts/Units/：单位控制、技能控制、单位管理。",
+          "Assets/Scripts/Buildings/：建筑控制、生产、建造相关逻辑。",
+          "Assets/Scripts/Editor/：Prefab 工作流生成器、编辑器工具。"
+        ],
+        "sections": [
+          "主要模块",
+          "UI Prefab 架构",
+          "战斗 HUD 架构"
+        ],
+        "sourceFile": "01_ARCHITECTURE.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 2,
+        "charCount": 721,
+        "contentPath": "/data/documents/rtsweb/rtsweb-9cc8f4dc6783a200.md"
+      },
+      {
+        "id": "rtsweb-0968ff01ba395d04",
+        "projectId": "rtsweb",
+        "title": "Coding Rules",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "围绕“Coding Rules”整理的项目制作文档。",
+        "keyPoints": [
+          "优先复用现有架构和命名，不另起一套平行系统。",
+          "不随意删除旧逻辑；确认没有引用或已被新结构接管后再清理。",
+          "新增 UI 类型必须同步 UiPrefabType、Prefab 生成器、Prefab 库和文档。",
+          "不在代码里硬写可编辑 UI 的位置、大小、静态图片、静态说明文字。",
+          "运行时允许刷新动态数据，例如血量、名称、倒计时、按钮状态、列表条目数据。"
+        ],
+        "sections": [
+          "基本规则",
+          "Prefab 唯一规则",
+          "验证规则"
+        ],
+        "sourceFile": "02_CODING_RULES.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 2,
+        "charCount": 548,
+        "contentPath": "/data/documents/rtsweb/rtsweb-0968ff01ba395d04.md"
+      },
+      {
+        "id": "rtsweb-2d924310763b602f",
+        "projectId": "rtsweb",
+        "title": "HUD 预制体开发规则",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "战斗 HUD 统一从 MainHudRootPrefab 开始。所有固定可见 UI 的位置、大小、锚点、图片、颜色、字体和静态文字都在 Prefab 内调整；代码只负责找节点、挂控制脚本、写动态数据、绑定点击事件、控制显隐和必要动效。",
+        "keyPoints": [
+          "SelectionPanel 总壳不拦截点击。",
+          "UnitBuildingInfoPanelLeft 和 UnitBuildingActionPagesRightContainer 的位置、大小、基础图片和静态节点都由 Prefab 决定。",
+          "代码只写单位/建筑数据、技能状态、Buff 状态、编队状态、按钮显隐和点击事件。",
+          "MinimapCanvas 和 MinimapPanel 不拦截战场点击。",
+          "MapContent 保留 raycastTarget=true，用于点击/拖动跳转视角。"
+        ],
+        "sections": [
+          "目标",
+          "总结构",
+          "运行时规则",
+          "HUD 显隐与射线规则",
+          "子模块规则",
+          "选择面板",
+          "小地图",
+          "建造、造兵、科技",
+          "多选与编队"
+        ],
+        "sourceFile": "HUD预制体开发规则.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 11,
+        "charCount": 5082,
+        "contentPath": "/data/documents/rtsweb/rtsweb-2d924310763b602f.md"
+      },
+      {
+        "id": "rtsweb-e8fee2353f3c78e9",
+        "projectId": "rtsweb",
+        "title": "UI 预制体重做蓝图",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "当前 UI 已收口到“一套 Prefab + 运行时数据绑定”的方向。只要代码继续决定锚点、位置、大小和静态子节点数量，Prefab 就很容易出现入口错位、按钮不可见、文字残留和运行时覆盖 Inspector 参数的问题。",
+        "keyPoints": [
+          "首页：MainMenuHomePagePrefab",
+          "副本/关卡选择：LevelSelectPagePrefab",
+          "图鉴：CodexPagePrefab",
+          "设置：SettingsPanelPrefab",
+          "战斗 HUD：MainHudRootPrefab"
+        ],
+        "sections": [
+          "为什么重做",
+          "总规则",
+          "运行时绑定规则",
+          "锚点约定",
+          "禁止覆盖规则",
+          "重做顺序",
+          "首页功能清单",
+          "首页 Prefab 结构",
+          "首页绑定规则"
+        ],
+        "sourceFile": "UI预制体重做蓝图.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 31,
+        "charCount": 15178,
+        "contentPath": "/data/documents/rtsweb/rtsweb-e8fee2353f3c78e9.md"
+      },
+      {
+        "id": "rtsweb-658c26f498440898",
+        "projectId": "rtsweb",
+        "title": "UI Rules",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "Prefab 可见 Text 不得出现：",
+        "keyPoints": [
+          "可见 UI 的固定结构、锚点、位置、大小、图片、颜色、字体和静态初始文字放在 Prefab 内。",
+          "代码只写动态文本、数值、显隐、事件和必要动画。",
+          "模块根默认保留 Prefab 布局和样式。",
+          "GenericPanel",
+          "WorldHudItem"
+        ],
+        "sections": [
+          "Prefab 优先",
+          "禁止模板文字",
+          "HUD 射线",
+          "世界坐标 UI"
+        ],
+        "sourceFile": "03_UI_RULES.md",
+        "modifiedAt": "2026-06-15",
+        "readMinutes": 2,
+        "charCount": 398,
+        "contentPath": "/data/documents/rtsweb/rtsweb-658c26f498440898.md"
+      },
+      {
+        "id": "rtsweb-224841de6345b461",
+        "projectId": "rtsweb",
+        "title": "Skill Buff Configuration",
+        "category": "技术策划",
+        "group": "features",
+        "summary": "Buff and debuff skills now support a data-driven advanced configuration instead of only a single timed stat modifier.",
+        "keyPoints": [
+          "affectedStat",
+          "modifierOperation",
+          "effectValue",
+          "duration",
+          "useAdvancedBuff: opt in to the new runtime."
+        ],
+        "sections": [
+          "Purpose",
+          "Advanced Buff Config",
+          "Triggers",
+          "Effects",
+          "Runtime Notes",
+          "Editor Validation"
+        ],
+        "sourceFile": "skill_buff_configuration.md",
+        "modifiedAt": "2026-05-27",
+        "readMinutes": 7,
+        "charCount": 3066,
+        "contentPath": "/data/documents/rtsweb/rtsweb-224841de6345b461.md"
+      },
+      {
+        "id": "rtsweb-c0d4731a8a0cd24c",
+        "projectId": "rtsweb",
+        "title": "Skill Projectile Configuration",
+        "category": "技术策划",
+        "group": "features",
+        "summary": "Projectile data lives on SkillDefinitionData.projectileEmissions.",
+        "keyPoints": [
+          "Projectile Emissions / 多段投射物配置",
+          "damage skills resolve immediately on the effect event",
+          "non-damage skills keep their existing heal, buff, debuff, summon, or custom behavior",
+          "legacy visualPrefab and impactEffectPrefab are still used for simple visuals",
+          "enabled: whether this emission is active."
+        ],
+        "sections": [
+          "Purpose",
+          "Data Entry",
+          "Emission Fields",
+          "Runtime Rules",
+          "Replacement Workflow",
+          "Validation"
+        ],
+        "sourceFile": "skill_projectile_configuration.md",
+        "modifiedAt": "2026-05-27",
+        "readMinutes": 9,
+        "charCount": 4198,
+        "contentPath": "/data/documents/rtsweb/rtsweb-c0d4731a8a0cd24c.md"
+      },
+      {
+        "id": "rtsweb-bca9cfad05823711",
+        "projectId": "rtsweb",
+        "title": "Runtime VFX Placeholder Rules",
+        "category": "表现与美术",
+        "group": "features",
+        "summary": "Runtime VFX placeholders are used only when authored effect prefabs are missing.",
+        "keyPoints": [
+          "UnitData.AttackEffectPrefab",
+          "UnitData.HitEffectPrefab",
+          "UnitData.DeathEffectPrefab",
+          "BuildingData.ConstructionEffectPrefab",
+          "BuildingData.UpgradeEffectPrefab"
+        ],
+        "sections": [
+          "Purpose",
+          "Runtime Fallback Entry",
+          "Replacement Rules",
+          "Authoring Notes"
+        ],
+        "sourceFile": "runtime_vfx_placeholder_rules.md",
+        "modifiedAt": "2026-05-25",
+        "readMinutes": 3,
+        "charCount": 1451,
+        "contentPath": "/data/documents/rtsweb/rtsweb-bca9cfad05823711.md"
+      },
+      {
+        "id": "rtsweb-8ee5fa0761544a37",
+        "projectId": "rtsweb",
+        "title": "Runtime Audio Placeholder and Replacement Rules",
+        "category": "音频",
+        "group": "features",
+        "summary": "This project uses a lightweight runtime audio library for placeholder UI sounds, unit/building command sounds, combat fallback sounds, event alerts, and faction BGM.",
+        "keyPoints": [
+          "Assets/Scripts/Core/RuntimeAudioManager.cs",
+          "Assets/Resources/Audio/RuntimeAudioLibrary.json",
+          "Assets/Resources/Audio/Placeholders/UI/",
+          "Assets/Resources/Audio/Placeholders/Commands/",
+          "Assets/Resources/Audio/Placeholders/Events/"
+        ],
+        "sections": [
+          "Purpose",
+          "Replacement Rules",
+          "Cue Groups",
+          "Runtime Behavior",
+          "Authoring Notes"
+        ],
+        "sourceFile": "audio_placeholder_and_replacement_rules.md",
+        "modifiedAt": "2026-05-25",
+        "readMinutes": 7,
+        "charCount": 3167,
+        "contentPath": "/data/documents/rtsweb/rtsweb-8ee5fa0761544a37.md"
+      },
+      {
+        "id": "rtsweb-7a640d96a736bc6d",
+        "projectId": "rtsweb",
+        "title": "In-Game Settings",
+        "category": "技术策划",
+        "group": "features",
+        "summary": "This document tracks battle-time settings that are safe to expose in InGameSettingsUI.",
+        "keyPoints": [
+          "Only expose a setting in battle UI after the runtime consumer has been implemented and verified.",
+          "If a setting is saved but not yet consumed by gameplay/UI runtime code, hide it from the battle settings page instead of leaving a fake toggle.",
+          "Runtime behavior should read from UserInputSettingsStore.Current or subscribe to UserInputSettingsStore.SettingsChanged.",
+          "Camera:",
+          "DragPanEnabled"
+        ],
+        "sections": [
+          "Scope",
+          "Rules",
+          "Currently Verified Runtime Settings",
+          "Pending Reconnect"
+        ],
+        "sourceFile": "IN_GAME_SETTINGS.md",
+        "modifiedAt": "2026-05-23",
+        "readMinutes": 3,
+        "charCount": 1108,
+        "contentPath": "/data/documents/rtsweb/rtsweb-7a640d96a736bc6d.md"
+      },
+      {
+        "id": "rtsweb-75e598e2d7fe4e59",
+        "projectId": "rtsweb",
+        "title": "机械阵营改造页面 UI 预制体布局结构说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "屏幕中下方显示一个横向改造列表区域。",
+        "keyPoints": [
+          "SelectedTargetLabel",
+          "ModifyCountLabel",
+          "SelectedTargetLabel：显示“当前目标：xxx”",
+          "ModifyCountLabel：显示“改造次数：n / max”",
+          "停止当前改造协程"
+        ],
+        "sections": [
+          "一、整体目标",
+          "2.1 改造面板位置",
+          "2.2 PC端尺寸",
+          "2.3 手机端尺寸",
+          "5.1 用途",
+          "5.2 推荐组件",
+          "5.3 动画规则",
+          "6.1 用途",
+          "6.2 样式"
+        ],
+        "sourceFile": "机械改造页面UI预制体布局结构说明.md",
+        "modifiedAt": "2026-05-19",
+        "readMinutes": 38,
+        "charCount": 18682,
+        "contentPath": "/data/documents/rtsweb/rtsweb-75e598e2d7fe4e59.md"
+      },
+      {
+        "id": "rtsweb-ccf3d10d0f875a92",
+        "projectId": "rtsweb",
+        "title": "HUD运行时UI旧创建清理补充说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "围绕“HUD运行时UI旧创建清理补充说明”整理的项目制作文档。",
+        "keyPoints": [
+          "继续排查项目中“旧式运行时创建 UI”的残留。",
+          "优先处理战斗 HUD 高级页面链路里最容易导致：",
+          "页面没打开却可见",
+          "只有底图露出",
+          "prefab 缺节点时被运行时补出旧壳"
+        ],
+        "sections": [
+          "2026-05-19",
+          "本轮清理目标",
+          "本轮已收紧的主链路",
+          "规则调整",
+          "当前判定原则",
+          "本轮重点修复的问题",
+          "后续继续排查的模块",
+          "2026-05-19 - 第二轮补充",
+          "本轮继续收口"
+        ],
+        "sourceFile": "HUD运行时UI旧创建清理补充说明.md",
+        "modifiedAt": "2026-05-19",
+        "readMinutes": 5,
+        "charCount": 2284,
+        "contentPath": "/data/documents/rtsweb/rtsweb-ccf3d10d0f875a92.md"
+      },
+      {
+        "id": "rtsweb-5dc7e984d3de6c5d",
+        "projectId": "rtsweb",
+        "title": "机械族单位与建筑改造页面 UI 详细规则文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "机械阵营的单位和建筑都没有传统升级，而是通过“改造模块”改变属性、技能、定位和玩法。",
+        "keyPoints": [
+          "����ֻ���𣺿�¡ģ�塢����λ����/��ǰģ�顢�����쿨���ݡ�����¼���������˳��",
+          "prefab ���𣺷�����λ�á���λ��λ�á����쿨�б�λ�á�������ࡢpadding������������С��",
+          "�������Ҫ�Ļ�е����ҳ�ķ�����λ�á���λ�����ࡢ���쿨�б����ף�����ֱ�Ӹ� SelectionBuildingControlPagePrefab.prefab ��Ĳ����������Ҫ�ٻ�д�� SelectionPanel.cs��",
+          "SelectedTargetLabel",
+          "ModifyCountLabel"
+        ],
+        "sections": [
+          "一、设计目标",
+          "2.1 点击单位后显示改造页面",
+          "2.2 点击建筑后显示改造页面",
+          "2.3 不显示改造页面的情况",
+          "3.1 总体布局原则",
+          "3.2 建筑选中后的布局",
+          "3.3 单位选中后的布局",
+          "3.4 手机端页面共存规则",
+          "3.5 PC端页面共存规则"
+        ],
+        "sourceFile": "机械族单位与建筑改造页面UI详细规则文档.md",
+        "modifiedAt": "2026-05-18",
+        "readMinutes": 36,
+        "charCount": 17907,
+        "contentPath": "/data/documents/rtsweb/rtsweb-5dc7e984d3de6c5d.md"
+      },
+      {
+        "id": "rtsweb-063dddb6ffd2e2f4",
+        "projectId": "rtsweb",
+        "title": "建造页面 UI 预制体布局结构说明",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "屏幕中下方显示一个横向建造列表区域。",
+        "keyPoints": [
+          "一、整体目标",
+          "2.1 建造面板位置",
+          "2.2 PC端尺寸",
+          "2.3 手机端尺寸",
+          "5.1 用途"
+        ],
+        "sections": [
+          "一、整体目标",
+          "2.1 建造面板位置",
+          "2.2 PC端尺寸",
+          "2.3 手机端尺寸",
+          "5.1 用途",
+          "5.2 推荐组件",
+          "5.3 动画规则",
+          "6.1 用途",
+          "6.2 样式"
+        ],
+        "sourceFile": "建造页面UI预制体布局结构说明.md",
+        "modifiedAt": "2026-05-18",
+        "readMinutes": 19,
+        "charCount": 9071,
+        "contentPath": "/data/documents/rtsweb/rtsweb-063dddb6ffd2e2f4.md"
+      },
+      {
+        "id": "rtsweb-3aa18d76e6af16e8",
+        "projectId": "rtsweb",
+        "title": "建筑选中后的科技树页面 UI 详细规则文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "当玩家点击拥有科技树功能的建筑后，才显示科技树页面。该页面用于快速查看、研究科技，并通过悬停 / 长按查看科技详情。",
+        "keyPoints": [
+          "页面主结构由 TechTreeRootPrefab 提供",
+          "分类栏改为横向分类按钮列表",
+          "科技内容改为横向科技卡列表",
+          "科技卡统一使用 ResearchButtonPrefab",
+          "代码只处理动态数据、显隐、交互、研究状态，不再负责主排版"
+        ],
+        "sections": [
+          "一、设计目标",
+          "2.1 哪些建筑会显示科技树页面",
+          "2.2 建筑无科技功能",
+          "2.3 建筑有多个功能",
+          "3.1 面板大小",
+          "手机端",
+          "PC端",
+          "3.2 手机端布局",
+          "3.3 PC端布局"
+        ],
+        "sourceFile": "建筑选中后的科技树页面UI详细规则文档.md",
+        "modifiedAt": "2026-05-18",
+        "readMinutes": 28,
+        "charCount": 13884,
+        "contentPath": "/data/documents/rtsweb/rtsweb-3aa18d76e6af16e8.md"
+      },
+      {
+        "id": "rtsweb-86072de85a2c444b",
+        "projectId": "rtsweb",
+        "title": "HUD 选择动作页模块",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "SelectionActionPanelPrefab 是选中单位/建筑后的右侧动作页容器。运行时节点名为 UnitBuildingActionPagesRightContainer。",
+        "keyPoints": [
+          "单位命令按钮：SelectionPanel.CreatePcActionButton() 动态写入 RightActionArea。",
+          "建筑科技页：SelectionBuildingTechTreePagePrefab，动态填充研究按钮和研究队列。",
+          "建筑生产页：SelectionBuildingProductionPagePrefab，动态填充造兵/建造按钮和生产队列。",
+          "建筑控制页：SelectionBuildingControlPagePrefab，动态填充升级、集结、拆除等普通操作。",
+          "机械改造页：SelectionPanel 在 BuildingControlPageStandalone/MechanicalModificationPage 内填充分类栏、槽位、改造卡和状态栏。单位机械改造与建筑机械改造共用这一页。"
+        ],
+        "sections": [
+          "模块目标",
+          "Prefab 文件",
+          "子模块",
+          "数据与按钮来源",
+          "布局规则",
+          "运行时边界",
+          "生成与校验补充",
+          "禁止项",
+          "2026-05-16 - prefab ǿ�󶨲���"
+        ],
+        "sourceFile": "HUD选择动作页模块.md",
+        "modifiedAt": "2026-05-16",
+        "readMinutes": 10,
+        "charCount": 4813,
+        "contentPath": "/data/documents/rtsweb/rtsweb-86072de85a2c444b.md"
+      },
+      {
+        "id": "rtsweb-4597696144dc6731",
+        "projectId": "rtsweb",
+        "title": "HUD编队显示模块",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "本模块负责战斗 HUD 中的编队快捷栏、编队选择弹层和编队管理弹层。它用于显示 1-0 编队状态、绑定当前选择、选择已有编队、定位编队、重绑和清除。",
+        "keyPoints": [
+          "宿主 prefab：Assets/Resources/UI/Prefabs/InGame/SelectionPanelPrefab.prefab",
+          "编队快捷栏节点：SelectionPanelPrefab/GroupShortcutBar",
+          "编队选择弹层节点：SelectionPanelPrefab/GroupPickerPanel",
+          "编队管理弹层节点：SelectionPanelPrefab/GroupManagePanel",
+          "编队快捷条目 prefab：Assets/Resources/UI/Prefabs/Components/SelectionGroupShortcutItemPrefab.prefab"
+        ],
+        "sections": [
+          "模块范围",
+          "Prefab 结构",
+          "运行时规则",
+          "禁止事项",
+          "2026-05-16 �������"
+        ],
+        "sourceFile": "HUD编队显示模块.md",
+        "modifiedAt": "2026-05-16",
+        "readMinutes": 5,
+        "charCount": 2042,
+        "contentPath": "/data/documents/rtsweb/rtsweb-4597696144dc6731.md"
+      },
+      {
+        "id": "rtsweb-5609a819fd2b8b8a",
+        "projectId": "rtsweb",
+        "title": "HUD多选单位显示模块",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "本模块负责玩家框选或追加选择多个单位后，在 SelectionPanelPrefab 内显示的多选头像栏。它只展示已选单位缩略头像、血量条、单位状态标记，并提供点击头像聚焦单个单位的入口。",
+        "keyPoints": [
+          "宿主 prefab：Assets/Resources/UI/Prefabs/InGame/SelectionPanelPrefab.prefab",
+          "宿主节点：SelectionPanelPrefab/MultiPortraitBar",
+          "条目 prefab：Assets/Resources/UI/Prefabs/Components/SelectionMultiPortraitItemPrefab.prefab",
+          "MultiPortraitContent：头像滚动窗口，带 ScrollRect、Mask。",
+          "PortraitList：动态头像条目挂点。"
+        ],
+        "sections": [
+          "模块范围",
+          "Prefab 结构",
+          "运行时规则",
+          "禁止事项",
+          "2026-05-16 �������"
+        ],
+        "sourceFile": "HUD多选单位显示模块.md",
+        "modifiedAt": "2026-05-16",
+        "readMinutes": 3,
+        "charCount": 1432,
+        "contentPath": "/data/documents/rtsweb/rtsweb-5609a819fd2b8b8a.md"
+      },
+      {
+        "id": "rtsweb-c793c4fb069c0dca",
+        "projectId": "rtsweb",
+        "title": "Asset Rules",
+        "category": "制作规范",
+        "group": "项目根目录",
+        "summary": "围绕“Asset Rules”整理的项目制作文档。",
+        "keyPoints": [
+          "UI 页面 Prefab：Assets/Resources/UI/Prefabs/Pages/",
+          "战斗内 UI Prefab：Assets/Resources/UI/Prefabs/InGame/",
+          "通用组件 Prefab：Assets/Resources/UI/Prefabs/Components/",
+          "UI 配置资产：Assets/Resources/UI/Configs/",
+          "Prefab 使用清晰功能名，后缀 Prefab。"
+        ],
+        "sections": [
+          "命名",
+          "修改规则"
+        ],
+        "sourceFile": "04_ASSET_RULES.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 2,
+        "charCount": 408,
+        "contentPath": "/data/documents/rtsweb/rtsweb-c793c4fb069c0dca.md"
+      },
+      {
+        "id": "rtsweb-e21d20104802b602",
+        "projectId": "rtsweb",
+        "title": "单位选中后的建造页面 UI 详细规则文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "当玩家点击拥有建造能力的单位后，需要显示建造页面。",
+        "keyPoints": [
+          "一、设计目标",
+          "2.1 哪些单位会显示建造页面",
+          "2.2 多单位选中时",
+          "2.3 非建造单位",
+          "3.1 手机端布局"
+        ],
+        "sections": [
+          "一、设计目标",
+          "2.1 哪些单位会显示建造页面",
+          "2.2 多单位选中时",
+          "2.3 非建造单位",
+          "3.1 手机端布局",
+          "3.2 PC端布局",
+          "3.3 面板层级",
+          "4.1 展开规则",
+          "4.2 隐藏规则"
+        ],
+        "sourceFile": "单位选中后的建造页面UI详细规则文档.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 20,
+        "charCount": 9880,
+        "contentPath": "/data/documents/rtsweb/rtsweb-e21d20104802b602.md"
+      },
+      {
+        "id": "rtsweb-d002e47b9dae066b",
+        "projectId": "rtsweb",
+        "title": "HUD 单位建筑头顶 HUD 模块",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "单位和建筑头顶 HUD 只保留一套运行时实现：UnitOverheadUI 负责把单位/建筑注册给 WorldHudManager，WorldHudManager 负责把世界坐标转换到屏幕坐标并刷新动态数据。可见结构必须来自 WorldHudItemPrefab。",
+        "keyPoints": [
+          "WorldHudManager.CreateHudItem() 只实例化 WorldHudItemPrefab。",
+          "Prefab 缺失时只报错，不再创建旧的可见头顶 UI。",
+          "必须节点缺失时销毁实例并报错，避免运行时补出不可编辑的旧节点。",
+          "代码允许动态写入名字、类型角标、等级/星级/阵营状态、血条 fillAmount、状态文字、状态进度、警报文字和世界坐标位置。",
+          "Prefab 中可调整根尺寸、各节点位置、血条大小、字体、图片、颜色、透明度和默认隐藏/显示状态。"
+        ],
+        "sections": [
+          "模块目标",
+          "Prefab 路径",
+          "必须保留的节点",
+          "运行时规则",
+          "显示内容",
+          "重建命令",
+          "验证"
+        ],
+        "sourceFile": "HUD单位建筑头顶HUD模块.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 3,
+        "charCount": 1473,
+        "contentPath": "/data/documents/rtsweb/rtsweb-d002e47b9dae066b.md"
+      },
+      {
+        "id": "rtsweb-d24e58c71b69990f",
+        "projectId": "rtsweb",
+        "title": "HUD 技能喊名冒泡实现文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "技能喊名冒泡用于显示单位释放主动技能、强力技能、被动触发、形态变化和关键指令时的短反馈。系统和伤害跳字分离，走 SkillCalloutBubbleManager，条目必须来自 SkillCalloutBubblePrefab。",
+        "keyPoints": [
+          "SkillCalloutBubbleManager 统一处理限流、合并、显示上限、世界坐标跟随和动画。",
+          "Label 只显示技能短名，不再混入合并次数。",
+          "MergeCount 独立显示 x2/x3 等合并次数，方便在 Prefab 内单独调位置和样式。",
+          "TypeLabel 显示 技能 / 被动 / 切换 / 变身 / 指令 / 大招。",
+          "Accent 和 Tail 使用阵营色，FactionBorder 用阵营色与副阵营色混合。"
+        ],
+        "sections": [
+          "模块目标",
+          "Prefab 路径",
+          "必须保留的节点",
+          "运行时规则",
+          "优先级规则",
+          "重建命令",
+          "验证"
+        ],
+        "sourceFile": "HUD技能喊名冒泡实现文档.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 3,
+        "charCount": 1185,
+        "contentPath": "/data/documents/rtsweb/rtsweb-d24e58c71b69990f.md"
+      },
+      {
+        "id": "rtsweb-7b022ae99742d145",
+        "projectId": "rtsweb",
+        "title": "HUD 伤害跳字实现文档",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "伤害跳字用于显示攻击造成的数值反馈，并按攻击类型、伤害强度、是否击杀等信息区分表现。系统由 CombatVisualManager 统一对象池、实例化、动画和回收，条目必须来自 DamagePopupItemPrefab。",
+        "keyPoints": [
+          "CombatVisualManager.SpawnDamagePopup(Vector3, DamagePopupData) 是新入口。",
+          "旧入口 SpawnDamagePopup(Vector3, float, AttackType) 保留兼容，但只提供基础跳字。",
+          "AttackManager.ApplyResolvedDamage() 会传入目标护甲、目标最大生命、是否主目标、是否击杀。",
+          "Prefab 缺失时只报错，不再创建旧的可见 Text 根节点。",
+          "NumberText 显示 -128 或 +64。"
+        ],
+        "sections": [
+          "模块目标",
+          "Prefab 路径",
+          "必须保留的节点",
+          "运行时规则",
+          "强度分级",
+          "重建命令",
+          "验证"
+        ],
+        "sourceFile": "HUD伤害跳字实现文档.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 3,
+        "charCount": 1299,
+        "contentPath": "/data/documents/rtsweb/rtsweb-7b022ae99742d145.md"
+      },
+      {
+        "id": "rtsweb-e44376f2f6f8e607",
+        "projectId": "rtsweb",
+        "title": "Project Overview",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "TestRTS2 是 Unity RTS 项目，核心内容包括主界面、关卡选择、图鉴、设置、战斗 HUD、单位/建筑控制、生产、建造、科技树、阵营机制和战斗反馈表现。",
+        "keyPoints": [
+          "所有可见且需要调整的 UI 优先使用 Prefab。",
+          "代码只负责实例化、绑定固定节点、刷新动态数据、显隐控制、点击事件和必要动画。",
+          "Canvas、世界坐标跟随点、对象池、动态列表内容可以由代码创建或驱动，但可见条目仍应 Prefab 化。",
+          "UI 规则与模块文档位于 Docs/UI/。",
+          "阵营与玩法文档按阵营位于 Docs/Huaxia/、Docs/Jixie/、Docs/RongHe/、Docs/YaoShou/、Docs/ZiRan/。"
+        ],
+        "sections": [
+          "项目定位",
+          "当前 UI 方向",
+          "文档位置"
+        ],
+        "sourceFile": "00_PROJECT_OVERVIEW.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 2,
+        "charCount": 369,
+        "contentPath": "/data/documents/rtsweb/rtsweb-e44376f2f6f8e607.md"
+      },
+      {
+        "id": "rtsweb-ea18934886eba348",
+        "projectId": "rtsweb",
+        "title": "RTS 操作按钮详情页 UI 设计规范",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "需要补充鼠标悬停 / 手指长按后的详情页：",
+        "keyPoints": [
+          "建筑：OperationDetailDataFactory.ForBuilding(...)",
+          "单位：OperationDetailDataFactory.ForUnit(...)",
+          "科技：OperationDetailDataFactory.ForTech(...)"
+        ],
+        "sections": [
+          "一、文档目标",
+          "2.1 主界面按钮与详情卡分工",
+          "主界面按钮负责",
+          "详情卡负责",
+          "2.2 信息压缩原则",
+          "2.3 详情卡固定阅读顺序",
+          "3.1 PC端交互",
+          "3.2 手机端交互",
+          "3.3 高风险操作"
+        ],
+        "sourceFile": "RTS操作按钮详情页UI设计规范.md",
+        "modifiedAt": "2026-05-15",
+        "readMinutes": 29,
+        "charCount": 14225,
+        "contentPath": "/data/documents/rtsweb/rtsweb-ea18934886eba348.md"
+      },
+      {
+        "id": "rtsweb-9d2e7761cbf3fee1",
+        "projectId": "rtsweb",
+        "title": "扫描项目",
+        "category": "开发记录",
+        "group": "jilu",
+        "summary": "我先帮你把项目整体扫一遍，先看目录结构、关键配置和当前工作区状态，这样我们能更快判断项目技术栈和重点模块。",
+        "keyPoints": [
+          "Core: 37 个 .cs",
+          "Editor: 24 个",
+          "UI: 23 个",
+          "Data: 21 个",
+          "Buildings: 14 个"
+        ],
+        "sections": [],
+        "sourceFile": "线程1记录.md",
+        "modifiedAt": "2026-05-12",
+        "readMinutes": 40,
+        "charCount": 2165580,
+        "contentPath": "/data/documents/rtsweb/rtsweb-9d2e7761cbf3fee1.md"
+      },
+      {
+        "id": "rtsweb-bce0aa462dbc5c2f",
+        "projectId": "rtsweb",
+        "title": "单位技能喊名冒泡 UI 系统完整设计方案",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "当前战斗中，单位释放技能、触发被动、进入特殊状态时，玩家很难第一时间知道：",
+        "keyPoints": [
+          "一、系统目标",
+          "2.1 需要冒泡的事件",
+          "2.2 不需要冒泡的事件",
+          "2.3 冒泡与伤害跳字的区别",
+          "3.1 主动技能冒泡"
+        ],
+        "sections": [
+          "一、系统目标",
+          "2.1 需要冒泡的事件",
+          "2.2 不需要冒泡的事件",
+          "2.3 冒泡与伤害跳字的区别",
+          "3.1 主动技能冒泡",
+          "3.2 被动触发冒泡",
+          "3.3 模式切换冒泡",
+          "3.4 变身 / 进化 / 融合冒泡",
+          "3.5 战术指令冒泡"
+        ],
+        "sourceFile": "单位技能喊名冒泡UI系统完整设计方案.md",
+        "modifiedAt": "2026-05-12",
+        "readMinutes": 21,
+        "charCount": 10038,
+        "contentPath": "/data/documents/rtsweb/rtsweb-bce0aa462dbc5c2f.md"
+      },
+      {
+        "id": "rtsweb-91c2564e53c78407",
+        "projectId": "rtsweb",
+        "title": "战斗伤害跳字系统完整设计方案",
+        "category": "UI / UX",
+        "group": "UI",
+        "summary": "1. 普通伤害、暴击、治疗、穿甲、元素伤害表现差异不明显。",
+        "keyPoints": [
+          "一、设计目标",
+          "2.1 基础伤害流程",
+          "2.2 伤害来源类型",
+          "2.3 伤害属性类型",
+          "2.4 攻击类型"
+        ],
+        "sections": [
+          "一、设计目标",
+          "2.1 基础伤害流程",
+          "2.2 伤害来源类型",
+          "2.3 伤害属性类型",
+          "2.4 攻击类型",
+          "3.1 伤害结果标签",
+          "4.1 强度计算",
+          "4.2 强度分级表",
+          "4.3 强度动画差异"
+        ],
+        "sourceFile": "战斗伤害跳字系统完整设计方案.md",
+        "modifiedAt": "2026-05-12",
+        "readMinutes": 23,
+        "charCount": 11126,
+        "contentPath": "/data/documents/rtsweb/rtsweb-91c2564e53c78407.md"
+      },
+      {
+        "id": "rtsweb-97b49a9772326a9d",
+        "projectId": "rtsweb",
+        "title": "机械阵营新功能实现与表现规则文档",
+        "category": "表现与美术",
+        "group": "Jixie",
+        "summary": "本文档用于补齐机械阵营新增系统的具体实现、操作、UI、表现规则。",
+        "keyPoints": [
+          "一、文档目标",
+          "3.1 电力基础数值",
+          "3.2 电力状态",
+          "3.3 电力消耗类型",
+          "3.4 建筑电力消耗建议"
+        ],
+        "sections": [
+          "一、文档目标",
+          "3.1 电力基础数值",
+          "3.2 电力状态",
+          "3.3 电力消耗类型",
+          "3.4 建筑电力消耗建议",
+          "3.5 电力不足时的建筑优先级",
+          "电力优先级按钮",
+          "3.6 缺电具体影响",
+          "3.7 断电具体影响"
+        ],
+        "sourceFile": "机械阵营_新功能实现与表现规则文档.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 22,
+        "charCount": 10900,
+        "contentPath": "/data/documents/rtsweb/rtsweb-97b49a9772326a9d.md"
+      },
+      {
+        "id": "rtsweb-dbb59ad4c6dcb2f7",
+        "projectId": "rtsweb",
+        "title": "占领主城后的定向融合阵营系统 V2",
+        "category": "表现与美术",
+        "group": "RongHe",
+        "summary": "原方案把两个阵营组合成一套“对称融合阵营”，这是不对的。",
+        "keyPoints": [
+          "一、这版修改重点",
+          "2.1 主城击破即占领",
+          "2.2 主城被击破后的状态",
+          "2.3 占领保护期",
+          "2.4 占领核心基础规则"
+        ],
+        "sections": [
+          "一、这版修改重点",
+          "2.1 主城击破即占领",
+          "2.2 主城被击破后的状态",
+          "2.3 占领保护期",
+          "2.4 占领核心基础规则",
+          "2.5 占领核心基础数值",
+          "2.6 占领核心被摧毁",
+          "3.1 最后一击表现",
+          "3.2 10秒保护期表现"
+        ],
+        "sourceFile": "占领主城_融合阵营建筑单位科技完整方案.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 23,
+        "charCount": 11009,
+        "contentPath": "/data/documents/rtsweb/rtsweb-dbb59ad4c6dcb2f7.md"
+      },
+      {
+        "id": "rtsweb-4de2fa6c9ebf99da",
+        "projectId": "rtsweb",
+        "title": "占领主城与定向融合阵营：功能与表现需求文档",
+        "category": "表现与美术",
+        "group": "RongHe",
+        "summary": "本文件用于明确“击破敌方主城后直接占领，并解锁定向融合阵营”的完整功能需求、操作规则、UI表现、战斗表现、程序实现字段与验收标准。",
+        "keyPoints": [
+          "一、文档目标",
+          "2.1 主城击破",
+          "2.2 最后一击占领",
+          "2.3 占领核心",
+          "2.4 定向融合路线"
+        ],
+        "sections": [
+          "一、文档目标",
+          "2.1 主城击破",
+          "2.2 最后一击占领",
+          "2.3 占领核心",
+          "2.4 定向融合路线",
+          "3.1 标准流程",
+          "3.2 状态机",
+          "4.1 最后一击记录需求",
+          "4.2 AOE最后一击"
+        ],
+        "sourceFile": "占领主城_定向融合功能与表现需求文档.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 21,
+        "charCount": 10082,
+        "contentPath": "/data/documents/rtsweb/rtsweb-4de2fa6c9ebf99da.md"
+      },
+      {
+        "id": "rtsweb-a011f4ef2fe79606",
+        "projectId": "rtsweb",
+        "title": "机械阵营完整方案 V1",
+        "category": "核心策划",
+        "group": "Jixie",
+        "summary": "机械阵营不是普通“科技兵种阵营”，而是：",
+        "keyPoints": [
+          "一、阵营核心定位",
+          "4.1 建筑无普通升级",
+          "4.2 单位无等级",
+          "4.3 电力网络是阵营核心",
+          "6.1 初始阶段"
+        ],
+        "sections": [
+          "一、阵营核心定位",
+          "4.1 建筑无普通升级",
+          "4.2 单位无等级",
+          "4.3 电力网络是阵营核心",
+          "6.1 初始阶段",
+          "6.2 中期阶段",
+          "6.3 水域阶段",
+          "6.4 后期阶段",
+          "7.1 电力基础概念"
+        ],
+        "sourceFile": "机械阵营_完整机制建筑单位科技方案_v_1.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 26,
+        "charCount": 12966,
+        "contentPath": "/data/documents/rtsweb/rtsweb-a011f4ef2fe79606.md"
+      },
+      {
+        "id": "rtsweb-8e15aa7aacff3fda",
+        "projectId": "rtsweb",
+        "title": "自然阵营：建筑、单位、融合、科技树与数值完整方案",
+        "category": "系统与数值",
+        "group": "ZiRan",
+        "summary": "自然阵营不是单纯“召唤元素怪物”，而是：",
+        "keyPoints": [
+          "一、阵营核心定位",
+          "2.1 建筑专一化规则",
+          "2.2 单位成长规则",
+          "2.3 五行克制规则",
+          "2.4 地形强化规则"
+        ],
+        "sections": [
+          "一、阵营核心定位",
+          "2.1 建筑专一化规则",
+          "2.2 单位成长规则",
+          "2.3 五行克制规则",
+          "2.4 地形强化规则",
+          "3.1 水元素建筑建造规则",
+          "3.2 水系单位移动规则",
+          "3.3 水系单位水面强化",
+          "4.1 建筑数值表"
+        ],
+        "sourceFile": "自然阵营_建筑单位融合科技树完整方案.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 30,
+        "charCount": 14945,
+        "contentPath": "/data/documents/rtsweb/rtsweb-8e15aa7aacff3fda.md"
+      },
+      {
+        "id": "rtsweb-84ba55742892a1f0",
+        "projectId": "rtsweb",
+        "title": "自然阵营：新技能与系统需求列表、操作规则、表现设计",
+        "category": "UI / UX",
+        "group": "ZiRan",
+        "summary": "本文件用于补齐自然阵营新增玩法的详细需求，方便策划、程序、美术、特效、UI直接拆任务。",
+        "keyPoints": [
+          "一、文档目标",
+          "3.1 元素类型",
+          "3.2 单位元素字段",
+          "3.3 技能元素字段",
+          "4.1 基础克制关系"
+        ],
+        "sections": [
+          "一、文档目标",
+          "3.1 元素类型",
+          "3.2 单位元素字段",
+          "3.3 技能元素字段",
+          "4.1 基础克制关系",
+          "4.2 克制数值",
+          "4.3 混合单位克制规则",
+          "4.4 克制UI表现",
+          "5.1 地形类型"
+        ],
+        "sourceFile": "自然阵营_新技能系统需求与表现设计.md",
+        "modifiedAt": "2026-05-11",
+        "readMinutes": 18,
+        "charCount": 8760,
+        "contentPath": "/data/documents/rtsweb/rtsweb-84ba55742892a1f0.md"
+      },
+      {
+        "id": "rtsweb-7424b6b047073680",
+        "projectId": "rtsweb",
+        "title": "华夏阵营新增功能逻辑与操作表现规则",
+        "category": "表现与美术",
+        "group": "Huaxia",
+        "summary": "适用范围：华夏阵营建筑、单位、科技、战斗操作、UI表现、特效表现",
+        "keyPoints": [
+          "3.1 系统定位",
+          "3.2 可用箭矢类型",
+          "3.3 箭矢适用单位",
+          "3.4 各箭矢详细规则",
+          "3.4.1 普通箭"
+        ],
+        "sections": [
+          "3.1 系统定位",
+          "3.2 可用箭矢类型",
+          "3.3 箭矢适用单位",
+          "3.4 各箭矢详细规则",
+          "3.4.1 普通箭",
+          "3.4.2 火箭矢",
+          "3.4.3 毒箭矢",
+          "3.4.4 穿甲箭矢",
+          "3.4.5 缓速箭矢"
+        ],
+        "sourceFile": "华夏阵营_新增功能逻辑与操作表现规则.md",
+        "modifiedAt": "2026-05-10",
+        "readMinutes": 31,
+        "charCount": 15045,
+        "contentPath": "/data/documents/rtsweb/rtsweb-7424b6b047073680.md"
+      },
+      {
+        "id": "rtsweb-32e289c9240180cd",
+        "projectId": "rtsweb",
+        "title": "华夏阵营：建筑、单位、科技树完整方案",
+        "category": "系统与数值",
+        "group": "Huaxia",
+        "summary": "版本目标：统一整理华夏阵营当前确定的规则，包括资源体系、建筑建造关系、生产建筑与单位关系、单位克制、科技树、UI显示与程序实现要点。",
+        "keyPoints": [
+          "1. 阵营核心定位",
+          "2. 资源体系",
+          "2.1 资源定位",
+          "2.2 资源建筑",
+          "2.3 人口来源"
+        ],
+        "sections": [
+          "1. 阵营核心定位",
+          "2. 资源体系",
+          "2.1 资源定位",
+          "2.2 资源建筑",
+          "2.3 人口来源",
+          "3. 主城等级与建筑升级规则",
+          "3.1 主城等级",
+          "3.2 建筑升级规则",
+          "3.3 生产建筑升级效果"
+        ],
+        "sourceFile": "华夏阵营_建筑单位科技树完整方案.md",
+        "modifiedAt": "2026-05-10",
+        "readMinutes": 37,
+        "charCount": 18028,
+        "contentPath": "/data/documents/rtsweb/rtsweb-32e289c9240180cd.md"
+      },
+      {
+        "id": "rtsweb-ca9159b08190f063",
+        "projectId": "rtsweb",
+        "title": "华夏阵营：建筑、单位、科技树完整数值文档 V1",
+        "category": "系统与数值",
+        "group": "Huaxia",
+        "summary": "版本定位：第一版可落地数值，用于程序实现、策划调平、UI配置表拆分。",
+        "keyPoints": [
+          "1.1 阵营规则",
+          "1.2 建筑等级通用规则",
+          "1.3 生产建筑通用升级效果",
+          "1.4 科技建筑通用升级效果",
+          "2.1 资源定位"
+        ],
+        "sections": [
+          "1.1 阵营规则",
+          "1.2 建筑等级通用规则",
+          "1.3 生产建筑通用升级效果",
+          "1.4 科技建筑通用升级效果",
+          "2.1 资源定位",
+          "2.2 人口来源",
+          "3.1 建筑分类",
+          "4.1 建筑通用字段说明",
+          "4.2 天阙主城"
+        ],
+        "sourceFile": "华夏阵营_建筑单位完整数值表.md",
+        "modifiedAt": "2026-05-10",
+        "readMinutes": 40,
+        "charCount": 23644,
+        "contentPath": "/data/documents/rtsweb/rtsweb-ca9159b08190f063.md"
+      },
+      {
+        "id": "rtsweb-92f52d3b0fff2089",
+        "projectId": "rtsweb",
+        "title": "妖族阵营完整重构设计方案 V3",
+        "category": "系统与数值",
+        "group": "YaoShou",
+        "summary": "2. 单位不再只是名字多，而是每个都有清晰克制和用途。",
+        "keyPoints": [
+          "一、版本目标",
+          "2.1 阵营关键词",
+          "2.2 与其他阵营差异",
+          "3.1 资源用途",
+          "3.2 妖族经济特点"
+        ],
+        "sections": [
+          "一、版本目标",
+          "2.1 阵营关键词",
+          "2.2 与其他阵营差异",
+          "3.1 资源用途",
+          "3.2 妖族经济特点",
+          "4.1 建筑无等级",
+          "4.2 蛮荒形态",
+          "4.3 圣祭形态",
+          "4.4 建筑献祭规则"
+        ],
+        "sourceFile": "妖族阵营_完整数值与科技树配置文档.md",
+        "modifiedAt": "2026-05-10",
+        "readMinutes": 23,
+        "charCount": 11014,
+        "contentPath": "/data/documents/rtsweb/rtsweb-92f52d3b0fff2089.md"
+      },
+      {
+        "id": "rtsweb-5412b20a569c85fe",
+        "projectId": "rtsweb",
+        "title": "Building Visual Replacement Coverage Report",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "Generated at: 2026-04-14 23:00:53",
+        "keyPoints": [
+          "BuildingsScanned: 106",
+          "TotalLevels: 2650",
+          "RealArtLevels: 0",
+          "TemplateLevels: 2650",
+          "MissingLevels: 0"
+        ],
+        "sections": [
+          "Summary"
+        ],
+        "sourceFile": "BuildingVisualReplacementCoverageReport.md",
+        "modifiedAt": "2026-04-14",
+        "readMinutes": 2,
+        "charCount": 188,
+        "contentPath": "/data/documents/rtsweb/rtsweb-5412b20a569c85fe.md"
+      },
+      {
+        "id": "rtsweb-38e15a510952cfd8",
+        "projectId": "rtsweb",
+        "title": "Building Visual Replacement Guide",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "Use real building art prefabs to replace the generated 25-level placeholder visuals without editing each BuildingVisualProgression.asset by hand.",
+        "keyPoints": [
+          "Progression assets:",
+          "Generated placeholder prefabs:",
+          "Recommended real art replacement root:",
+          "Assets/Art/Buildings/Progression/egyptsuntowerBuildingData",
+          "Assets/Art/Buildings/Progression/Greek民居BuildingData"
+        ],
+        "sections": [
+          "Goal",
+          "Runtime chain",
+          "Generated data locations",
+          "Real art folder rule",
+          "Recommended prefab content",
+          "Binding workflow",
+          "Missing prefab report",
+          "Real art coverage report",
+          "Marking real art replacements"
+        ],
+        "sourceFile": "BuildingVisualReplacementGuide.md",
+        "modifiedAt": "2026-04-14",
+        "readMinutes": 11,
+        "charCount": 5326,
+        "contentPath": "/data/documents/rtsweb/rtsweb-38e15a510952cfd8.md"
+      },
+      {
+        "id": "rtsweb-879d5c78afecf872",
+        "projectId": "rtsweb",
+        "title": "Building Visual Replacement Missing Report",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "Generated at: 2026-04-14 22:39:12",
+        "keyPoints": [
+          "BuildingsScanned: 106",
+          "MissingLevels: 0",
+          "TemplateLevels: 2650",
+          "BuildingData: Assets/Resources/Data/BarracksBuildingData.asset",
+          "ReplacementFolder: Assets/Art/Buildings/Progression/BarracksBuildingData"
+        ],
+        "sections": [
+          "Summary",
+          "Barracks",
+          "冥日金字塔·二阶",
+          "冥日金字塔·三阶",
+          "冥界圣陵",
+          "圣甲虫巢",
+          "太阳战车厂",
+          "巨像墓宫",
+          "诅咒碑"
+        ],
+        "sourceFile": "BuildingVisualReplacementMissingReport.md",
+        "modifiedAt": "2026-04-14",
+        "readMinutes": 40,
+        "charCount": 35011,
+        "contentPath": "/data/documents/rtsweb/rtsweb-879d5c78afecf872.md"
+      },
+      {
+        "id": "rtsweb-c76c453c916576a8",
+        "projectId": "rtsweb",
+        "title": "RTS Mobile Asset Delivery Checklist Template",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "This template is used to align art, TA, animation, VFX, UI, audio, and gameplay integration for RTS runtime content delivery.",
+        "keyPoints": [
+          "make outsourced or internal asset handoff predictable",
+          "reduce back-and-forth on missing files or wrong import settings",
+          "ensure assets can be plugged into the current runtime replacement chain without modifying core config data",
+          "source FBX files",
+          "final textures"
+        ],
+        "sections": [
+          "Purpose",
+          "1. Delivery Batch Summary",
+          "2. Package Structure",
+          "3. General Delivery Rules",
+          "4. Naming Convention",
+          "5. Model Delivery Checklist",
+          "5.1 Common Requirements",
+          "5.2 Unit-Specific Requirements",
+          "5.3 Building-Specific Requirements"
+        ],
+        "sourceFile": "AssetDeliveryChecklistTemplate.md",
+        "modifiedAt": "2026-04-14",
+        "readMinutes": 24,
+        "charCount": 11833,
+        "contentPath": "/data/documents/rtsweb/rtsweb-c76c453c916576a8.md"
+      },
+      {
+        "id": "rtsweb-9bc51adde1f06500",
+        "projectId": "rtsweb",
+        "title": "Runtime Prefab Replacement Slots",
+        "category": "UI / UX",
+        "group": "项目根目录",
+        "summary": "This project supports a separate runtime replacement chain for procedural battlefields, so art/content can replace visuals without mutating the main gameplay config assets.",
+        "keyPoints": [
+          "Assets/Resources/Data/RuntimeEnvironmentConfig.asset",
+          "Assets/Resources/Data/GameContentCatalog.asset",
+          "EntryType = Unit, linked by UnitData, with PrefabOverride",
+          "EntryType = Building, linked by BuildingData, with PrefabOverride",
+          "EntryType = ResourceNode, linked by ResourceType, with PrefabOverride"
+        ],
+        "sections": [
+          "Purpose",
+          "Units / Buildings / Resource Nodes",
+          "Terrain Material / Terrain Layers",
+          "Lighting / Post Process / Atmosphere",
+          "URP Baseline",
+          "Workflow",
+          "Generator Entry"
+        ],
+        "sourceFile": "RuntimePrefabReplacementSlots.md",
+        "modifiedAt": "2026-04-14",
+        "readMinutes": 7,
+        "charCount": 3465,
+        "contentPath": "/data/documents/rtsweb/rtsweb-9bc51adde1f06500.md"
+      },
+      {
+        "id": "rtsweb-d84b11a710a19bd6",
+        "projectId": "rtsweb",
+        "title": "运行时资源替换与地形环境配置方案",
+        "category": "表现与美术",
+        "group": "项目根目录",
+        "summary": "这套方案用于后续替换以下内容，同时不修改主配置资产：",
+        "keyPoints": [
+          "资源节点预制体",
+          "技能图标与说明",
+          "地形材质模板",
+          "TerrainLayer 地表贴图层",
+          "后处理预制体"
+        ],
+        "sections": [
+          "目标",
+          "当前代码入口",
+          "运行时配置结构",
+          "资源替换优先级",
+          "推荐目录结构",
+          "一、单位替换方案",
+          "二、建筑替换方案",
+          "三、资源节点替换方案",
+          "四、技能图标与说明替换方案"
+        ],
+        "sourceFile": "RuntimeReplacementPlan.md",
+        "modifiedAt": "2026-04-13",
+        "readMinutes": 11,
+        "charCount": 5370,
+        "contentPath": "/data/documents/rtsweb/rtsweb-d84b11a710a19bd6.md"
       }
     ],
     "arpg": [
@@ -18462,13 +20348,14 @@
         "sections": [
           "目标",
           "统一规则",
+          "V3 独立资源",
           "适用范围",
           "验证方式"
         ],
         "sourceFile": "UI清晰版视觉重制说明.md",
         "modifiedAt": "2026-08-13",
-        "readMinutes": 2,
-        "charCount": 719,
+        "readMinutes": 3,
+        "charCount": 1194,
         "contentPath": "/data/documents/qgdxx2/qgdxx2-9a78062e63b0c660.md"
       },
       {

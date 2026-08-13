@@ -36,7 +36,7 @@ test("server-renders the portfolio archive", async () => {
   assert.match(html, /decisionDesk/);
   assert.match(html, /30-SECOND DECISION/);
   assert.match(html, /PLAYABLE COMBAT STUDY|战斗实验室/);
-  assert.match(html, /645|ARCHIVE CONSOLE/);
+  assert.match(html, /709|ARCHIVE CONSOLE/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site|react-loading-skeleton/i);
   assert.doesNotMatch(html, /codex-preview[\s\S]*development/i);
 });
@@ -84,4 +84,19 @@ test("wires the ARG, QGDXX2, and original music archive", async () => {
   assert.match(musicDock, /audio\.play\(\)/);
   assert.match(catalog, /"qgdxx2"/);
   assert.match(catalog, /"arg"/);
+});
+
+test("keeps the standalone and web RTS editions separate", async () => {
+  const [portfolio, catalog] = await Promise.all([
+    readFile(new URL("../app/portfolio.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../public/data/document-catalog.json", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(portfolio, /id:"rts"/);
+  assert.match(portfolio, /id:"rtsweb"/);
+  assert.match(portfolio, /TestRTS2_pc_20260813\.zip/);
+  assert.match(portfolio, /TestRTS2\.apk/);
+  assert.match(portfolio, /https:\/\/grentdls\.github\.io\/rts-game\//);
+  assert.match(portfolio, /playableCta/);
+  assert.match(catalog, /"rtsweb"/);
 });

@@ -55,10 +55,12 @@ UnitBuildingActionPages_RightContainer
 
 ## 布局规则
 
-- `SelectionPanel_Prefab` 尺寸为 `1180 x 430`，默认停靠在战斗 HUD 左下/中下区域，用于容纳信息面板、动作页、多选和编队入口。
+- `SelectionPanel_Prefab` 尺寸为 `1600 x 430`，默认停靠在战斗 HUD 底部区域，用于容纳底左详情、底中操作页、底右动作按钮、多选和编队入口。
 - `UnitBuildingInfoPanel_Left` 尺寸为 `540 x 342`，默认位置 `18, 18`。
-- `UnitBuildingActionPages_RightContainer` 尺寸为 `590 x 374`，默认位置 `570, 18`，内部建造、造兵、科技、控制页按当前显隐状态横向分栏并自动夹到安全区内。
-- `LeftLayer_SelectionAndCommands` 尺寸为 `1188 x 430`，确保底部 HUD 不裁切两个子模块，且不覆盖屏幕中央战场。
+- `GroupShortcutBar` 默认位置在 `UnitBuildingInfoPanel_Left` 上方，作为详情页上方的编队按钮区。
+- `UnitBuildingActionPages_RightContainer` 尺寸为 `932 x 374`，默认位置 `570, 18`。其中左侧约 `600` 宽为底部中间操作页，右侧约 `308` 宽为底部右侧动作按钮栏。
+- 中间操作页同一时间只显示一种页面：工人建造页、建筑造兵页或建筑科技页；建筑升级、集结点、拆除、单位技能、采集、巡逻等按钮必须进入右侧动作按钮栏。
+- `LeftLayer_SelectionAndCommands` 尺寸为 `1608 x 430`，确保底部 HUD 不裁切三栏结构，且不覆盖屏幕中央战场。
 - 位置、大小、图片、颜色、静态标题优先在 prefab 中调整。代码只写动态数据、按钮列表、队列项、技能/命令状态和显隐。
 
 ## 血条与属性卡宿主
