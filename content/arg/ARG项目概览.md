@@ -1,6 +1,6 @@
 # ARG 灵异事件调查整合网站项目概览
 
-> 项目来源：G:/ARG；线上整合站：mijing-arg-community.netlify.app
+> 项目来源：G:/ARG；线上整合站：mijing-arg-community.pages.dev
 
 ## 项目定位
 
@@ -15,4 +15,3 @@
 ## 当前证据
 
 ARG 工程的 `src/main.jsx` 已包含案件大厅、调查终端、案件详情、字段调查、证据档案和调查员协查等页面结构；`public/images/` 提供调查桌与线索图，用作当前作品集的项目媒体资产。
-

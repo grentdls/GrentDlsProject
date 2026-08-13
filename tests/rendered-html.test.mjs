@@ -79,7 +79,7 @@ test("wires the ARG, QGDXX2, and original music archive", async () => {
   assert.match(portfolio, /id:"arg"/);
   assert.match(portfolio, /id:"qgdxx2"/);
   assert.match(portfolio, /迷境 ARG 调查局/);
-  assert.match(portfolio, /https:\/\/mijing-arg-community\.netlify\.app\//);
+  assert.match(portfolio, /https:\/\/mijing-arg-community\.pages\.dev\//);
   assert.match(portfolio, /进入 ARG 调查局/);
   assert.match(portfolio, /凌晨 3:17 的电梯/);
   assert.match(portfolio, /AGV-0528/);
