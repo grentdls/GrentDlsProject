@@ -36,7 +36,7 @@ test("server-renders the portfolio archive", async () => {
   assert.match(html, /decisionDesk/);
   assert.match(html, /30-SECOND DECISION/);
   assert.match(html, /PLAYABLE COMBAT STUDY|战斗实验室/);
-  assert.match(html, /文档档案|ARCHIVE CONSOLE|600/);
+  assert.match(html, /645|ARCHIVE CONSOLE/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site|react-loading-skeleton/i);
   assert.doesNotMatch(html, /codex-preview[\s\S]*development/i);
 });
@@ -66,4 +66,22 @@ test("wires the fleet formation side quest", async () => {
   assert.match(fleetFormation, /舰队调度台/);
   assert.match(fleetFormation, /aria-live="polite"/);
   assert.match(fleetFormation, /检查路线/);
+});
+
+test("wires the ARG, QGDXX2, and original music archive", async () => {
+  const [portfolio, musicDock, catalog] = await Promise.all([
+    readFile(new URL("../app/portfolio.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/MusicDock.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../public/data/document-catalog.json", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(portfolio, /id:"arg"/);
+  assert.match(portfolio, /id:"qgdxx2"/);
+  assert.match(portfolio, /迷境 ARG 调查局/);
+  assert.match(portfolio, /英雄城：永夜守望/);
+  assert.match(musicDock, /xiaobuwuqu\.mp4/);
+  assert.match(musicDock, /qishui\.douyin\.com/);
+  assert.match(musicDock, /audio\.play\(\)/);
+  assert.match(catalog, /"qgdxx2"/);
+  assert.match(catalog, /"arg"/);
 });

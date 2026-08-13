@@ -12,6 +12,8 @@ const projectSources = [
   { id: "castle", roots: ["G:/TestProject/HSJT/Docs"] },
   { id: "brick", roots: ["G:/TestProject/3Dxingcunzhe/Docs"] },
   { id: "haste", files: ["G:/Haste/CI/Readme.md", "G:/Haste/auto_excel_opt/readMe.md"] },
+  { id: "qgdxx2", roots: ["G:/TestProject/QGDXX2/Docs"] },
+  { id: "arg", roots: ["content/arg"] },
 ];
 
 const ignoreNames = new Set(["AGENTS.md", "CHANGELOG.md", "LICENSE.md"]);

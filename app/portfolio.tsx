@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import BattleLab from "./BattleLab";
 import ArchiveConsole from "./ArchiveConsole";
+import MusicDock from "./MusicDock";
 
 type Project = {
   id: string; name: string; en: string; pitch: string; status: string; type: string;
@@ -30,6 +31,15 @@ type MediaItem = {
 };
 
 const mediaCatalog = mediaCatalogData as Record<string,MediaItem[]>;
+mediaCatalog.arg = [
+  {id:"arg-1",category:"调查桌",title:"案件局调查桌",caption:"ARG 整合站的主视觉：档案夹、钥匙、地图和录音设备共同构成调查入口。",src:"/media/projects/arg/01.webp",sourceType:"项目素材",bytes:2345966,mediaType:"image"},
+  {id:"arg-2",category:"线索图",title:"未寄出的信与钥匙",caption:"用于案件简报与证据链入口的线索图，强调先保全原件再做解释。",src:"/media/projects/arg/02.webp",sourceType:"项目素材",bytes:2355727,mediaType:"image"}
+];
+mediaCatalog.qgdxx2 = [
+  {id:"qgdxx2-1",category:"实机截图",title:"主城资源与建造界面",caption:"竖屏主城把资源、主线目标、建筑与长期成长放在同一条操作路径上。",src:"/media/projects/qgdxx2/01.png",sourceType:"Unity 实机截图",bytes:389636,mediaType:"image"},
+  {id:"qgdxx2-2",category:"战斗 HUD",title:"妖族英雄战斗 HUD",caption:"自动攻击、手动走位、技能预警和永久卡牌成长的战斗表现样例。",src:"/media/projects/qgdxx2/02.png",sourceType:"Unity 实机截图",bytes:161633,mediaType:"image"},
+  {id:"qgdxx2-3",category:"视觉规范",title:"英雄招募页视觉方案",caption:"福瑞妖族英雄、招募资源与卡池入口的视觉重制效果稿，明确标记为设计稿。",src:"/media/projects/qgdxx2/03.png",sourceType:"设计效果稿",bytes:2222653,mediaType:"image"}
+];
 mediaCatalog.one = [
   {id:"one-promo-video",category:"宣传视频",title:"《击败音乐狂》实机宣传视频",caption:"展示节奏弹幕、AI 英雄成长与造物主控制玩法的项目宣传录像。",src:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/gameplay-promo.mp4",sourceType:"项目宣传视频",bytes:74131251,mediaType:"video"},
   {id:"one-promo-1",category:"宣传图",title:"节奏弹幕战斗宣传图",caption:"项目最新宣传画面，呈现音乐主题敌人与高密度弹幕战场。",src:"/media/projects/one/promo/promo-01.png",sourceType:"项目宣传图",bytes:694992,mediaType:"image"},
@@ -52,7 +62,7 @@ const downloadsByProject:Record<string,DownloadItem[]> = {
   ]
 };
 const catalogTotals = documentCounts as Record<string, number>;
-const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste"]
+const totalUniqueDocs = ["tuntun","wcdel","star","rts","arpg","one","castle","brick","haste","qgdxx2","arg"]
   .reduce((sum,id)=>sum+(catalogTotals[id]??0),0);
 
 const projects: Project[] = [
@@ -65,10 +75,14 @@ const projects: Project[] = [
   { id:"one", name:"击败音乐狂人", en:"DEFEAT MUSIC MANIAC", pitch:"让弹幕、角色成长与音乐节拍彼此驱动的高反馈动作实验。", status:"可试玩", type:"玩法原型", role:"玩法 / 音频 / 表现", tags:["Unity 2D","节奏","弹幕","AI 角色"], image:"/media/projects/one/01.webp", accent:"#c36dd8", playable:true },
   { id:"castle", name:"亲密城堡", en:"INTIMATE CASTLE", pitch:"以关系构筑与流派组合为核心的卡牌爬塔原型。", status:"可试玩", type:"玩法原型", role:"卡牌系统 / 美术规范 / UI", tags:["Unity","卡牌","Build","爬塔"], image:"/media/projects/castle/01.webp", accent:"#d5687f", playable:true },
   { id:"oneproto", name:"造物主试炼", en:"CREATOR'S TRIAL", pitch:"反向幸存者与造物构筑结合的系统概念验证。", status:"概念验证", type:"设计研究", role:"核心循环 / GDD", tags:["Roguelike","反向幸存者","GDD"], image:"/media/projects/one/01.webp", accent:"#8d84d7" },
+  { id:"arg", name:"迷境 ARG 调查局", en:"MIJING ARG COMMUNITY", pitch:"玩家扮演调查员，从都市异闻、影像异常与文档缺页中整理可复核的证据链。", status:"在线整合", type:"ARG / 互动叙事", role:"叙事系统 / 调查流程 / 网页交互", tags:["ARG","互动叙事","证据链","社区协查"], image:"/media/projects/arg/01.webp", accent:"#c77b68" },
+  { id:"qgdxx2", name:"英雄城：永夜守望", en:"HERO CITY: NIGHTWATCH", pitch:"竖屏妖族仙侠抖音小游戏：经营城市、培养英雄、进入幸存者战场，再把资源带回长期成长。", status:"开发中", type:"抖音小游戏", role:"系统策划 / 战斗 / UI·UX", tags:["Unity","竖屏","妖族仙侠","永久成长"], image:"/media/projects/qgdxx2/01.png", accent:"#72b9ae" },
   { id:"haste", name:"Haste", en:"TEAM PROJECT", pitch:"团队商业项目中的工程协作、内容生产与工具链经验。", status:"团队项目", type:"团队项目", role:"项目协作 / 工具 / 内容", tags:["Unity","团队协作","工具链","商业项目"], accent:"#75b6d6", team:true }
 ];
 
 const timeline = [
+  ["2026.08","ARG 上线","迷境 ARG 调查局：案件大厅、证据链与调查员协查成为可探索的整合入口","arg"],
+  ["2026.08","竖屏原型","英雄城：永夜守望把城市经营、妖族英雄与永久成长幸存者战斗接成一条循环","qgdxx2"],
   ["2026.07","玩法成型","吞吞舰船：英雄、主舰与海域形成可配置的战斗框架","tuntun"],
   ["2026.07","交互验证","积木飞船：拖放、吸附、合法性判定与完整产品流程","brick"],
   ["2026.06","系统扩展","星空掠夺者：从前 5 分钟到长期挂机的成长规划","star"],
@@ -126,11 +140,22 @@ const docsByProject: Record<string, DocSummary[]> = {
   haste: [
     { title:"CI 工具链记录", type:"团队工具", status:"工程记录", problem:"如何把团队项目中的自动化流程集中到可重复执行的入口？", conclusions:["现有记录指向 Jenkins 批处理主流程","飞书相关脚本承担协作通知入口","工程内同时保留资源处理、签名、上传与分析工具"], evidence:"现有自有说明较简短，因此仅作为工具链参与证据，不扩写为完整系统设计。", read:"3 min" },
     { title:"Excel 自动优化工具说明", type:"编辑器工具", status:"使用记录", problem:"如何降低批量表格处理的重复操作成本？", conclusions:["说明按操作步骤与功能模式组织","工具以独立可执行程序交付","适合作为团队内容生产管线的辅助案例"], evidence:"工程中存在独立工具与 readMe；个人职责范围仍待本人确认。", read:"3 min" }
+  ],
+  arg: [
+    { title:"ARG 灵异事件调查整合网站项目概览", type:"关卡与叙事", status:"在线整合", problem:"如何把多个灵异事件、玩家调查和社区协查组织成一个可以持续扩展的 ARG 入口？", conclusions:["用案件大厅承载不同类型的都市异闻与现实追踪","每个案件都保留状态、编号、简报和证据链入口","调查员协查频道把个人推理转为可回传、可复核的社区记录"], evidence:"G:/ARG 的 src/main.jsx 已包含调查终端、案件大厅、案件详情与协查结构；线上项目为 mijing-arg-community.netlify.app。", read:"6 min" },
+    { title:"ARG 调查员协查与证据链设计", type:"核心策划", status:"交互方案", problem:"如何让玩家先核验资料，再做解释，同时让多人协查仍然保持清晰的下一步？", conclusions:["原始陈述、已确认事实和待验证推测分层呈现","优先使用日志、元数据、公开档案等低风险来源","回传格式固定为事实、推测、下一步核验"], evidence:"工程内已有字段调查、调查笔记、证据卡、协查帖子、回复和涉密折叠交互。", read:"5 min" },
+    { title:"ARG 案件内容与现实调查边界", type:"制作规范", status:"安全规范", problem:"如何保留灵异调查的神秘感，同时避免把玩家引向现实危险、身份暴露或未经授权的现场行为？", conclusions:["现实追踪案件只使用公开资料和自愿提供的观察","现实身份、住址和未成年人信息不作为谜题奖励","无法复核的内容保持待核验状态，不强行解释"], evidence:"将现实调查边界写入案件内容与协查提示，保证体验中的风险被明确管理。", read:"4 min" }
+  ],
+  qgdxx2: [
+    { title:"竖版城市建造 × 永久成长幸存者小游戏完整制作方案", type:"系统与数值", status:"产品总案", problem:"如何把城市经营、妖族英雄培养、竖屏幸存者战斗和长期成长连成一条小游戏循环？", conclusions:["城市建筑对应资源或战斗能力，不只是装饰菜单","战斗产出回到城市，城市升级再反哺下一场战斗","主线 4～8 分钟，适合单手操作和碎片时间"], evidence:"QGDXX2/Docs 中的完整制作方案定义了产品循环、首日目标、三层循环与系统闭环。", read:"18 min" },
+    { title:"竖版城市幸存者：妖族英雄十六修行派系与升阶玩法完整方案", type:"核心策划", status:"成长系统", problem:"如何让修行派系改变英雄的攻击规则、战场对象和走位决策，而不是只增加数值？", conclusions:["修行派系是安装在攻击系统上的规则改写器","十六个派系拥有残影、阵眼、符序、因果等可观察的玩法器官","隐藏数值后仍应能从十秒战斗录像识别派系"], evidence:"文档把修仙、修体、修妖、剑道、阵道、符道等派系拆成可制作的表现与操作差异。", read:"16 min" },
+    { title:"竖版城市幸存者——战斗逻辑、操作、动画与表现完整制作方案", type:"表现与美术", status:"战斗规范", problem:"自动攻击的低门槛如何与有价值的走位、技能预警和永久构筑选择共存？", conclusions:["战斗由位置、威胁、终极技能和长期构筑四类决策组成","普通怪提供爽感，特殊怪制造问题，Boss 检验理解与操作","高伤攻击必须提前预警，逻辑判定与动画表现解耦"], evidence:"QGDXX2 的战斗文档同时覆盖战斗生命周期、敌人密度、预警、受击与 HUD 优先级。", read:"17 min" },
+    { title:"竖版城市幸存者——全界面 UI 视觉、图文布局与 UX 动效完整规范", type:"UI / UX", status:"视觉规范", problem:"如何在 9:16 竖屏里同时容纳城市、英雄、装备、招募、商店和战斗信息？", conclusions:["用统一页面框、标题绶带、资源条和底部导航形成识别系统","英雄大图、卡片和点击层分离，避免整张效果图代替运行时 UI","关键目标、资源与状态保持稳定锚点，窄屏优先保证可读性"], evidence:"Docs/UI视觉重制 中保留页面清单、招募、英雄、商店、战斗 HUD 和动效的拆分规则。", read:"20 min" }
   ]
 };
 
 const featuredDocs = [
-  ["tuntun",0],["star",1],["brick",1],["arpg",2]
+  ["tuntun",0],["star",1],["brick",1],["arpg",2],["arg",0],["qgdxx2",0]
 ] as const;
 
 const resumeExperiences = [
@@ -236,77 +261,84 @@ const capabilities = [
     id:"system", index:"01", title:"策划与系统设计", subtitle:"把产品定位拆成规则、循环、内容边界与验证计划。",
     scope:["核心循环","系统关系","范围控制","商业化边界","版本规划"],
     method:["明确玩家幻想与首个可验证问题","拆出输入、决策、反馈和长期目标","定义必做、不做及系统依赖","用原型、文档和验收项验证"],
-    projects:["tuntun","star","arpg","castle"],
+    projects:["tuntun","star","arpg","castle","qgdxx2"],
     documents:[
       {projectId:"tuntun",title:"《吞吞舰船》最小可玩 Demo 实现文档",category:"技术策划",contentPath:"/data/documents/tuntun/tuntun-17d1cff20041ce13.md"},
       {projectId:"star",title:"《星空掠夺者》无限挂机成长体验总规划文档",category:"系统与数值",contentPath:"/data/documents/star/star-646bd0f5f1873b25.md"},
       {projectId:"arpg",title:"Unity 3D ACT 暗黑类刷宝 ARPG 项目总纲",category:"核心策划",contentPath:"/data/documents/arpg/arpg-e6d0783b6498d51a.md"},
-      {projectId:"castle",title:"Unity《亲密城堡》Build 套路玩法扩展设计文档",category:"UI / UX",contentPath:"/data/documents/castle/castle-f561cc45475e4588.md"}
+      {projectId:"castle",title:"Unity《亲密城堡》Build 套路玩法扩展设计文档",category:"UI / UX",contentPath:"/data/documents/castle/castle-f561cc45475e4588.md"},
+      {projectId:"qgdxx2",title:"竖版城市建造 × 永久成长幸存者小游戏完整制作方案",category:"系统与数值",contentPath:"/data/documents/qgdxx2/qgdxx2-13ac4fb62ebb5178.md"}
     ]
   },
   {
     id:"gameplay", index:"02", title:"游戏玩法设计", subtitle:"从一个差异化想法推进到能操作、能失败、能重复的玩法闭环。",
     scope:["玩法原型","Roguelike 构筑","关卡事件","节奏控制","失败代价"],
     method:["先定义玩家每 10 秒在做什么","把选择与资源代价连接起来","让成长改变操作或战场结构","通过短局原型观察重复性"],
-    projects:["brick","oneproto","tuntun","rts"],
+    projects:["brick","oneproto","tuntun","rts","arg"],
     documents:[
       {projectId:"brick",title:"《积木星舰幸存者》完整玩法设计文档 V0.1",category:"核心策划",contentPath:"/data/documents/brick/brick-80778583a1545162.md"},
       {projectId:"oneproto",title:"《反幸存者：造物主试炼》玩法策划案",category:"关卡与叙事",contentPath:"/data/documents/one/one-785f2b0772cd652f.md"},
       {projectId:"tuntun",title:"《吞吞舰船》肉鸽装配、武器、主动技能与加速系统设计文档",category:"UI / UX",contentPath:"/data/documents/tuntun/tuntun-54de5612acd710ca.md"},
-      {projectId:"rts",title:"占领主城与定向融合阵营：功能与表现需求文档",category:"表现与美术",contentPath:"/data/documents/rts/rts-45be76865ead594f.md"}
+      {projectId:"rts",title:"占领主城与定向融合阵营：功能与表现需求文档",category:"表现与美术",contentPath:"/data/documents/rts/rts-45be76865ead594f.md"},
+      {projectId:"arg",title:"ARG 调查员协查与证据链设计",category:"核心策划",contentPath:"/data/documents/arg/arg-a16d7a31a4098a30.md"}
     ]
   },
   {
     id:"combat", index:"03", title:"战斗逻辑设计", subtitle:"让敌人、技能、AI 和反馈共同形成可观察、可判断、可反制的战斗。",
     scope:["敌人与 Boss","技能流程","AI 行为","伤害结算","战斗表现"],
     method:["先定义单位职责与危险预算","为攻击建立前摇、命中和后摇","把机制难度与纯数值难度分离","同步动作、VFX、音频、镜头和 UI"],
-    projects:["tuntun","one","arpg","wcdel"],
+    projects:["tuntun","one","arpg","wcdel","qgdxx2"],
     documents:[
       {projectId:"tuntun",title:"《吞吞舰船》敌人、精英与 Boss 攻击方式、挑战逻辑及战斗表现完整设计文档",category:"表现与美术",contentPath:"/data/documents/tuntun/tuntun-e56e7d5bbd7f6823.md"},
       {projectId:"one",title:"AI 弹幕音效播放器系统方案",category:"UI / UX",contentPath:"/data/documents/one/one-a98c881b39ddba1a.md"},
       {projectId:"arpg",title:"技能系统总设计：主动、辅助、保留、触发、变体",category:"表现与美术",contentPath:"/data/documents/arpg/arpg-c63e4b9b7ad3cd31.md"},
-      {projectId:"wcdel",title:"战斗系统详细设计文档",category:"战斗设计",contentPath:"/data/documents/wcdel/wcdel-4e36c5608b461dca.md"}
+      {projectId:"wcdel",title:"战斗系统详细设计文档",category:"战斗设计",contentPath:"/data/documents/wcdel/wcdel-4e36c5608b461dca.md"},
+      {projectId:"qgdxx2",title:"竖版城市幸存者——战斗逻辑、操作、动画与表现完整制作方案",category:"表现与美术",contentPath:"/data/documents/qgdxx2/qgdxx2-02c505c7de0edeb1.md"}
     ]
   },
   {
     id:"technical", index:"04", title:"技术功能设计", subtitle:"把策划语言转换成状态、数据结构、事件流程与可验收功能。",
     scope:["状态机","数据配置","Prefab 架构","运行时流程","跨端验证"],
     method:["把体验需求写成输入与状态变化","分离数据、逻辑、表现和工具层","定义稳定槽位、事件与配置入口","为功能编写异常状态和验收标准"],
-    projects:["rts","arpg","wcdel","brick"],
+    projects:["rts","arpg","wcdel","brick","qgdxx2"],
     documents:[
       {projectId:"rts",title:"HUD 预制体开发规则",category:"UI / UX",contentPath:"/data/documents/rts/rts-d7830b9c97c9b2eb.md"},
       {projectId:"arpg",title:"天赋系统总设计：大天赋树、职业起点、专精树",category:"UI / UX",contentPath:"/data/documents/arpg/arpg-d00a3709b3435d7a.md"},
       {projectId:"wcdel",title:"架构说明",category:"技术策划",contentPath:"/data/documents/wcdel/wcdel-be58af48ebffaa81.md"},
-      {projectId:"brick",title:"太空3D积木飞船幸存者：积木搭建交互与完整UI预制体方案",category:"UI / UX",contentPath:"/data/documents/brick/brick-10851bdbb6434117.md"}
+      {projectId:"brick",title:"太空3D积木飞船幸存者：积木搭建交互与完整UI预制体方案",category:"UI / UX",contentPath:"/data/documents/brick/brick-10851bdbb6434117.md"},
+      {projectId:"qgdxx2",title:"竖版城市幸存者：全界面 UI 视觉、图文布局与 UX 动效完整规范",category:"UI / UX",contentPath:"/data/documents/qgdxx2/qgdxx2-09b822dce5a18bbf.md"}
     ]
   },
   {
     id:"tools", index:"05", title:"工具与内容管线", subtitle:"减少重复劳动，让配置、资源、UI 和批量内容能持续生产。",
     scope:["配置编辑器","批量内容","资源规范","文档同步","CI 工具链"],
     method:["识别最常重复且易出错的步骤","把命名、路径和数据格式固定下来","提供预览、校验、回退与验收清单","让工具输出直接进入运行时"],
-    projects:["wcdel","rts","arpg","haste"],
+    projects:["wcdel","rts","arpg","haste","qgdxx2"],
     documents:[
       {projectId:"wcdel",title:"角色配置工具完整方案",category:"UI / UX",contentPath:"/data/documents/wcdel/wcdel-c4a15efaea29c59d.md"},
       {projectId:"wcdel",title:"UI Prefab Framework Sync",category:"UI / UX",contentPath:"/data/documents/wcdel/wcdel-fc66a550a6997c5a.md"},
       {projectId:"arpg",title:"166 模型配置编辑器：预览、挂点调整、换装测试、校验",category:"UI / UX",contentPath:"/data/documents/arpg/arpg-4b5c83c8009b9e66.md"},
-      {projectId:"arpg",title:"74. 配置导入导出：JSON、ScriptableObject、Excel、热更新、版本控制",category:"系统与数值",contentPath:"/data/documents/arpg/arpg-9da6bb1a40dd4415.md"}
+      {projectId:"arpg",title:"74. 配置导入导出：JSON、ScriptableObject、Excel、热更新、版本控制",category:"系统与数值",contentPath:"/data/documents/arpg/arpg-9da6bb1a40dd4415.md"},
+      {projectId:"qgdxx2",title:"竖版城市幸存者 UI 视觉重制与运行时实现说明",category:"UI / UX",contentPath:"/data/documents/qgdxx2/qgdxx2-7f3129dd8a6daa13.md"}
     ]
   },
   {
     id:"ux", index:"06", title:"UI / UX 与信息设计", subtitle:"保护游戏主画面，让复杂系统在正确时机只显示必要信息。",
     scope:["信息层级","操作流程","错误反馈","响应式布局","动效规范"],
     method:["先画出玩家任务和关键路径","按重要性安排固定与按需信息","为拖放、锁定、错误和等待提供反馈","用统一组件和内容规则保持一致"],
-    projects:["brick","star","one","castle"],
+    projects:["brick","star","one","castle","arg","qgdxx2"],
     documents:[
       {projectId:"brick",title:"《太空3D积木飞船幸存者》积木搭建界面优化与操作流程完整文档",category:"UI / UX",contentPath:"/data/documents/brick/brick-491431983e17c657.md"},
       {projectId:"star",title:"《星空掠夺者》飞船模块分页建造、解锁与蓝图显示规则完整设计文档",category:"核心策划",contentPath:"/data/documents/star/star-b2fafeec111d8907.md"},
       {projectId:"one",title:"《击败音乐狂》完整UI布局说明文档",category:"UI / UX",contentPath:"/data/documents/one/one-6684c116863e0ab6.md"},
-      {projectId:"castle",title:"Unity《亲密城堡》战斗表现与特效逻辑规范文档",category:"表现与美术",contentPath:"/data/documents/castle/castle-4ac8169cf4aaced8.md"}
+      {projectId:"castle",title:"Unity《亲密城堡》战斗表现与特效逻辑规范文档",category:"表现与美术",contentPath:"/data/documents/castle/castle-4ac8169cf4aaced8.md"},
+      {projectId:"arg",title:"ARG 案件内容与现实调查边界",category:"制作规范",contentPath:"/data/documents/arg/arg-f2a18ed0224934bd.md"},
+      {projectId:"qgdxx2",title:"竖版城市幸存者 UI 视觉重制与运行时实现说明",category:"UI / UX",contentPath:"/data/documents/qgdxx2/qgdxx2-7f3129dd8a6daa13.md"}
     ]
   }
 ];
 
-const filters = ["全部","独立游戏","玩法原型","系统研究","技术原型","团队项目"];
+const filters = ["全部","独立游戏","玩法原型","系统研究","技术原型","ARG / 互动叙事","抖音小游戏","团队项目"];
 
 function Arrow(){ return <span aria-hidden="true">↗</span> }
 
@@ -433,11 +465,11 @@ export default function Portfolio(){
         <p className="eyebrow">GAME DESIGNER · TECHNICAL DESIGNER</p>
         <h1>把玩法想法<br/>推进到<span>可运行</span></h1>
         <p className="lead">持续进行独立游戏与玩法原型开发。以游戏策划和技术策划为核心，跨越程序、视听表现与 AI 工具链，让每个判断都能被玩到、被验证。</p>
-        <div className="heroActions"><button className="primary" onClick={()=>{selectProject(projects[0])}}>查看代表项目 <Arrow/></button><button className="secondary" onClick={()=>scrollTo("projects")}>浏览全部 10 个项目</button></div>
+        <div className="heroActions"><button className="primary" onClick={()=>{selectProject(projects[0])}}>查看代表项目 <Arrow/></button><button className="secondary" onClick={()=>scrollTo("projects")}>浏览全部 {projects.length} 个项目</button></div>
         <a className="heroLabLink" href="#lab"><span>PLAYABLE</span> 进入战斗实验室 <Arrow/></a>
       </div>
       <div className="stats" aria-label="作品集统计">
-        <div><strong>10</strong><span>项目 / 原型</span></div><div><strong>6</strong><span>可运行成果</span></div><div><strong>{totalUniqueDocs}</strong><span>工程文档入库</span></div>
+        <div><strong>{projects.length}</strong><span>项目 / 原型</span></div><div><strong>6</strong><span>可运行成果</span></div><div><strong>{totalUniqueDocs}</strong><span>工程文档入库</span></div>
       </div>
       <div className="now"><i/><span>NOW BUILDING</span><b>吞吞舰船</b></div>
     </section>
@@ -493,7 +525,7 @@ export default function Portfolio(){
       <div className="sectionHead"><div><p className="kicker">03 / CAPABILITY MAP</p><h2>核心是策划，<br/>证据来自项目。</h2></div><p>不使用“熟练度 90%”。能力由真实问题、设计方法、项目结果和工程文档共同证明。</p></div>
       <div className="capabilityIntro">
         <div><span>PRIMARY ROLE</span><h3>游戏策划<br/>& 技术策划</h3><p>从玩法定位、系统规则和战斗逻辑，一直推进到数据结构、UI 流程、配置工具与可运行原型。</p></div>
-        <dl><div><dt>项目证据</dt><dd>10</dd></div><div><dt>工程文档</dt><dd>{totalUniqueDocs}</dd></div><div><dt>能力方向</dt><dd>{capabilities.length}</dd></div><div><dt>可运行成果</dt><dd>6</dd></div></dl>
+        <dl><div><dt>项目证据</dt><dd>{projects.length}</dd></div><div><dt>工程文档</dt><dd>{totalUniqueDocs}</dd></div><div><dt>能力方向</dt><dd>{capabilities.length}</dd></div><div><dt>可运行成果</dt><dd>6</dd></div></dl>
       </div>
       <div className="capabilityList">{capabilities.map(cap=><article className="capabilityCard" key={cap.id}>
         <div className="capabilityName"><span>{cap.index}</span><div><p>CAPABILITY</p><h3>{cap.title}</h3><strong>{cap.subtitle}</strong></div></div>
@@ -507,7 +539,7 @@ export default function Portfolio(){
 
     <section className="section docsSection">
       <div className="sectionHead compact"><div><p className="kicker">04 / DOCUMENT ARCHIVE</p><h2>{totalUniqueDocs} 篇工程文档</h2></div><p>精选解读负责呈现判断深度，完整目录保留每个项目真实的设计覆盖面。进入任一项目，即可按分类、标题、章节与关键词浏览。</p></div>
-      <div className="archiveMetrics"><div><strong>9</strong><span>文档分类</span></div><div><strong>10</strong><span>项目档案</span></div><div><strong>29</strong><span>深度解读</span></div><div><strong>{totalUniqueDocs}</strong><span>原始文档索引</span></div></div>
+      <div className="archiveMetrics"><div><strong>11</strong><span>文档分类</span></div><div><strong>{projects.length}</strong><span>项目档案</span></div><div><strong>35</strong><span>深度解读</span></div><div><strong>{totalUniqueDocs}</strong><span>原始文档索引</span></div></div>
       <div className="docList">{featuredDocs.map(([projectId,docIndex],i)=>{const p=projects.find(item=>item.id===projectId)!;const d=docsByProject[projectId][docIndex];return <article key={d.title} role="button" onClick={()=>selectProject(p)} tabIndex={0} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectProject(p)}}}>
         <span className="docNo">D{String(i+1).padStart(2,"0")}</span><div><small>{p.name} · {d.type} · {d.status}</small><h3>{d.title}</h3><p>{d.problem}</p></div><span className="read">{d.read}<b>↗</b></span>
       </article>})}</div>
@@ -532,6 +564,7 @@ export default function Portfolio(){
     </footer>
 
     <ArchiveConsole />
+    <MusicDock />
 
     {selected&&<div className="modalBackdrop" role="presentation" onMouseDown={()=>setSelected(null)}>
       <article className="projectModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={e=>e.stopPropagation()}>
