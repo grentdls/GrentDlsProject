@@ -71,6 +71,60 @@
       "src": "/media/projects/tuntun/08.webp",
       "sourceType": "项目资产",
       "bytes": 271095
+    },
+    {
+      "id": "tuntun-latest-ship-management",
+      "category": "最新实机截图",
+      "title": "舰队管理与主舰详情",
+      "caption": "2026-07-30 UIReview Verified：主舰信息、舰队卡片与海上基地同屏展示。",
+      "src": "/media/projects/tuntun/latest/UI_ShipManagement.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 1632137
+    },
+    {
+      "id": "tuntun-latest-shipyard-production",
+      "category": "最新实机截图",
+      "title": "造船厂生产界面",
+      "caption": "2026-07-30 UIReview Verified：生产队列、资源消耗与舰船制造反馈。",
+      "src": "/media/projects/tuntun/latest/UI_Shipyard_Production.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 1441139
+    },
+    {
+      "id": "tuntun-latest-shipyard",
+      "category": "最新实机截图",
+      "title": "船坞与舰船配置",
+      "caption": "2026-07-30 UIReview Verified：船坞空间、舰船列表与装备配置入口。",
+      "src": "/media/projects/tuntun/latest/UI_Shipyard.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 1709201
+    },
+    {
+      "id": "tuntun-latest-build-placement",
+      "category": "最新实机截图",
+      "title": "港口建筑放置",
+      "caption": "2026-07-30 UIReview Verified：建造网格、放置预览与港口布局反馈。",
+      "src": "/media/projects/tuntun/latest/UI_Build_Placement.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 1661979
+    },
+    {
+      "id": "tuntun-latest-build-catalog",
+      "category": "最新实机截图",
+      "title": "建筑目录与生产区",
+      "caption": "2026-07-30 UIReview Verified：建筑分类、解锁状态与生产区选择。",
+      "src": "/media/projects/tuntun/latest/UI_Build_Catalog.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 1609111
+    },
+    {
+      "id": "tuntun-latest-settings",
+      "category": "最新实机截图",
+      "title": "设置界面",
+      "caption": "2026-07-30 UIReview Verified：设置面板与运行时界面规范。",
+      "src": "/media/projects/tuntun/latest/UI_Settings.png",
+      "sourceType": "实机截图 · Verified",
+      "bytes": 826945
     }
   ],
   "wcdel": [

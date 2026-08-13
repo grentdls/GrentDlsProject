@@ -53,6 +53,9 @@ mediaCatalog.one = [
 
 type DownloadItem = {platform:"Windows"|"Android";title:string;filename:string;size:string;href:string};
 const downloadsByProject:Record<string,DownloadItem[]> = {
+  tuntun:[
+    {platform:"Windows",title:"《吞吞舰船》Windows x64 最新试玩包",filename:"tuntun-ship-windows-20260812.zip",size:"145.9 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/tuntun-ship-windows-20260812.zip"}
+  ],
   one:[
     {platform:"Windows",title:"《击败音乐狂》PC 试玩版",filename:"defeat-music-maniac-windows.zip",size:"80.2 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/defeat-music-maniac-windows.zip"},
     {platform:"Android",title:"《击败音乐狂》安卓试玩版",filename:"DefeatMusicManiac.apk",size:"82.6 MB",href:"https://github.com/grentdls/GrentDlsProject/releases/download/portfolio-builds-2026-07-28/DefeatMusicManiac.apk"}
@@ -593,6 +596,7 @@ export default function Portfolio(){
             {projectDownloads.length?<section id="downloads" className="projectDownloads"><div className="downloadHeading"><div><p className="kicker">PLAYABLE BUILDS</p><h3>下载试玩</h3><p>选择设备下载当前可运行版本。Windows 包解压后运行同名 EXE；安卓包需要允许安装外部 APK。</p></div><span>可运行版本</span></div><div className="downloadGrid">{projectDownloads.map(item=><a href={item.href} download={item.filename} key={item.href}><i>{item.platform==="Windows"?"PC":"APK"}</i><div><small>{item.platform} · {item.size}</small><strong>{item.title}</strong><span>{item.filename}</span></div><b>立即下载 ↓</b></a>)}</div></section>:null}
             <section id="loop"><p className="kicker">DESIGN LOOP</p><h3>从选择到反馈的闭环</h3><div className="loop"><span>观察局势</span><i>→</i><span>做出构筑</span><i>→</i><span>进入验证</span><i>→</i><span>带回成长</span></div><p>详情页首版保留统一结构，后续会从原项目文档中继续提炼每个模块的玩家目标、操作、主要决策、即时反馈与失败代价。</p></section>
             <section id="media" className="projectMedia"><div className="mediaHeading"><div><p className="kicker">ART & MEDIA ARCHIVE</p><h3>项目美术资产</h3><p>按用途整理工程中的画面、UI、角色、场景、模型预览、特效与图标。所有 AI 概念封面均明确标注，不与实机截图混用。</p></div><strong>{projectMedia.length}<small> ASSETS</small></strong></div>
+              {selected.id==="tuntun"&&<div className="mediaStatusNote"><span>最新素材状态</span><strong>6 张 Verified 实机截图已更新</strong><p>当前 TunTun 工程目录暂未发现录屏文件；补充视频后会继续接入这里的媒体灯箱。</p></div>}
               <div className="mediaFilters" role="group" aria-label="美术资产分类">{mediaCategories.map(c=><button key={c} aria-pressed={mediaCategory===c} onClick={()=>setMediaCategory(c)}>{c}<b>{c==="全部"?projectMedia.length:projectMedia.filter(item=>item.category===c).length}</b></button>)}</div>
               <div className="mediaGrid">{filteredMedia.map((item,i)=><button className={`mediaCard ${i===0?"mediaLead":""}`} key={item.id} onClick={()=>setLightboxMedia(item)}>
                 <div>{item.mediaType==="video"?<video src={`${item.src}#t=0.1`} preload="metadata" muted playsInline/>:<img src={item.src} alt={`${item.title}：${item.caption}`} loading="lazy"/>}<span>{item.sourceType}</span><i>{item.mediaType==="video"?"▶":"＋"}</i></div><small>{item.category}</small><h4>{item.title}</h4><p>{item.caption}</p>

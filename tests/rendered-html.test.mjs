@@ -69,16 +69,20 @@ test("wires the fleet formation side quest", async () => {
 });
 
 test("wires the ARG, QGDXX2, and original music archive", async () => {
-  const [portfolio, musicDock, catalog] = await Promise.all([
+  const [portfolio, musicDock, catalog, mediaCatalog] = await Promise.all([
     readFile(new URL("../app/portfolio.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/MusicDock.tsx", import.meta.url), "utf8"),
     readFile(new URL("../public/data/document-catalog.json", import.meta.url), "utf8"),
+    readFile(new URL("../app/media-catalog.json", import.meta.url), "utf8"),
   ]);
 
   assert.match(portfolio, /id:"arg"/);
   assert.match(portfolio, /id:"qgdxx2"/);
   assert.match(portfolio, /迷境 ARG 调查局/);
   assert.match(portfolio, /英雄城：永夜守望/);
+  assert.match(portfolio, /tuntun-ship-windows-20260812\.zip/);
+  assert.match(portfolio, /最新素材状态/);
+  assert.match(mediaCatalog, /UI_ShipManagement\.png/);
   assert.match(musicDock, /xiaobuwuqu\.mp4/);
   assert.match(musicDock, /qishui\.douyin\.com/);
   assert.match(musicDock, /audio\.play\(\)/);
